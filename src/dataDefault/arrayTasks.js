@@ -50,7 +50,17 @@ export const arrayTasks = [
         subcategory: [
             {
                 nameCategory: 'Category 3-1',
-                tasks: [],
+                tasks: [{
+                        name: 'To-Do item 3-17',
+                        description: 'test 7'
+                    },{
+                        name: 'To-Do item 3-18',
+                        description: 'test 8'
+                    },{
+                        name: 'To-Do item 3-19',
+                        description: 'test 9'
+                    }
+                ],
                 subcategory: [
                     {
                         nameCategory: 'Category 3-1-1',
@@ -64,11 +74,34 @@ export const arrayTasks = [
                 subcategory: [
                     {
                         nameCategory: 'Category 3-2-1',
-                        tasks: []
+                        tasks: [
+                            {
+                                name: 'To-Do item 3-2-1-423434',
+                                description: 'test 9'
+                            }
+                        ]
                     }
                 ]
             }
 
         ]
+    }, {
+        nameCategory: 'Category4',
+        tasks: []
     }
 ];
+
+
+export const searchTasks = (a,b) => {
+    let data;
+    const search = (arr,category) => {
+        arr.forEach((item,i) => {
+            if(item.nameCategory === category){data = item.tasks;return}
+            if(item.subcategory){
+                return search(item.subcategory,category)};
+        });
+    };
+    search(a,b);
+    return data;
+};
+
