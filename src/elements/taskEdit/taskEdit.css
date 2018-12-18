@@ -1,0 +1,15 @@
+.TaskEdit {
+    box-sizing: border-box;
+    padding: 20px 15px;
+    text-align: left;
+}
+.TaskEdit__wrapper {
+    padding: 10px 0;
+}
+.TaskEdit__wrapper_btns {
+    text-align: right;
+}
+.TaskEdit__buttons {
+    display: inline-block;
+    padding-right: 10px;
+}

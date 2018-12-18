@@ -1,0 +1,29 @@
+.Task {
+    box-sizing: border-box;
+    padding: 20px 20px 20px 40px;
+    position: relative;
+    text-align: left;
+}
+.Task__status,
+.Task__edit {
+    cursor: pointer;
+}
+.Task__status
+.Task__title,
+.Task__edit{
+    display: inline-block;
+    vertical-align: middle;
+}
+.Task__title {
+    font-size: 20px;
+    font-style: italic;
+    padding-left: 60px;
+}
+.Task__edit {
+    height: 20px;
+    position: absolute;
+    right: 20px;
+    width: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}

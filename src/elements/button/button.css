@@ -1,0 +1,16 @@
+.button {
+    border: 1px solid grey;
+    cursor: pointer;
+    font-size: 16px;
+    font-style: italic;
+    padding: 8px;
+    outline: 0;
+    vertical-align: middle;
+}
+.button:hover {
+    color: red;
+}
+.button:disabled {
+    color: #ffffff;
+    background: grey;
+}

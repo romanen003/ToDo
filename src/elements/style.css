@@ -1,0 +1,26 @@
+.Grid {
+    font-size: 0;
+    margin: 0 -10px;
+}
+.Grid__item {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 0 10px;
+    vertical-align: middle;
+    width: 50%;
+    text-align: center;
+}
+.Grid__item_70 {
+    width: 70%;
+}
+.Grid__item_30 {
+    width: 30%;
+}
+.edit {
+    display: inline-block;
+    background: url("../img/edit.jpg") no-repeat center;
+    background-size: 80%;
+    height: 100%;
+    width: 100%;
+}
