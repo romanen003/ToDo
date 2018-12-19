@@ -93,15 +93,30 @@ export const arrayTasks = [
 
 
 export const searchTasks = (a,b) => {
-    let data;
+    let data = [];
     const search = (arr,category) => {
-        arr.forEach((item,i) => {
-            if(item.nameCategory === category){data = item.tasks;return}
+        arr.forEach((item) => {
+            if(item.nameCategory === category){
+                data.push(item.tasks)
+                if (item.subcategory){
+                    const searchTasksAll = (a) => {
+                        a.forEach((item)=>{
+                            if (item.tasks){
+                                data.push(item.tasks)
+                            }
+                            if (item.subcategory){
+                                searchTasksAll(item.subcategory);
+                            }
+                        });
+                    };
+                    searchTasksAll(item.subcategory);
+                }
+            }
             if(item.subcategory){
                 return search(item.subcategory,category)};
         });
     };
     search(a,b);
-    return data;
+    return Array.prototype.concat.apply([],data);
 };
 

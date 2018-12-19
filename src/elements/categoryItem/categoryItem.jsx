@@ -25,7 +25,6 @@ export class CategoryItem extends Component {
 
     state = {
         isOpen: false,
-        isSelected: false
     };
 
     onChildrenShowClick = () => {
@@ -34,12 +33,11 @@ export class CategoryItem extends Component {
         })
     };
     handleSelectClick = (event) => {
-        if (event.target.classList.contains("CategoryItem")) {
-            this.setState({
-                isSelected: !this.state.isSelected
-            })
+        if (event.target.classList.contains('CategoryItem')){
+            this.props.handleSelectClick();
         }
     };
+
 
     render () {
         const {
@@ -49,10 +47,11 @@ export class CategoryItem extends Component {
             onCategoryDeleteClick,
             transfer,
             onTaskTransferClick,
-            value
+            value,
+            isSelect,
         } = this.props;
         const showChildren = `CategoryItem__more ${this.state.isOpen ? 'CategoryItem__more_close' : ''}`;
-        const isSelected = `CategoryItem ${this.state.isSelected ? 'CategoryItem_selected' : ''}`;
+        const isSelected = `CategoryItem ${isSelect ? 'CategoryItem_selected' : ''}`;
 
         return (
             <React.Fragment>

@@ -3,12 +3,15 @@ import {string, func, bool} from 'prop-types';
 import {Checkbox, Search, ProgressBar, Form, CategoryItem, Task, TaskEdit} from "../../elements";
 import './todo.css';
 import '../../elements/style.css';
-import {CategoryBoxContainer} from "..";
+import {CategoryBoxContainer, TasksBox} from "..";
 
 export class Todo extends Component {
     render () {
         const {
-            defaultData
+            defaultData,
+            isActiveCategory,
+            handleSelectClick,
+            showTasks
         } = this.props;
 
         return (
@@ -56,13 +59,17 @@ export class Todo extends Component {
                         <div className="Grid__item Grid__item_30">
                             <div className="BoxContent">
                                 <CategoryBoxContainer
+                                    handleSelectClick={handleSelectClick}
+                                    isActiveCategory={isActiveCategory}
                                     defaultData={defaultData}
                                 />
                             </div>
                         </div>
                         <div className="Grid__item Grid__item_70">
                             <div className="BoxContent">
-
+                                <TasksBox
+                                    showTasks={showTasks}
+                                />
                             </div>
                         </div>
                     </div>

@@ -1,24 +1,33 @@
 import React, { Component } from 'react';
-import {string, func, bool} from 'prop-types';
+import {string, func, bool, array} from 'prop-types';
 import {CategoryItem} from "../../elements";
 import './categoryList.css';
 
 export class CategoryList extends Component {
     static propTypes = {
-
+        categoryList: array,
+        isActiveCategory: string,
+        handleSelectClick: func
     };
     static defaultProps = {
-
+        categoryList: [],
+        isActiveCategory: '',
+        handleSelectClick: () => {}
     };
 
     state = {
         isOpen: false
     };
-
+    handleSelectClick =(name) => {
+        console.log(name);
+        this.props.handleSelectClick(name)
+    };
 
     render () {
         const {
-            categoryList
+            categoryList,
+            isActiveCategory,
+            handleSelectClick
         } = this.props;
 
         return (
@@ -29,15 +38,25 @@ export class CategoryList extends Component {
                             <React.Fragment>
                                 <CategoryItem
                                     categoryName={item.nameCategory}
-                                    key={i}
+                                    key={`${item.nameCategory}---${i}`}
                                     hasChildren={true}
-                                    value={<CategoryList categoryList={item.subcategory} />}
+                                    handleSelectClick={()=>{this.handleSelectClick(item.nameCategory)}}
+                                    isSelect={item.nameCategory === isActiveCategory}
+                                    value={<CategoryList
+                                        handleSelectClick={handleSelectClick}
+                                        categoryList={item.subcategory}
+                                        isActiveCategory={isActiveCategory}
+                                    />}
                                 />
-
                             </React.Fragment>
                         );
                     }
-                    return <CategoryItem categoryName={item.nameCategory} key={i}/>;
+                    return <CategoryItem
+                        categoryName={item.nameCategory}
+                        key={`${item.nameCategory}---${i}`}
+                        handleSelectClick={()=>{this.handleSelectClick(item.nameCategory)}}
+                        isSelect={item.nameCategory === isActiveCategory}
+                    />;
                 })}
             </ul>
         )

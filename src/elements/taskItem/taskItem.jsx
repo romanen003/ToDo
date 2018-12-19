@@ -14,7 +14,8 @@ export class Task extends Component {
 
     render () {
         const {
-            onTaskEditClick
+            onTaskEditClick,
+            name
         } = this.props;
 
         return (
@@ -22,7 +23,7 @@ export class Task extends Component {
                 <div className="Task__status">
                     <Checkbox/>
                 </div>
-                <div className="Task__title">TASK #1</div>
+                <div className="Task__title">{name}</div>
                 <div
                     className="Task__edit"
                     onClick={onTaskEditClick}

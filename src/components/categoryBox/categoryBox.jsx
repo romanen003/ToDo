@@ -13,12 +13,16 @@ export class CategoryBox extends Component {
 
     render () {
         const {
-            defaultData
+            defaultData,
+            isActiveCategory,
+            handleSelectClick
         } = this.props;
 
         return (
             <div className='CategoryBox'>
                 <CategoryList
+                    handleSelectClick={handleSelectClick}
+                    isActiveCategory={isActiveCategory}
                     categoryList={defaultData}
                 />
             </div>
