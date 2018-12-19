@@ -3,7 +3,7 @@ import {string, func, bool} from 'prop-types';
 import {Checkbox, Search, ProgressBar, Form, CategoryItem, Task, TaskEdit} from "../../elements";
 import './todo.css';
 import '../../elements/style.css';
-import {CategoryBoxContainer, TasksBox} from "..";
+import {CategoryBox, TasksBox} from "..";
 
 export class Todo extends Component {
     render () {
@@ -58,7 +58,7 @@ export class Todo extends Component {
                     <div className="Grid">
                         <div className="Grid__item Grid__item_30">
                             <div className="BoxContent">
-                                <CategoryBoxContainer
+                                <CategoryBox
                                     handleSelectClick={handleSelectClick}
                                     isActiveCategory={isActiveCategory}
                                     defaultData={defaultData}

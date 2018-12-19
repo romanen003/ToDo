@@ -5,10 +5,14 @@ import './categoryBox.css';
 
 export class CategoryBox extends Component {
     static propTypes = {
-        defaultData: array
+        defaultData: array,
+        isActiveCategory: string,
+        handleSelectClick: func
     };
     static defaultProps = {
-        defaultData: []
+        defaultData: [],
+        isActiveCategory: '',
+        handleSelectClick: () => {}
     };
 
     render () {

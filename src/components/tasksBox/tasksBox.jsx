@@ -4,6 +4,13 @@ import {Task} from "../../elements";
 import './tasksBox.css';
 
 export class TasksBox extends Component {
+    static defaultProps = {
+        showTasks: []
+    };
+    static propTypes = {
+        showTasks: array
+    };
+
     render () {
         const {
             showTasks

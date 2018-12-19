@@ -71,10 +71,9 @@ export class CategoryItem extends Component {
                         <div
                             className="CategoryItem__delete"
                             onClick={onCategoryDeleteClick}
-                        ></div>
+                        />
                         <div
                             className="CategoryItem__addTask"
-
                         >
                             +
                         </div>
@@ -83,7 +82,7 @@ export class CategoryItem extends Component {
                     <div
                         className='CategoryItem__transfer'
                         onClick={onTaskTransferClick}
-                    ></div>}
+                    />}
                 </div>
                 {this.state.isOpen && value}
             </React.Fragment>
