@@ -4,6 +4,7 @@ import {Checkbox, Search, ProgressBar, Form, CategoryItem, Task, TaskEdit} from 
 import './todo.css';
 import '../../elements/style.css';
 import {CategoryBox, TasksBox} from "..";
+import {ContentBox} from "../contentBox/contentBox";
 
 export class Todo extends Component {
     render () {
@@ -54,26 +55,12 @@ export class Todo extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="Todo__content">
-                    <div className="Grid">
-                        <div className="Grid__item Grid__item_30">
-                            <div className="BoxContent">
-                                <CategoryBox
-                                    handleSelectClick={handleSelectClick}
-                                    isActiveCategory={isActiveCategory}
-                                    defaultData={defaultData}
-                                />
-                            </div>
-                        </div>
-                        <div className="Grid__item Grid__item_70">
-                            <div className="BoxContent">
-                                <TasksBox
-                                    showTasks={showTasks}
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <ContentBox
+                    handleSelectClick={handleSelectClick}
+                    isActiveCategory={isActiveCategory}
+                    defaultData={defaultData}
+                    showTasks={showTasks}
+                />
             </div>
         );
     };
