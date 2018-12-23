@@ -3,7 +3,8 @@ export const arrayTasks = [
         nameCategory: 'Category1',
         tasks: [{
             name: 'To-Do item 1',
-            description: 'test 1'
+            description: 'test 1',
+            done: false
         },{
             name: 'To-Do item 2',
             description: 'test 2'
@@ -13,7 +14,7 @@ export const arrayTasks = [
         }],
         subcategory: [
             {
-                nameCategory: 'Category 1-1',
+                nameCategory: 'Category1-1',
                 tasks: []
             }
         ]
@@ -31,7 +32,7 @@ export const arrayTasks = [
         }],
         subcategory: [
             {
-                nameCategory: 'Category 2-1',
+                nameCategory: 'Category2-1',
                 tasks: []
             }
         ]
@@ -49,7 +50,7 @@ export const arrayTasks = [
         }],
         subcategory: [
             {
-                nameCategory: 'Category 3-1',
+                nameCategory: 'Category3-1',
                 tasks: [{
                         name: 'To-Do item 3-17',
                         description: 'test 7'
@@ -63,17 +64,17 @@ export const arrayTasks = [
                 ],
                 subcategory: [
                     {
-                        nameCategory: 'Category 3-1-1',
+                        nameCategory: 'Category3-1-1',
                         tasks: []
                     }
                 ]
             },
             {
-                nameCategory: 'Category 3-2',
+                nameCategory: 'Category3-2',
                 tasks: [],
                 subcategory: [
                     {
-                        nameCategory: 'Category 3-2-1',
+                        nameCategory: 'Category3-2-1',
                         tasks: [
                             {
                                 name: 'To-Do item 3-2-1-423434',

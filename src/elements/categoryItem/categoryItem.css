@@ -1,9 +1,12 @@
 .CategoryItem {
-    border: 1px solid black;
     box-sizing: border-box;
-    padding: 10px 0px 10px 30px;
     position: relative;
     text-align: left;
+}
+.CategoryItem__body {
+    border: 1px solid grey;
+    box-sizing: border-box;
+    padding: 10px 0px 10px 30px;
 }
 .CategoryItem_selected {
     background: antiquewhite;

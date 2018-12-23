@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {string, func, bool, array} from 'prop-types';
 import {CategoryList} from "..";
 import './categoryBox.css';
+import { arrayTasks } from '../../dataDefault/arrayTasks';
 
 export class CategoryBox extends Component {
     static propTypes = {
@@ -16,20 +17,13 @@ export class CategoryBox extends Component {
     };
 
     render () {
-        const {
-            defaultData,
-            isActiveCategory,
-            handleSelectClick
-        } = this.props;
 
         return (
-            <div className='CategoryBox'>
+            <aside className='CategoryBox'>
                 <CategoryList
-                    handleSelectClick={handleSelectClick}
-                    isActiveCategory={isActiveCategory}
-                    categoryList={defaultData}
+                    categoryList={arrayTasks}
                 />
-            </div>
+            </aside>
         );
     };
 

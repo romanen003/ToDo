@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import {func, bool, string} from 'prop-types';
 import './categoryItem.css';
 import '../style.css';
+import {CategoryList} from "../../components";
+import { withRouter } from "react-router";
 
-export class CategoryItem extends Component {
+class CategoryItemComponent extends Component {
     static defaultProps = {
         categoryName: '',
         hasChildren: false,
@@ -22,70 +24,94 @@ export class CategoryItem extends Component {
         transfer: bool,
         onTaskTransferClick: func
     };
+    constructor (props) {
+        super(props);
+        this.categoryRef = React.createRef();
 
-    state = {
-        isOpen: false,
-    };
+        this.state = {
+            isOpen: false,
+        };
+    }
+
 
     onChildrenShowClick = () => {
         this.setState({
             isOpen: !this.state.isOpen
         })
     };
+
     handleSelectClick = (event) => {
-        if (event.target.classList.contains('CategoryItem')){
-            this.props.handleSelectClick();
+        if (this.categoryRef.current === event.target){
+            const url = this.props.match.params.category === this.props.item.nameCategory
+                ? ''
+                : this.props.item.nameCategory ;
+
+            this.props.history.push(url);
         }
     };
 
 
     render () {
         const {
-            categoryName,
-            hasChildren,
+            item,
             onEditNameClick,
             onCategoryDeleteClick,
             transfer,
-            onTaskTransferClick,
-            value,
-            isSelect,
+            onTaskTransferClick
         } = this.props;
-        const showChildren = `CategoryItem__more ${this.state.isOpen ? 'CategoryItem__more_close' : ''}`;
-        const isSelected = `CategoryItem ${isSelect ? 'CategoryItem_selected' : ''}`;
+        const {
+            isOpen
+        } = this.state;
+        const isSelect = this.props.match.params.category === item.nameCategory;
+        const showChildren = isOpen ? "CategoryItem__more CategoryItem__more_close" : "CategoryItem__more ";
+        const isSelected = isSelect ? "CategoryItem CategoryItem_selected" : "CategoryItem";
+        const hasChildren = Boolean(item.subcategory);
 
         return (
-            <React.Fragment>
-                <div className={isSelected} onClick={this.handleSelectClick}>
-                    {hasChildren && <div
-                        className={showChildren}
-                        onClick={this.onChildrenShowClick}
-                    >></div>}
-                    <p className="CategoryItem__name">{categoryName}</p>
-                    {!transfer &&  <React.Fragment>
-                        <div
-                            className="CategoryItem__edit"
-                            onClick={onEditNameClick}
-                        >
-                            <div className="edit"></div>
-                        </div>
-                        <div
-                            className="CategoryItem__delete"
-                            onClick={onCategoryDeleteClick}
-                        />
-                        <div
-                            className="CategoryItem__addTask"
-                        >
-                            +
-                        </div>
-                    </React.Fragment>}
-                    {transfer &&
-                    <div
-                        className='CategoryItem__transfer'
-                        onClick={onTaskTransferClick}
-                    />}
+            <li
+                className={isSelected}
+            >
+                <div onClick={this.handleSelectClick} ref={this.categoryRef} className="CategoryItem__body">
+                    <p className="CategoryItem__name">{item.nameCategory}</p>
+                    {transfer
+                        ? (
+                            <div
+                                className='CategoryItem__transfer'
+                                onClick={onTaskTransferClick}
+                            />
+                        ) : (
+                            <React.Fragment>
+                                {hasChildren &&
+                                    <div
+                                        className={showChildren}
+                                        onClick={this.onChildrenShowClick}
+                                    >
+                                        >
+                                    </div>
+                                }
+                                <div
+                                    className="CategoryItem__edit"
+                                    onClick={onEditNameClick}
+                                >
+                                    <div className="edit"></div>
+                                </div>
+                                <div
+                                    className="CategoryItem__delete"
+                                    onClick={onCategoryDeleteClick}
+                                />
+                                <div
+                                    className="CategoryItem__addTask"
+                                >
+                                    +
+                                </div>
+                            </React.Fragment>
+                        )
+                    }
                 </div>
-                {this.state.isOpen && value}
-            </React.Fragment>
+                {isOpen && item.subcategory && <CategoryList categoryList={item.subcategory}/>}
+            </li>
         );
     };
 }
+
+export const CategoryItem = withRouter(CategoryItemComponent);
