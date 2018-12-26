@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import {func, bool, string} from 'prop-types';
 import './categoryItem.css';
 import '../style.css';
@@ -64,14 +64,18 @@ class CategoryItemComponent extends Component {
         } = this.state;
         const isSelect = this.props.match.params.category === item.nameCategory;
         const showChildren = isOpen ? "CategoryItem__more CategoryItem__more_close" : "CategoryItem__more ";
-        const isSelected = isSelect ? "CategoryItem CategoryItem_selected" : "CategoryItem";
+        const isSelected = isSelect ? "CategoryItem__body CategoryItem_selected" : "CategoryItem__body";
         const hasChildren = Boolean(item.subcategory);
 
         return (
             <li
-                className={isSelected}
+                className="CategoryItem"
             >
-                <div onClick={this.handleSelectClick} ref={this.categoryRef} className="CategoryItem__body">
+                <div
+                    onClick={this.handleSelectClick}
+                    ref={this.categoryRef}
+                    className={isSelected}
+                >
                     <p className="CategoryItem__name">{item.nameCategory}</p>
                     {transfer
                         ? (
@@ -80,7 +84,7 @@ class CategoryItemComponent extends Component {
                                 onClick={onTaskTransferClick}
                             />
                         ) : (
-                            <React.Fragment>
+                            <Fragment>
                                 {hasChildren &&
                                     <div
                                         className={showChildren}
@@ -104,7 +108,7 @@ class CategoryItemComponent extends Component {
                                 >
                                     +
                                 </div>
-                            </React.Fragment>
+                            </Fragment>
                         )
                     }
                 </div>
