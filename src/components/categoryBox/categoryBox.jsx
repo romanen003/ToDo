@@ -3,17 +3,14 @@ import {string, func, bool, array} from 'prop-types';
 import {CategoryList} from "..";
 import './categoryBox.css';
 import { arrayTasks } from '../../dataDefault/arrayTasks';
+import {dataTodo} from "../../dataDefault/data";
 
 export class CategoryBox extends Component {
     static propTypes = {
-        defaultData: array,
-        isActiveCategory: string,
-        handleSelectClick: func
+
     };
     static defaultProps = {
-        defaultData: [],
-        isActiveCategory: '',
-        handleSelectClick: () => {}
+
     };
 
     render () {
@@ -21,7 +18,8 @@ export class CategoryBox extends Component {
         return (
             <aside className='CategoryBox'>
                 <CategoryList
-                    categoryList={arrayTasks}
+                    categoryList={dataTodo}
+
                 />
             </aside>
         );

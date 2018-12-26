@@ -1,25 +1,24 @@
 import React, { Component } from 'react';
 import {string, func, bool, array} from 'prop-types';
-import {Task} from "../../elements";
+import {Task, TaskEdit} from "../../elements";
+import {arrayTasks, searchTasks} from "../../dataDefault/arrayTasks";
+import withRouter from "react-router/es/withRouter";
 import './tasksBox.css';
 
-export class TasksBox extends Component {
-    static defaultProps = {
-        showTasks: []
-    };
-    static propTypes = {
-        showTasks: array
-    };
-
+export class TasksBoxContainer extends Component {
     render () {
-        const {
-            showTasks
-        } = this.props;
+        const {category, task} = this.props.match.params;
 
         return (
             <div className='TasksBox'>
-                {showTasks && showTasks.map((item,i)=><Task name={item.name} key={i}/>)}
+                {task ?
+                    <TaskEdit/>
+                    :
+                    searchTasks(arrayTasks,category).map((item,i)=><Task name={item.name} key={i}/>)
+                }
+
             </div>
         );
     };
 }
+export const TasksBox = withRouter(TasksBoxContainer);

@@ -1,30 +1,32 @@
 import React, { Component, Fragment } from 'react';
-import {string, func, bool, array} from 'prop-types';
+import {string, func, bool, array, number} from 'prop-types';
 import {CategoryItem} from "../../elements";
 import './categoryList.css';
 
 export class CategoryList extends Component {
     static propTypes = {
         categoryList: array,
-        isActiveCategory: string,
-        handleSelectClick: func
+        parentCategoryIndex: number
     };
     static defaultProps = {
         categoryList: [],
-        isActiveCategory: '',
-        handleSelectClick: () => {}
+        parentCategoryIndex: null
     };
 
     render () {
         const {
-            categoryList
+            categoryList,
+            parentCategoryIndex
         } = this.props;
+        const filterData = categoryList.filter((item)=>
+            item.parentCategory === parentCategoryIndex && item.type === 'category'
+        );
 
         return (
             <ul className='List' >
-                {categoryList.map((item,i)=>(
+                {filterData.map((item,i)=>(
                     <CategoryItem
-                        key={`${item.nameCategory}-${i}`}
+                        key={`${item.name}-${i}`}
                         item={item}
                     />
                 ))}
