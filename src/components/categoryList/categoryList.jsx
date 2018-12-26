@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import {string, func, bool, array, number} from 'prop-types';
+import { array, number} from 'prop-types';
 import {CategoryItem} from "../../elements";
 import './categoryList.css';
 

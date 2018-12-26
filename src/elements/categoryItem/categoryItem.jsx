@@ -45,8 +45,9 @@ class CategoryItemComponent extends Component {
         if (this.categoryRef.current === event.target){
             const url = this.props.match.params.category === this.props.item.name
                 ? ''
-                : this.props.item.name ;
-
+                : '/' + this.props.item.name ;
+            console.log(url,'url');
+            debugger;
             this.props.history.push(url);
         }
     };
@@ -116,7 +117,7 @@ class CategoryItemComponent extends Component {
                         )
                     }
                 </div>
-                {isOpen && <CategoryList categoryList={dataTodo} parentCategoryIndex={item.name}/>}
+                {isOpen && hasChildren && <CategoryList categoryList={dataTodo} parentCategoryIndex={item.name}/>}
             </li>
         );
     };

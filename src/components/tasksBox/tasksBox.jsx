@@ -1,20 +1,25 @@
 import React, { Component } from 'react';
-import {string, func, bool, array} from 'prop-types';
+import {} from 'prop-types';
 import {Task, TaskEdit} from "../../elements";
-import {arrayTasks, searchTasks} from "../../dataDefault/arrayTasks";
 import withRouter from "react-router/es/withRouter";
 import './tasksBox.css';
+import {dataTodo} from "../../dataDefault/data";
 
 export class TasksBoxContainer extends Component {
     render () {
         const {category, task} = this.props.match.params;
+        const filterData = task ?
+            dataTodo.filter((item)=> item.type === 'task' && item.name === task)
+            :
+            dataTodo.filter((item)=>item.type === 'task' && item.parentCategory === category)
+        ;
 
         return (
             <div className='TasksBox'>
-                {task ?
-                    <TaskEdit/>
+                {task && task ?
+                    <TaskEdit data={filterData[0]}/>
                     :
-                    searchTasks(arrayTasks,category).map((item,i)=><Task name={item.name} key={i}/>)
+                    filterData.map((item,i)=><Task name={item.name} key={i}/>)
                 }
 
             </div>

@@ -15,16 +15,16 @@ export class TextArea extends Component {
     render () {
         const {
             className,
-            rows
+            rows,
+            defaultValue
         } = this.props;
 
         return (
             <textarea
                 className={className}
                 rows={rows}
-            >
-
-            </textarea>
+                defaultValue={defaultValue}
+            />
         );
     };
 }

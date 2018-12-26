@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
-import {string, func, bool, array} from 'prop-types';
+import {} from 'prop-types';
 import {CategoryList} from "..";
-import './categoryBox.css';
-import { arrayTasks } from '../../dataDefault/arrayTasks';
 import {dataTodo} from "../../dataDefault/data";
+import './categoryBox.css';
 
 export class CategoryBox extends Component {
-    static propTypes = {
-
-    };
-    static defaultProps = {
-
-    };
+    static propTypes = {};
+    static defaultProps = {};
 
     render () {
 
@@ -19,7 +14,6 @@ export class CategoryBox extends Component {
             <aside className='CategoryBox'>
                 <CategoryList
                     categoryList={dataTodo}
-
                 />
             </aside>
         );

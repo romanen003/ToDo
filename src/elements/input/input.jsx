@@ -7,17 +7,26 @@ export class Input extends Component {
         type: string,
         placeholder: string,
         className: string,
-        onChange: func
+        onChange: func,
+        value: string
     };
     static defaultProps = {
         type: 'text',
         placeholder: '',
         className: 'input',
-        onChange: ()=>{}
+        onChange: ()=>{},
+        value: ''
     };
 
     state = {
         value: ''
+    };
+
+    componentWillMount() {
+        this.setState(()=>({
+            value: this.props.value
+            })
+        )
     };
 
     onChangeInput = (event) => {

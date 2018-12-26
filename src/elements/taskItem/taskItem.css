@@ -9,7 +9,7 @@
 .Task__edit {
     cursor: pointer;
 }
-.Task__status
+.Task__status,
 .Task__title,
 .Task__edit{
     display: inline-block;
