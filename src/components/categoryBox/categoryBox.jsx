@@ -1,27 +1,19 @@
 import React, { Component } from 'react';
-import {string, func, bool, array} from 'prop-types';
+import {} from 'prop-types';
 import {CategoryList} from "..";
+import {dataTodo} from "../../dataDefault/data";
 import './categoryBox.css';
-import { arrayTasks } from '../../dataDefault/arrayTasks';
 
 export class CategoryBox extends Component {
-    static propTypes = {
-        defaultData: array,
-        isActiveCategory: string,
-        handleSelectClick: func
-    };
-    static defaultProps = {
-        defaultData: [],
-        isActiveCategory: '',
-        handleSelectClick: () => {}
-    };
+    static propTypes = {};
+    static defaultProps = {};
 
     render () {
 
         return (
             <aside className='CategoryBox'>
                 <CategoryList
-                    categoryList={arrayTasks}
+                    categoryList={dataTodo}
                 />
             </aside>
         );

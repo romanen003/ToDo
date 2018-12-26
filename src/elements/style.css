@@ -18,9 +18,12 @@
     width: 30%;
 }
 .edit {
+    cursor: pointer;
     display: inline-block;
+    border: none;
     background: url("../img/edit.jpg") no-repeat center;
     background-size: 80%;
+    outline: 0;
     height: 100%;
     width: 100%;
 }

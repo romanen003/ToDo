@@ -13,7 +13,7 @@ export class Button extends Component {
     static defaultProps = {
         type: 'button',
         className: 'button',
-        label: 'Press button',
+        label: '',
         onClick: () => {},
         disabled: false
     };

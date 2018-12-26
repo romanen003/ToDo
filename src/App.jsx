@@ -8,8 +8,7 @@ export class App extends Component {
         return (
             <Fragment>
                 <Header/>
-                <Route exact path='/' component={ContentBox}/>
-                <Route path='/:category' component={ContentBox}/>
+                <Route path='/:category?/:task?' component={ContentBox}/>
             </Fragment>
         )
     }

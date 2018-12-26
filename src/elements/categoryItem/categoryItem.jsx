@@ -4,6 +4,8 @@ import './categoryItem.css';
 import '../style.css';
 import {CategoryList} from "../../components";
 import { withRouter } from "react-router";
+import {dataTodo} from "../../dataDefault/data";
+import {Button} from "..";
 
 class CategoryItemComponent extends Component {
     static defaultProps = {
@@ -42,10 +44,9 @@ class CategoryItemComponent extends Component {
 
     handleSelectClick = (event) => {
         if (this.categoryRef.current === event.target){
-            const url = this.props.match.params.category === this.props.item.nameCategory
+            const url = this.props.match.params.category === this.props.item.name
                 ? ''
-                : this.props.item.nameCategory ;
-
+                : '/' + this.props.item.name ;
             this.props.history.push(url);
         }
     };
@@ -62,57 +63,53 @@ class CategoryItemComponent extends Component {
         const {
             isOpen
         } = this.state;
-        const isSelect = this.props.match.params.category === item.nameCategory;
+        const isSelect = this.props.match.params.category === item.name;
         const showChildren = isOpen ? "CategoryItem__more CategoryItem__more_close" : "CategoryItem__more ";
         const isSelected = isSelect ? "CategoryItem__body CategoryItem_selected" : "CategoryItem__body";
-        const hasChildren = Boolean(item.subcategory);
+        const hasChildren = dataTodo.filter((category)=>
+            category.parentCategory === item.name
+            && category.type === 'category').length > 0;
+
 
         return (
-            <li
-                className="CategoryItem"
-            >
+            <li className="CategoryItem" >
                 <div
                     onClick={this.handleSelectClick}
                     ref={this.categoryRef}
                     className={isSelected}
                 >
-                    <p className="CategoryItem__name">{item.nameCategory}</p>
+                    <p className="CategoryItem__name">{item.name}</p>
                     {transfer
                         ? (
-                            <div
+                            <Button
                                 className='CategoryItem__transfer'
                                 onClick={onTaskTransferClick}
                             />
                         ) : (
                             <Fragment>
                                 {hasChildren &&
-                                    <div
+                                    <Button
                                         className={showChildren}
                                         onClick={this.onChildrenShowClick}
-                                    >
-                                        >
-                                    </div>
+                                        label='>'
+                                    />
                                 }
-                                <div
-                                    className="CategoryItem__edit"
-                                    onClick={onEditNameClick}
-                                >
-                                    <div className="edit"></div>
+                                <div className="CategoryItem__edit">
+                                    <Button className="edit" onClick={onEditNameClick} />
                                 </div>
-                                <div
+                                <Button
                                     className="CategoryItem__delete"
                                     onClick={onCategoryDeleteClick}
                                 />
-                                <div
+                                <Button
                                     className="CategoryItem__addTask"
-                                >
-                                    +
-                                </div>
+                                    label='+'
+                                />
                             </Fragment>
                         )
                     }
                 </div>
-                {isOpen && item.subcategory && <CategoryList categoryList={item.subcategory}/>}
+                {isOpen && hasChildren && <CategoryList categoryList={dataTodo} parentCategoryIndex={item.name}/>}
             </li>
         );
     };
