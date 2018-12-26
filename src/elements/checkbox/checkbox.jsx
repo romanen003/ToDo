@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {func, bool, string} from 'prop-types';
+import {string} from 'prop-types';
 import './checkbox.css';
 
 export class Checkbox extends Component {
@@ -18,7 +18,7 @@ export class Checkbox extends Component {
         }))
     }
 
-    handleCheckClick = () => {
+    handleCheckChange = () => {
         this.setState(()=>({
             isChecked: !this.state.isChecked
         }))
@@ -33,7 +33,7 @@ export class Checkbox extends Component {
                     className='checkbox__input'
                     type="checkbox"
                     checked={isChecked}
-                    onClick={this.handleCheckClick}
+                    onChange={this.handleCheckChange}
                 />
                 <div className="checkbox__text">{text}</div>
             </label>

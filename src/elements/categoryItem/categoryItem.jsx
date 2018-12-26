@@ -5,6 +5,7 @@ import '../style.css';
 import {CategoryList} from "../../components";
 import { withRouter } from "react-router";
 import {dataTodo} from "../../dataDefault/data";
+import {Button} from "..";
 
 class CategoryItemComponent extends Component {
     static defaultProps = {
@@ -46,8 +47,6 @@ class CategoryItemComponent extends Component {
             const url = this.props.match.params.category === this.props.item.name
                 ? ''
                 : '/' + this.props.item.name ;
-            console.log(url,'url');
-            debugger;
             this.props.history.push(url);
         }
     };
@@ -73,9 +72,7 @@ class CategoryItemComponent extends Component {
 
 
         return (
-            <li
-                className="CategoryItem"
-            >
+            <li className="CategoryItem" >
                 <div
                     onClick={this.handleSelectClick}
                     ref={this.categoryRef}
@@ -84,35 +81,30 @@ class CategoryItemComponent extends Component {
                     <p className="CategoryItem__name">{item.name}</p>
                     {transfer
                         ? (
-                            <div
+                            <Button
                                 className='CategoryItem__transfer'
                                 onClick={onTaskTransferClick}
                             />
                         ) : (
                             <Fragment>
                                 {hasChildren &&
-                                    <div
+                                    <Button
                                         className={showChildren}
                                         onClick={this.onChildrenShowClick}
-                                    >
-                                        >
-                                    </div>
+                                        label='>'
+                                    />
                                 }
-                                <div
-                                    className="CategoryItem__edit"
-                                    onClick={onEditNameClick}
-                                >
-                                    <div className="edit"></div>
+                                <div className="CategoryItem__edit">
+                                    <Button className="edit" onClick={onEditNameClick} />
                                 </div>
-                                <div
+                                <Button
                                     className="CategoryItem__delete"
                                     onClick={onCategoryDeleteClick}
                                 />
-                                <div
+                                <Button
                                     className="CategoryItem__addTask"
-                                >
-                                    +
-                                </div>
+                                    label='+'
+                                />
                             </Fragment>
                         )
                     }

@@ -21,22 +21,27 @@
 .CategoryItem__delete,
 .CategoryItem__addTask,
 .CategoryItem__transfer {
+    border: none;
     cursor: pointer;
     display: inline-block;
     position: absolute;
     height: 20px;
+    outline: 0;
     width: 20px;
 }
 .CategoryItem__more {
+    background: transparent;
     color: black;
     font-size: 20px;
-    left: 10px;
-    top: 16px;
+    left: 13px;
+    top: 12px;
+    -webkit-transform: rotate(90deg);
     transform: rotate(90deg);
+    border: none;
 }
 .CategoryItem__more_close {
     left: 5px;
-    top: 8px;
+    top: 17px;
     -webkit-transform: rotate(90deg);
     transform: rotate(-90deg);
 }
@@ -55,10 +60,11 @@
     top: 11px;
 }
 .CategoryItem__addTask {
+    background: transparent;
     color: black;
     font-size: 28px;
-    right: 8px;
-    top: 4px;
+    right: 13px;
+    top: 1px;
 }
 .CategoryItem__transfer {
     background: url("../../img/arrow.png") no-repeat center;

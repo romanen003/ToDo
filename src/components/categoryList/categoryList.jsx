@@ -18,9 +18,8 @@ export class CategoryList extends Component {
             categoryList,
             parentCategoryIndex
         } = this.props;
-        const filterData = categoryList.filter((item)=>
-            item.parentCategory === parentCategoryIndex && item.type === 'category'
-        );
+        const filterData = categoryList.filter((item)=> item.type === 'category'
+            && item.parentCategory === parentCategoryIndex);
 
         return (
             <ul className='List' >
