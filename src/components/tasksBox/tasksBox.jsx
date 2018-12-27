@@ -3,7 +3,7 @@ import {} from 'prop-types';
 import {Task, TaskEdit} from "../../elements";
 import withRouter from "react-router/es/withRouter";
 import './tasksBox.css';
-import {dataTodo} from "../../dataDefault/data";
+import {dataTodo} from "../../store/data";
 
 export class TasksBoxContainer extends Component {
     render () {

@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import {func, bool, string} from 'prop-types';
+import {string} from 'prop-types';
 import {Button, Input} from "..";
 
 export class Form extends Component {
+    static propTypes = {
+        btnLabel: string
+    };
 
     onSubmitForm = (event) => {
         event.preventDefault();

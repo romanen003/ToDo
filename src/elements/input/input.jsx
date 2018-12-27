@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {func, bool, string} from 'prop-types';
+import { func, string } from 'prop-types';
 import './input.css';
 
 export class Input extends Component {

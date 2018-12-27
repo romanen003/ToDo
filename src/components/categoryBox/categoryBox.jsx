@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {} from 'prop-types';
 import {CategoryList} from "..";
-import {dataTodo} from "../../dataDefault/data";
+import {dataTodo} from "../../store/data";
 import './categoryBox.css';
 
 export class CategoryBox extends Component {

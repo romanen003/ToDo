@@ -4,7 +4,7 @@ import './categoryItem.css';
 import '../style.css';
 import {CategoryList} from "../../components";
 import { withRouter } from "react-router";
-import {dataTodo} from "../../dataDefault/data";
+import {dataTodo} from "../../store/data";
 import {Button} from "..";
 
 class CategoryItemComponent extends Component {

@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { array, number} from 'prop-types';
 import {CategoryItem} from "../../elements";
 import './categoryList.css';

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {string, func, bool} from 'prop-types';
+import {string, func } from 'prop-types';
 import {Checkbox} from "..";
 import './taskItem.css';
 import '../style.css';
@@ -7,11 +7,13 @@ import {withRouter} from "react-router";
 
 export class TaskContainer extends Component {
     static propTypes = {
-        onTaskEditClick: func
+        onTaskEditClick: func,
+        name: string
     };
     static defaultProps = {
         onTaskEditClick: () => {}
     };
+
     constructor (props) {
        super(props);
         this.containerRef = React.createRef();
