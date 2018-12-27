@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
-import {string, func, bool} from 'prop-types';
+import { string, bool } from 'prop-types';
 import {Button, Checkbox, Input, TextArea} from "..";
 import './taskEdit.css';
 import withRouter from "react-router/es/withRouter";
 
 export class TaskEditContainer extends Component {
-    static propTypes = {};
-    static defaultProps = {};
+    static propTypes = {
+        name: string,
+        description: string,
+        status: bool,
+        parentCategory: string
+    };
+
     handleCancelledClick = () => {
         const newURL = '/' + this.props.match.params.category;
         this.props.history.push(newURL);
@@ -47,7 +52,7 @@ export class TaskEditContainer extends Component {
                 </div>
                 <div className="TaskEdit__wrapper">
                     <TextArea
-                        defaultValue={description}
+                        value={description}
                     />
                 </div>
             </div>

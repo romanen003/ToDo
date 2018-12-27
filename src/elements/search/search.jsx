@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import {Input} from "..";
-import {string, func, bool} from 'prop-types';
+import { string } from 'prop-types';
 import './search.css';
 
 export class Search extends Component {
+    static propTypes = {
+        placeholder: string
+    };
+
     render () {
         const {placeholder} = this.props;
 
