@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {CategoryBox, TasksBox} from "..";
+import Route from "react-router/es/Route";
+import {TaskEdit} from "../taskEdit/taskEdit";
 
 export class ContentBox extends Component {
     render () {
@@ -14,7 +16,8 @@ export class ContentBox extends Component {
                     </div>
                     <div className="Grid__item Grid__item_70">
                         <div className="BoxContent">
-                            <TasksBox/>
+                            <Route exact path='/:category' component={TasksBox}/>
+                            <Route path='/:category/:task' component={TaskEdit}/>
                         </div>
                     </div>
                 </div>

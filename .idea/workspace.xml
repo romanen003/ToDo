@@ -2,17 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c166b8b1-ada0-4b63-a6ea-c11435e36308" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/actions/actionCreatorTask.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/reducers/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/reducers/tasks.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/store.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/header/header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header/header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/contentBox/contentBox.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/contentBox/contentBox.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/taskEdit/taskEdit.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/taskEdit/taskEdit.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/tasksBox/tasksBox.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tasksBox/tasksBox.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/elements/input/input.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/elements/input/input.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/elements/taskEdit/taskEdit.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/elements/taskEdit/taskEdit.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/data.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/data.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/ToDoReact-Redux/node_modules/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -26,23 +19,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/tasksBox/tasksBox.jsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="208">
-              <caret line="16" column="27" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/elements/taskEdit/taskEdit.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
+              <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -62,7 +43,6 @@
         <option value="$PROJECT_DIR$/src/components/categoryBox/categoryBox-container.jsx" />
         <option value="$PROJECT_DIR$/src/components/itemsBox/itemsBox.jsx" />
         <option value="$PROJECT_DIR$/src/components/todo/todo-container.jsx" />
-        <option value="$PROJECT_DIR$/src/components/contentBox/contentBox.jsx" />
         <option value="$PROJECT_DIR$/src/components/todo/todo.jsx" />
         <option value="$PROJECT_DIR$/src/dataDefault/arrayTasks.js" />
         <option value="$PROJECT_DIR$/src/components/index.jsx" />
@@ -94,8 +74,10 @@
         <option value="$PROJECT_DIR$/src/store/store.js" />
         <option value="$PROJECT_DIR$/src/reducers/index.js" />
         <option value="$PROJECT_DIR$/src/components/header/header.jsx" />
-        <option value="$PROJECT_DIR$/src/components/tasksBox/tasksBox.jsx" />
         <option value="$PROJECT_DIR$/src/elements/taskEdit/taskEdit.jsx" />
+        <option value="$PROJECT_DIR$/src/components/taskEdit/taskEdit.jsx" />
+        <option value="$PROJECT_DIR$/src/components/contentBox/contentBox.jsx" />
+        <option value="$PROJECT_DIR$/src/components/tasksBox/tasksBox.jsx" />
       </list>
     </option>
   </component>
@@ -123,19 +105,6 @@
               <item name="ToDo" type="b2602c69:ProjectViewProjectNode" />
               <item name="ToDo" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ToDo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ToDo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ToDo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ToDo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="tasksBox" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -203,7 +172,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89598000" />
+    <option name="totallyTimeSpent" value="91371000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -213,7 +182,6 @@
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="npm" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="TypeScript" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.36642337" />
@@ -223,9 +191,10 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.3270073" />
-      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.24396442" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.24379562" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.3293718" />
       <window_info anchor="bottom" id="Messages" order="11" />
+      <window_info anchor="bottom" id="TypeScript" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -265,19 +234,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="14" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/index.jsx">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/contentBox/contentBox.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="11" column="36" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -354,16 +310,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/reducers/index.js." />
-    <entry file="file://$PROJECT_DIR$/src/App.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="25" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/store/configureStore.js" />
     <entry file="file://$PROJECT_DIR$/src/elements/categoryItem/categoryItem.css">
       <provider selected="true" editor-type-id="text-editor">
@@ -434,16 +380,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="9" column="23" lean-forward="true" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/reducers/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="39">
@@ -456,8 +392,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/elements/taskItem/taskItem.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="29" column="44" lean-forward="true" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="44" />
+        <state relative-caret-position="479">
+          <caret line="59" column="13" selection-start-line="59" selection-start-column="13" selection-end-line="59" selection-end-column="13" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
@@ -474,20 +410,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/tasksBox/tasksBox.jsx">
+    <entry file="file://$PROJECT_DIR$/src/elements/taskEdit/taskEdit.jsx" />
+    <entry file="file://$PROJECT_DIR$/src/components/index.jsx">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="16" column="27" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
+        <state relative-caret-position="117">
+          <caret line="9" column="23" lean-forward="true" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/taskEdit/taskEdit.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/elements/taskEdit/taskEdit.jsx">
+    <entry file="file://$PROJECT_DIR$/src/App.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="10" column="66" selection-start-line="10" selection-start-column="66" selection-end-line="10" selection-end-column="66" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/contentBox/contentBox.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="18" column="74" selection-start-line="18" selection-start-column="74" selection-end-line="18" selection-end-column="74" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/tasksBox/tasksBox.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
-          <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
+          <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { string, bool } from 'prop-types';
 import {Button, Checkbox, Input, TextArea} from "../../elements";
 import './taskEdit.css';
-import withRouter from "react-router/es/withRouter";
+import {dataTodo} from "../../store/data";
 
-export class TaskEditContainer extends Component {
+export class TaskEdit extends Component {
     static propTypes = {
         name: string,
         description: string,
@@ -19,12 +19,13 @@ export class TaskEditContainer extends Component {
     };
 
     render () {
+        const { task } = this.props.match.params;
+        const data = dataTodo.filter(item => item.name === task);
         const {
             name,
-            description,
             status,
-            parentCategory
-        } = this.props.data;
+            description
+        } = data[0];
 
         return (
             <div className='TaskEdit'>
@@ -60,5 +61,3 @@ export class TaskEditContainer extends Component {
         );
     };
 }
-
-export const TaskEdit = withRouter(TaskEditContainer);
