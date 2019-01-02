@@ -11,7 +11,7 @@ export class ContentBox extends Component {
                 <div className="Grid">
                     <div className="Grid__item Grid__item_30">
                         <div className="BoxContent">
-                            <CategoryBox/>
+                            <Route exact path='/:category?' component={CategoryBox}/>
                         </div>
                     </div>
                     <div className="Grid__item Grid__item_70">

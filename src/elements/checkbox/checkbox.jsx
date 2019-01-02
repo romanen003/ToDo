@@ -9,9 +9,11 @@ export class Checkbox extends Component {
     static defaultProps = {
         text: ''
     };
+
     state = {
         isChecked: false
     };
+
     componentDidMount() {
         this.setState(()=>({
             isChecked: this.props.checked

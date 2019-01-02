@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import {} from 'prop-types';
 import {CategoryList} from "..";
-import {dataTodo} from "../../store/data";
 import './categoryBox.css';
+import connect from "react-redux/es/connect/connect";
 
-export class CategoryBox extends Component {
+export class CategoryBoxContainer extends Component {
     static propTypes = {};
     static defaultProps = {};
 
@@ -13,10 +12,12 @@ export class CategoryBox extends Component {
         return (
             <aside className='CategoryBox'>
                 <CategoryList
-                    categoryList={dataTodo}
+                    categoryList={this.props.category}
                 />
             </aside>
         );
     };
 
 }
+
+export const CategoryBox = connect(state => ({category: state.category}))(CategoryBoxContainer);

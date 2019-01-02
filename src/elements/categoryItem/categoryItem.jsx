@@ -1,13 +1,14 @@
 import React, { Component, Fragment } from 'react';
 import {func, bool, string} from 'prop-types';
-import './categoryItem.css';
-import '../style.css';
-import {CategoryList} from "../../components";
 import { withRouter } from "react-router";
-import {dataTodo} from "../../store/data";
+import {CategoryList} from "../../components";
 import {Button} from "..";
 
-class CategoryItemComponent extends Component {
+import './categoryItem.css';
+import '../style.css';
+
+
+export class CategoryItemComponent extends Component {
     static defaultProps = {
         categoryName: '',
         hasChildren: false,
@@ -58,7 +59,8 @@ class CategoryItemComponent extends Component {
             onEditNameClick,
             onCategoryDeleteClick,
             transfer,
-            onTaskTransferClick
+            onTaskTransferClick,
+            category
         } = this.props;
         const {
             isOpen
@@ -66,10 +68,8 @@ class CategoryItemComponent extends Component {
         const isSelect = this.props.match.params.category === item.name;
         const showChildren = isOpen ? "CategoryItem__more CategoryItem__more_close" : "CategoryItem__more ";
         const isSelected = isSelect ? "CategoryItem__body CategoryItem_selected" : "CategoryItem__body";
-        const hasChildren = dataTodo.filter((category)=>
-            category.parentCategory === item.name
-            && category.type === 'category').length > 0;
-
+        const hasChildren = category.filter(category =>
+            category.parentCategory === item.name ).length > 0;
 
         return (
             <li className="CategoryItem" >
@@ -109,7 +109,7 @@ class CategoryItemComponent extends Component {
                         )
                     }
                 </div>
-                {isOpen && hasChildren && <CategoryList categoryList={dataTodo} parentCategoryIndex={item.name}/>}
+                {isOpen && hasChildren && <CategoryList categoryList={category} parentCategoryIndex={item.name}/>}
             </li>
         );
     };

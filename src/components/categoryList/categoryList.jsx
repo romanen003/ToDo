@@ -18,8 +18,7 @@ export class CategoryList extends Component {
             categoryList,
             parentCategoryIndex
         } = this.props;
-        const filterData = categoryList.filter((item)=> item.type === 'category'
-            && item.parentCategory === parentCategoryIndex);
+        const filterData = categoryList.filter((item)=> item.parentCategory === parentCategoryIndex);
 
         return (
             <ul className='List' >
@@ -27,6 +26,7 @@ export class CategoryList extends Component {
                     <CategoryItem
                         key={`${item.name}-${i}`}
                         item={item}
+                        category={categoryList}
                     />
                 ))}
             </ul>
