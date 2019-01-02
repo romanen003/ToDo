@@ -10,7 +10,8 @@ export class TasksBoxContainer extends Component {
             match: {params: {category}},
             tasks
         } = this.props;
-        const filterTask = tasks.filter(item => item.parentCategory === category);
+        const parentCategory = category ? category : null;
+        const filterTask = tasks.filter(item => item.parentCategory === parentCategory);
 
         return (
             <div className='TasksBox'>

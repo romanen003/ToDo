@@ -1,8 +1,22 @@
 import React, { Component } from 'react';
 import './header.css';
 import {Checkbox, Form, ProgressBar, Search} from "../../elements";
+import connect from "react-redux/es/connect/connect";
+import {addTask} from "../../actions/actionCreatorTask";
+import {addCategory} from "../../actions/actionCreatorCategory";
 
-export class Header extends Component {
+export class HeaderContainer extends Component {
+
+    handleAddCategoryClick = (value) => {
+        const { addCategory} = this.props;
+        addCategory(null, value);
+    };
+    handleAddTaskClick = (value) => {
+        const {addTask } = this.props;
+        addTask (null, value, '', false);
+    };
+
+
     render () {
         return (
             <header className='Header'>
@@ -33,11 +47,13 @@ export class Header extends Component {
                         <div className="Grid__item">
                             <Form
                                 btnLabel='add category title'
+                                onClick={this.handleAddCategoryClick}
                             />
                         </div>
                         <div className="Grid__item">
                             <Form
                                 btnLabel='add task title'
+                                onClick={this.handleAddTaskClick}
                             />
                         </div>
                     </div>
@@ -46,3 +62,8 @@ export class Header extends Component {
         )
     };
 }
+
+export const Header = connect(state => ({
+    tasks: state.tasks,
+    category: state.category
+}),{addTask,addCategory})(HeaderContainer);

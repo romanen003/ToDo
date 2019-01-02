@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { string, bool } from 'prop-types';
 import {Button, Checkbox, Input, TextArea} from "../../elements";
 import './taskEdit.css';
-import {dataTodo} from "../../store/data";
+import connect from "react-redux/es/connect/connect";
 
-export class TaskEdit extends Component {
+export class TaskEditContainer extends Component {
     static propTypes = {
         name: string,
         description: string,
@@ -20,7 +20,7 @@ export class TaskEdit extends Component {
 
     render () {
         const { task } = this.props.match.params;
-        const data = dataTodo.filter(item => item.name === task);
+        const data = this.props.tasks.filter(item => item.name === task);
         const {
             name,
             status,
@@ -61,3 +61,7 @@ export class TaskEdit extends Component {
         );
     };
 }
+
+export const TaskEdit = connect(state => ({
+    tasks: state.tasks
+}))(TaskEditContainer);

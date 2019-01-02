@@ -11,12 +11,12 @@ export class ContentBox extends Component {
                 <div className="Grid">
                     <div className="Grid__item Grid__item_30">
                         <div className="BoxContent">
-                            <Route exact path='/:category?' component={CategoryBox}/>
+                            <Route path='/:category?' component={CategoryBox}/>
                         </div>
                     </div>
                     <div className="Grid__item Grid__item_70">
                         <div className="BoxContent">
-                            <Route exact path='/:category' component={TasksBox}/>
+                            <Route exact path='/:category?' component={TasksBox}/>
                             <Route path='/:category/:task' component={TaskEdit}/>
                         </div>
                     </div>

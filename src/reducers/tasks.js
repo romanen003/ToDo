@@ -1,20 +1,17 @@
 export const TASKS = [
     {
-        type: 'task',
         name:'task 1',
         description: 'test',
         status: false,
         parentCategory: 'category 1'
     },
     {
-        type: 'task',
         name:'task 2',
         description: 'test',
         status: false,
         parentCategory: 'category 1'
     },
     {
-        type: 'task',
         name:'task 3',
         description: 'test',
         status: false,
@@ -24,7 +21,7 @@ export const TASKS = [
 
 export const tasks = (state = TASKS, {parentCategory, name, status, description, type }) => {
     switch (type) {
-        case 'ADD__TASK':
+        case 'ADD_TASK':
             return [
                 ...state,{
                 parentCategory: parentCategory,

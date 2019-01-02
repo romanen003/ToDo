@@ -26,7 +26,6 @@ export class TaskContainer extends Component {
             const newURL = this.props.match.params.tasks === this.props.name
                 ? currentURL
                 : currentURL +'/'+ this.props.name;
-
             this.props.history.push(newURL);
         }
     };

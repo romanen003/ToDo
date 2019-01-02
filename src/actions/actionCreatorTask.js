@@ -1,4 +1,4 @@
-export const addTask = (parentCategory, name, description = '', status) => ({
+export const addTask = (parentCategory = null, name, description = '', status) => ({
     type: 'ADD_TASK',
     parentCategory,
     name,
