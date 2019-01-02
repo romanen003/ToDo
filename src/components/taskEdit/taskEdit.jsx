@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { string, bool } from 'prop-types';
-import {Button, Checkbox, Input, TextArea} from "..";
+import {Button, Checkbox, Input, TextArea} from "../../elements";
 import './taskEdit.css';
 import withRouter from "react-router/es/withRouter";
 
@@ -14,6 +14,7 @@ export class TaskEditContainer extends Component {
 
     handleCancelledClick = () => {
         const newURL = '/' + this.props.match.params.category;
+
         this.props.history.push(newURL);
     };
 

@@ -29,9 +29,9 @@ export class Input extends Component {
         )
     };
 
-    onChangeInput = (event) => {
+    onChangeInput = ({target:{value}}) => {
         this.setState({
-            value: event.target.value
+            value: value
         });
         this.props.onChange(this.state.value);
     };

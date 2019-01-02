@@ -6,5 +6,5 @@ export {ProgressBar} from './progressBar/progressBar';
 export {Form} from './form/form';
 export {CategoryItem} from './categoryItem/categoryItem';
 export {Task} from './taskItem/taskItem';
-export {TaskEdit} from './taskEdit/taskEdit';
+export {TaskEdit} from '../components/taskEdit/taskEdit';
 export {TextArea} from './textarea/textarea';

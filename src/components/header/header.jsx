@@ -4,7 +4,6 @@ import {Checkbox, Form, ProgressBar, Search} from "../../elements";
 
 export class Header extends Component {
     render () {
-        console.log(this.props);
         return (
             <header className='Header'>
                 <div className="Grid">

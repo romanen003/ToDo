@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {} from 'prop-types';
 import {Task, TaskEdit} from "../../elements";
 import withRouter from "react-router/es/withRouter";
 import './tasksBox.css';
@@ -22,5 +21,5 @@ export class TasksBoxContainer extends Component {
             </div>
         );
     };
-}
+};
 export const TasksBox = withRouter(TasksBoxContainer);
