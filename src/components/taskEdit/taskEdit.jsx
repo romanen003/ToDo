@@ -13,7 +13,7 @@ export class TaskEditContainer extends Component {
     };
 
     handleCancelledClick = () => {
-        const newURL = '/' + this.props.match.params.category;
+        const newURL = `/${this.props.match.params.task}`;
 
         this.props.history.push(newURL);
     };

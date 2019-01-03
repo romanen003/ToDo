@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {string, func } from 'prop-types';
-import {Checkbox} from "..";
+import {Button, Checkbox} from "..";
 import './taskItem.css';
 import '../style.css';
 import {withRouter} from "react-router";
@@ -17,15 +17,22 @@ export class TaskContainer extends Component {
     constructor (props) {
        super(props);
         this.containerRef = React.createRef();
+        this.btnEditRef = React.createRef();
     } ;
 
 
     handleSelectTaskClick = (event) => {
         if (this.containerRef.current === event.target) {
-            const currentURL = this.props.match.url;
-            const newURL = this.props.match.params.tasks === this.props.name
-                ? currentURL
-                : currentURL +'/'+ this.props.name;
+            const newURL = `/${this.props.name}`;
+
+            this.props.history.push(newURL);
+        }
+    };
+
+    handleEditClick = (event) => {
+        if (this.btnEditRef.current.btnRef.current === event.target) {
+            const newURL = `/${this.props.name}/edit`;
+
             this.props.history.push(newURL);
         }
     };
@@ -45,11 +52,8 @@ export class TaskContainer extends Component {
                     <Checkbox/>
                 </div>
                 <div className="Task__title">{name}</div>
-                <div
-                    className="Task__edit"
-                    onClick={onTaskEditClick}
-                >
-                    <div className="edit"></div>
+                <div className="Task__edit">
+                    <Button className="edit" onClick={this.handleEditClick} ref={this.btnEditRef}/>
                 </div>
             </div>
         );

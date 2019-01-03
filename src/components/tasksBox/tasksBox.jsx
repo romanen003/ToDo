@@ -7,12 +7,15 @@ import './tasksBox.css';
 export class TasksBoxContainer extends Component {
     render () {
         const {
-            match: {params: {category}},
+            match: {params: {category, task}},
             tasks
         } = this.props;
-        const parentCategory = category ? category : null;
-        const filterTask = tasks.filter(item => item.parentCategory === parentCategory);
-
+        const value = task ?  task: category || null;
+        const filterTask = task ?
+            tasks.filter(item => item.name === value)
+            :
+            tasks.filter(item => item.parentCategory === value );
+        
         return (
             <div className='TasksBox'>
                 {filterTask.map((item,i)=><Task name={item.name} key={i}/>)}
