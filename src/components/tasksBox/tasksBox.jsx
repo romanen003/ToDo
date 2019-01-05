@@ -3,25 +3,27 @@ import { Task } from "../../elements";
 import connect from "react-redux/es/connect/connect";
 
 import './tasksBox.css';
+import {updateTask} from "../../actions/actionTask";
 
 export class TasksBoxContainer extends Component {
     render () {
         const {
             match: {params: {category, task}},
-            tasks
+            tasks,
+            updateTask
         } = this.props;
-        const value = task ?  task: category || null;
+        const value = task ?  task : category || null;
         const filterTask = task ?
-            tasks.filter(item => item.name === value)
+            tasks.filter(item => item.id === value)
             :
             tasks.filter(item => item.parentCategory === value );
         
         return (
             <div className='TasksBox'>
-                {filterTask.map((item,i)=><Task name={item.name} key={i}/>)}
+                {filterTask.map(item => <Task item={item} updateTask={updateTask}/>)}
             </div>
         );
     };
 }
 
-export const TasksBox = connect(state => ({tasks: state.tasks}))(TasksBoxContainer);
+export const TasksBox = connect(state => ({tasks: state.tasks}),{updateTask})(TasksBoxContainer);

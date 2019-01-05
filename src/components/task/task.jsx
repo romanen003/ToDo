@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import {string, func } from 'prop-types';
-import {Button, Checkbox} from "..";
-import './taskItem.css';
-import '../style.css';
 import {withRouter} from "react-router";
+import {Button, Checkbox} from "../../elements/index";
+import {string, func } from 'prop-types';
+
+import './task.css';
+import '../../elements/style.css';
+
 
 export class TaskContainer extends Component {
     static propTypes = {
@@ -18,12 +20,13 @@ export class TaskContainer extends Component {
        super(props);
         this.containerRef = React.createRef();
         this.btnEditRef = React.createRef();
+        this.checkboxRef = React.createRef();
     } ;
 
 
     handleSelectTaskClick = (event) => {
         if (this.containerRef.current === event.target) {
-            const newURL = `/${this.props.name}`;
+            const newURL = `/${this.props.item.id}`;
 
             this.props.history.push(newURL);
         }
@@ -31,17 +34,19 @@ export class TaskContainer extends Component {
 
     handleEditClick = (event) => {
         if (this.btnEditRef.current.btnRef.current === event.target) {
-            const newURL = `/${this.props.name}/edit`;
+            const newURL = `/${this.props.item.id}/edit`;
 
             this.props.history.push(newURL);
         }
     };
 
+    handleStatusChange = (status) => {
+        const { item, updateTask} = this.props;
+        updateTask({...item,status})
+    };
+
     render () {
-        const {
-            onTaskEditClick,
-            name
-        } = this.props;
+        const { name, status } = this.props.item;
 
         return (
             <div className='Task'
@@ -49,7 +54,7 @@ export class TaskContainer extends Component {
                  ref={this.containerRef}
             >
                 <div className="Task__status">
-                    <Checkbox/>
+                    <Checkbox handleStatusChange={this.handleStatusChange} checked={status} ref={this.checkboxRef}/>
                 </div>
                 <div className="Task__title">{name}</div>
                 <div className="Task__edit">

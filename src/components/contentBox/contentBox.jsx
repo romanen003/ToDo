@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import {CategoryBox, TasksBox} from "..";
 import Route from "react-router/es/Route";
-import {TaskEdit} from "../taskEdit/taskEdit";
-import Switch from "react-router/es/Switch";
+
+import {CategoryBox, TasksBox, TaskEdit} from "..";
 
 export class ContentBox extends Component {
     render () {
@@ -28,3 +27,4 @@ export class ContentBox extends Component {
         )
     };
 }
+

@@ -1,11 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import {func, bool, string} from 'prop-types';
 import { withRouter } from "react-router";
-import {CategoryList} from "../../components";
-import {Button} from "..";
+
+import {CategoryList} from "../index";
+import {Button, Input} from "../../elements";
 
 import './categoryItem.css';
-import '../style.css';
+import '../../elements/style.css';
 
 
 export class CategoryItemComponent extends Component {
@@ -30,9 +31,12 @@ export class CategoryItemComponent extends Component {
     constructor (props) {
         super(props);
         this.categoryRef = React.createRef();
+        this.btnDeleteRef = React.createRef();
+        this.inputNameRef = React.createRef();
 
         this.state = {
             isOpen: false,
+            nameEdit: false
         };
     }
 
@@ -44,32 +48,72 @@ export class CategoryItemComponent extends Component {
     };
 
     handleSelectClick = (event) => {
+        const {
+            item: {id},
+            match: {params: {category}}
+        } = this.props;
+
         if (this.categoryRef.current === event.target){
-            const url = this.props.match.params.category === this.props.item.name
+            const url = category === id
                 ? ''
-                : '/' + this.props.item.name ;
+                : '/' + id ;
             this.props.history.push(url);
         }
+    };
+
+    onCategoryDeleteClick = (event) => {
+        const {item} = this.props;
+
+        if (this.btnDeleteRef.current.btnRef.current === event.target){
+            this.props.removeCategory(item)
+        }
+    };
+    handleInputRef = (ref) => {
+        this.inputNameRef = ref;
+    };
+
+    handleEditNameClick = () => {
+        this.setState(()=>({
+            nameEdit: true
+        }));
+    };
+
+    handleConfirmNameClick = () => {
+        const {item, renameCategory} = this.props;
+        const inputValue = this.inputNameRef.value;
+
+        if (inputValue.length > 3){
+            renameCategory({...item,name : inputValue});
+            this.closeEditName();
+        }
+    };
+
+    closeEditName = () => {
+        this.setState(()=>({
+            nameEdit: false
+        }));
     };
 
 
     render () {
         const {
             item,
-            onEditNameClick,
-            onCategoryDeleteClick,
             transfer,
             onTaskTransferClick,
-            category
+            category,
+            removeCategory,
+            renameCategory
         } = this.props;
         const {
-            isOpen
+            isOpen,
+            nameEdit
         } = this.state;
-        const isSelect = this.props.match.params.category === item.name;
+        const isSelect = this.props.match.params.category === item.id;
         const showChildren = isOpen ? "CategoryItem__more CategoryItem__more_close" : "CategoryItem__more ";
         const isSelected = isSelect ? "CategoryItem__body CategoryItem_selected" : "CategoryItem__body";
+        const inputView = nameEdit ? 'CategoryItem__name CategoryItem__name_active' : 'CategoryItem__name';
         const hasChildren = category.filter(category =>
-            category.parentCategory === item.name ).length > 0;
+            category.parentCategory === item.id ).length > 0;
 
         return (
             <li className="CategoryItem" >
@@ -78,7 +122,7 @@ export class CategoryItemComponent extends Component {
                     ref={this.categoryRef}
                     className={isSelected}
                 >
-                    <p className="CategoryItem__name">{item.name}</p>
+                    <Input className={inputView} value={item.name} handleInputRef={this.handleInputRef} disabled={!nameEdit}/>
                     {transfer
                         ? (
                             <Button
@@ -94,12 +138,25 @@ export class CategoryItemComponent extends Component {
                                         label='>'
                                     />
                                 }
+                                {nameEdit ?
+                                <Fragment>
+                                    <div className='CategoryItem__confirm'>
+                                        <Button className="btn btn_confirm" onClick={this.handleConfirmNameClick} />
+                                    </div>
+                                    <div className='CategoryItem__close'>
+                                        <Button className="btn btn_close" />
+                                    </div>
+                                </Fragment>
+                                    :
                                 <div className="CategoryItem__edit">
-                                    <Button className="edit" onClick={onEditNameClick} />
+                                    <Button className="btn btn_edit" onClick={this.handleEditNameClick} />
                                 </div>
+                                }
+
                                 <Button
                                     className="CategoryItem__delete"
-                                    onClick={onCategoryDeleteClick}
+                                    onClick={this.onCategoryDeleteClick}
+                                    ref={this.btnDeleteRef}
                                 />
                                 <Button
                                     className="CategoryItem__addTask"
@@ -109,7 +166,13 @@ export class CategoryItemComponent extends Component {
                         )
                     }
                 </div>
-                {isOpen && hasChildren && <CategoryList categoryList={category} parentCategoryIndex={item.name}/>}
+                {isOpen && hasChildren &&
+                <CategoryList
+                    categoryList={category}
+                    parentCategoryIndex={item.id}
+                    removeCategory={removeCategory}
+                    renameCategory={renameCategory}
+                />}
             </li>
         );
     };

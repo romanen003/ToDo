@@ -26,11 +26,11 @@ export class Form extends Component {
 
 
     render () {
-        const {btnLabel} = this.props;
+        const {btnLabel, placeholder} = this.props;
 
         return (
             <form onSubmit={this.onSubmitForm}>
-                <Input onChange={this.handleChangeInput}/>
+                <Input onChange={this.handleChangeInput} placeholder={placeholder}/>
                 <Button
                     label={btnLabel}
                     onClick={this.handleButtonClick}

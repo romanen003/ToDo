@@ -1,34 +1,43 @@
 import React, { Component } from 'react';
-import { array, number} from 'prop-types';
+import { array, number, func} from 'prop-types';
+
 import {CategoryItem} from "../../elements";
+
 import './categoryList.css';
+
 
 export class CategoryList extends Component {
     static propTypes = {
         categoryList: array,
-        parentCategoryIndex: number
+        parentCategoryIndex: number,
+        removeCategory: func
     };
     static defaultProps = {
         categoryList: [],
-        parentCategoryIndex: null
+        parentCategoryIndex: null,
+        removeCategory: () => {}
     };
 
     render () {
         const {
             categoryList,
-            parentCategoryIndex
+            parentCategoryIndex,
+            removeCategory,
+            renameCategory
         } = this.props;
         const filterData = categoryList.filter((item)=> item.parentCategory === parentCategoryIndex);
 
         return (
             <ul className='List' >
-                {filterData.map((item,i)=>(
+                {filterData.map(item =>
                     <CategoryItem
-                        key={`${item.name}-${i}`}
+                        key={item.name}
                         item={item}
                         category={categoryList}
+                        removeCategory={removeCategory}
+                        renameCategory={renameCategory}
                     />
-                ))}
+                )}
             </ul>
         )
     };

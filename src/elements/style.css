@@ -20,13 +20,23 @@ body {
 .Grid__item_30 {
     width: 30%;
 }
-.edit {
+.btn {
     cursor: pointer;
     display: inline-block;
     border: none;
-    background: url("../img/edit.jpg") no-repeat center;
-    background-size: 80%;
     outline: 0;
     height: 100%;
     width: 100%;
+}
+.btn_edit {
+    background: url('../img/edit.jpg') no-repeat center;
+    background-size: 80%;
+}
+.btn_confirm {
+    background: url('../img/confirm.png') no-repeat center;
+    background-size: 100%;
+}
+.btn_close {
+    background: url('../img/cancel.png') no-repeat center;
+    background-size: 90%;
 }
