@@ -26,7 +26,7 @@ export class CategoryBoxContainer extends Component {
             removeCategory,
             renameCategory
         } = this.props;
-        console.log(this.props,'up');
+
         return (
             <aside className='CategoryBox'>
                 <CategoryList

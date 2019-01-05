@@ -40,7 +40,6 @@ export class CategoryItemComponent extends Component {
         };
     }
 
-
     onChildrenShowClick = () => {
         this.setState({
             isOpen: !this.state.isOpen
@@ -68,6 +67,7 @@ export class CategoryItemComponent extends Component {
             this.props.removeCategory(item)
         }
     };
+
     handleInputRef = (ref) => {
         this.inputNameRef = ref;
     };
@@ -82,13 +82,17 @@ export class CategoryItemComponent extends Component {
         const {item, renameCategory} = this.props;
         const inputValue = this.inputNameRef.value;
 
-        if (inputValue.length > 3){
+        if (inputValue.length > 4 && item.name !== inputValue){
             renameCategory({...item,name : inputValue});
-            this.closeEditName();
         }
+        this.handleCloseClick();
     };
 
-    closeEditName = () => {
+    handleCancelledClick = () => {
+        this.handleCloseClick();
+    };
+
+    handleCloseClick = () => {
         this.setState(()=>({
             nameEdit: false
         }));
@@ -122,7 +126,12 @@ export class CategoryItemComponent extends Component {
                     ref={this.categoryRef}
                     className={isSelected}
                 >
-                    <Input className={inputView} value={item.name} handleInputRef={this.handleInputRef} disabled={!nameEdit}/>
+                    <Input
+                        className={inputView}
+                        value={item.name}
+                        handleInputRef={this.handleInputRef}
+                        disabled={!nameEdit}
+                    />
                     {transfer
                         ? (
                             <Button
@@ -144,7 +153,7 @@ export class CategoryItemComponent extends Component {
                                         <Button className="btn btn_confirm" onClick={this.handleConfirmNameClick} />
                                     </div>
                                     <div className='CategoryItem__close'>
-                                        <Button className="btn btn_close" />
+                                        <Button className="btn btn_close"  onClick={this.handleCancelledClick}/>
                                     </div>
                                 </Fragment>
                                     :
