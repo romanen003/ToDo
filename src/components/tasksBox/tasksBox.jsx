@@ -1,26 +1,29 @@
 import React, { Component } from 'react';
-import {} from 'prop-types';
-import {Task, TaskEdit} from "../../elements";
-import withRouter from "react-router/es/withRouter";
+import { Task } from "../../elements";
+import connect from "react-redux/es/connect/connect";
+
 import './tasksBox.css';
-import {dataTodo} from "../../store/data";
+import {updateTask} from "../../actions/actionTask";
 
 export class TasksBoxContainer extends Component {
     render () {
-        const {category, task} = this.props.match.params;
-        const tasks = dataTodo.filter((item)=>item.type === 'task');
-        const filterData = tasks.filter((item)=> task ?
-            item.name === task : item.parentCategory === category);
-
+        const {
+            match: {params: {category, task}},
+            tasks,
+            updateTask
+        } = this.props;
+        const value = task ?  task : category || null;
+        const filterTask = task ?
+            tasks.filter(item => item.id === value)
+            :
+            tasks.filter(item => item.parentCategory === value );
+        
         return (
             <div className='TasksBox'>
-                {task ?
-                    <TaskEdit data={filterData[0]}/>
-                    :
-                    filterData.map((item,i)=><Task name={item.name} key={i}/>)
-                }
+                {filterTask.map(item => <Task item={item} updateTask={updateTask}/>)}
             </div>
         );
     };
 }
-export const TasksBox = withRouter(TasksBoxContainer);
+
+export const TasksBox = connect(state => ({tasks: state.tasks}),{updateTask})(TasksBoxContainer);

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import {CategoryBox, TasksBox} from "..";
+import Route from "react-router/es/Route";
+
+import {CategoryBox, TasksBox, TaskEdit} from "..";
 
 export class ContentBox extends Component {
     render () {
@@ -9,12 +11,15 @@ export class ContentBox extends Component {
                 <div className="Grid">
                     <div className="Grid__item Grid__item_30">
                         <div className="BoxContent">
-                            <CategoryBox/>
+                            <Route path='/:category?' component={CategoryBox}/>
                         </div>
                     </div>
                     <div className="Grid__item Grid__item_70">
                         <div className="BoxContent">
-                            <TasksBox/>
+                            <Route exact path='/:category' component={TasksBox}/>
+                            <Route path='/:task/edit' component={TaskEdit}/>
+                            <Route exact path='/:task' component={TasksBox}/>
+                            <Route exact path='/' component={TasksBox}/>
                         </div>
                     </div>
                 </div>
@@ -22,3 +27,4 @@ export class ContentBox extends Component {
         )
     };
 }
+

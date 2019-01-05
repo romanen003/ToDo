@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { func, string } from 'prop-types';
+import { func, string, bool } from 'prop-types';
 import './input.css';
 
 export class Input extends Component {
@@ -8,39 +8,40 @@ export class Input extends Component {
         placeholder: string,
         className: string,
         onChange: func,
-        value: string
+        value: string,
+        disabled: bool
     };
     static defaultProps = {
         type: 'text',
         placeholder: '',
         className: 'input',
         onChange: ()=>{},
-        value: ''
+        value: '',
+        disabled: false
     };
 
-    state = {
-        value: ''
-    };
+    constructor (props) {
+        super(props);
 
-    componentWillMount() {
-        this.setState(()=>({
+        this.state = {
             value: this.props.value
-            })
-        )
+        };
     };
 
-    onChangeInput = (event) => {
-        this.setState({
-            value: event.target.value
-        });
+    onChangeInput = ({target:{value}}) => {
         this.props.onChange(this.state.value);
+        this.setState(() => ({
+            value
+        }));
     };
 
     render () {
         const {
             type,
             placeholder,
-            className
+            className,
+            disabled,
+            handleInputRef
         } = this.props;
 
         return (
@@ -50,6 +51,8 @@ export class Input extends Component {
                 placeholder={placeholder}
                 value={this.state.value}
                 onChange={this.onChangeInput}
+                ref={handleInputRef}
+                disabled={disabled}
             />
         );
     };

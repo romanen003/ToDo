@@ -15,10 +15,14 @@
     display: inline-block;
     vertical-align: middle;
 }
+.Task__status {
+    position: relative;
+    top: -8px;
+}
 .Task__title {
     font-size: 20px;
     font-style: italic;
-    padding-left: 60px;
+    padding-left: 20px;
 }
 .Task__edit {
     height: 20px;

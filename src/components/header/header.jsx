@@ -1,10 +1,38 @@
 import React, { Component } from 'react';
-import './header.css';
 import {Checkbox, Form, ProgressBar, Search} from "../../elements";
+import connect from "react-redux/es/connect/connect";
+import {addTask} from "../../actions/actionTask";
+import {addCategory} from "../../actions/actionCategory";
 
-export class Header extends Component {
+import './header.css';
+
+
+export class HeaderContainer extends Component {
+
+    handleAddCategoryClick = (value) => {
+        const { addCategory} = this.props;
+        const item = {
+            name: value,
+            parentCategory: null
+        };
+
+        addCategory(item);
+    };
+
+    handleAddTaskClick = (value) => {
+        const {addTask } = this.props;
+        const item = {
+            name: value,
+            description: '',
+            status: false,
+            parentCategory: null
+        };
+
+        addTask (item);
+    };
+
+
     render () {
-        console.log(this.props);
         return (
             <header className='Header'>
                 <div className="Grid">
@@ -33,12 +61,16 @@ export class Header extends Component {
                     <div className="Grid">
                         <div className="Grid__item">
                             <Form
-                                btnLabel='add category title'
+                                placeholder='add category title'
+                                btnLabel='add'
+                                onClick={this.handleAddCategoryClick}
                             />
                         </div>
                         <div className="Grid__item">
                             <Form
-                                btnLabel='add task title'
+                                placeholder='add task title'
+                                btnLabel='add'
+                                onClick={this.handleAddTaskClick}
                             />
                         </div>
                     </div>
@@ -47,3 +79,8 @@ export class Header extends Component {
         )
     };
 }
+
+export const Header = connect(state => ({
+    tasks: state.tasks,
+    category: state.category
+}),{addTask,addCategory})(HeaderContainer);

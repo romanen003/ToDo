@@ -18,6 +18,10 @@ export class Button extends Component {
         disabled: false
     };
 
+    btnRef = React.createRef();
+
+
+
     render () {
         const {
             type,
@@ -33,6 +37,7 @@ export class Button extends Component {
                 className={className}
                 onClick={onClick}
                 disabled={disabled}
+                ref={this.btnRef}
             >
                 {label}
             </button>

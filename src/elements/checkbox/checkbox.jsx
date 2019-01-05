@@ -7,21 +7,23 @@ export class Checkbox extends Component {
         text: string
     };
     static defaultProps = {
-        text: ''
+        text: '',
+        handleStatusChange: () => {}
     };
-    state = {
-        isChecked: false
-    };
-    componentDidMount() {
-        this.setState(()=>({
-            isChecked: this.props.checked
-        }))
-    }
 
-    handleCheckChange = () => {
-        this.setState(()=>({
+    constructor (props) {
+        super(props);
+
+        this.state = {
+            isChecked: this.props.checked
+        }
+    };
+
+    handleCheckChange  = async () => {
+        await this.setState(()=>({
             isChecked: !this.state.isChecked
-        }))
+        }));
+        await this.props.handleStatusChange(this.state.isChecked);
     };
     render () {
         const {text} = this.props;

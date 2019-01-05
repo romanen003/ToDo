@@ -1,22 +1,44 @@
 import React, { Component } from 'react';
-import {} from 'prop-types';
+import {func, array} from 'prop-types';
+import connect from "react-redux/es/connect/connect";
+import {removeCategory, renameCategory} from "../../actions/actionCategory";
+
 import {CategoryList} from "..";
-import {dataTodo} from "../../store/data";
+
 import './categoryBox.css';
 
-export class CategoryBox extends Component {
-    static propTypes = {};
-    static defaultProps = {};
+
+export class CategoryBoxContainer extends Component {
+    static propTypes = {
+        category: array,
+        removeCategory: func,
+        renameCategory: func
+    };
+    static defaultProps = {
+        category: [],
+        removeCategory: () => {},
+        renameCategory: () => {}
+    };
 
     render () {
+        const {
+            category,
+            removeCategory,
+            renameCategory
+        } = this.props;
 
         return (
             <aside className='CategoryBox'>
                 <CategoryList
-                    categoryList={dataTodo}
+                    categoryList={category}
+                    removeCategory={removeCategory}
+                    renameCategory={renameCategory}
                 />
             </aside>
         );
     };
 
 }
+
+export const CategoryBox = connect(state => (
+    {category: state.category}),{removeCategory, renameCategory})(CategoryBoxContainer);

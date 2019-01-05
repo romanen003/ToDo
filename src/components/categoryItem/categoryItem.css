@@ -12,10 +12,15 @@
     background: antiquewhite;
 }
 .CategoryItem__name {
+    border: 1px solid white;
     display: inline-block;
     font-size: 20px;
     margin: 0;
     vertical-align: middle;
+    outline: 0;
+}
+.CategoryItem__name_active {
+    border: 1px dashed grey;
 }
 .CategoryItem__more,
 .CategoryItem__delete,
@@ -45,7 +50,9 @@
     -webkit-transform: rotate(90deg);
     transform: rotate(-90deg);
 }
-.CategoryItem__edit {
+.CategoryItem__edit,
+.CategoryItem__confirm,
+.CategoryItem__close {
     cursor: pointer;
     display: inline-block;
     height: 20px;
@@ -53,7 +60,7 @@
     width: 20px;
     vertical-align: middle;
     }
-    .CategoryItem__delete {
+.CategoryItem__delete {
     background: url("../../img/delete.png") no-repeat center;
     background-size: 100%;
     right: 40px;
