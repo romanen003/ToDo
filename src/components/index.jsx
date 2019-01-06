@@ -6,3 +6,4 @@ export {Header} from './header/header';
 export {CategoryItem} from './categoryItem/categoryItem';
 export {TaskEdit} from './taskEdit/taskEdit';
 export {Task} from './task/task';
+export {FilterCheckbox} from './filterCheckbox/filterCheckbox';

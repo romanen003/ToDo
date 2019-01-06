@@ -23,6 +23,7 @@ export class Form extends Component {
     handleCheckValue = () => {
         const {minLenght} = this.props;
         const { value } = this.inputRef;
+
         if (value.length <= minLenght){
             this.setState(() => ({
                 showError: true
@@ -51,7 +52,7 @@ export class Form extends Component {
 
 
     render () {
-        const {btnLabel, placeholder} = this.props;
+        const {btnLabel, placeholder, minLenght} = this.props;
         const { showError } = this.state;
 
         return (
@@ -62,6 +63,7 @@ export class Form extends Component {
                     inputRef={this.handleInputRef}
                     showError={showError}
                     handleInputOnFocus={this.handleInputOnFocus}
+                    minLenght={minLenght}
                 />
                 <Button
                     label={btnLabel}

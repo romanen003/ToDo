@@ -66,10 +66,10 @@ export class CategoryItemComponent extends Component {
     };
 
     onCategoryDeleteClick = (event) => {
-        const {item} = this.props;
+        const {item, removeCategory} = this.props;
 
         if (this.btnDeleteRef.current.btnRef.current === event.target){
-            this.props.removeCategory(item)
+            removeCategory(item)
         }
     };
 

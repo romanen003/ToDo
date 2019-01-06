@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { func, string, bool } from 'prop-types';
+import { func, string, bool, number } from 'prop-types';
 
 import './input.css';
 
@@ -13,8 +13,8 @@ export class Input extends Component {
         disabled: bool,
         handleInputKeyDown: func,
         showError: bool,
-        messageError: string,
-        handleInputOnFocus: func
+        handleInputOnFocus: func,
+        minLenght: number
     };
     static defaultProps = {
         type: 'text',
@@ -26,7 +26,7 @@ export class Input extends Component {
         value: '',
         disabled: false,
         showError: false,
-        messageError: 'min symbol - 3'
+        minLenght: 4
     };
 
     constructor (props) {
@@ -58,7 +58,7 @@ export class Input extends Component {
             disabled,
             inputRef,
             showError,
-            messageError,
+            minLenght,
             handleInputOnFocus
         } = this.props;
 
@@ -76,7 +76,7 @@ export class Input extends Component {
                     disabled={disabled}
                 />
                 {showError &&
-                    <div className='Input__error'>{messageError}</div>
+                    <div className='Input__error'>min symbol - {minLenght}</div>
                 }
             </div>
         );
