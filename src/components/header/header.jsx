@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import {Checkbox, Form, ProgressBar, Search} from "../../elements";
 import connect from "react-redux/es/connect/connect";
+import NavLink from "react-router-dom/es/NavLink";
+
 import {addTask} from "../../actions/actionTask";
 import {addCategory} from "../../actions/actionCategory";
 
 import './header.css';
+
 
 
 export class HeaderContainer extends Component {
@@ -33,11 +36,15 @@ export class HeaderContainer extends Component {
 
 
     render () {
+        const {tasks} = this.props;
+        const result = ((tasks.filter(item => item.status === true).length)/tasks.length)*100;
+        console.log(result);
+
         return (
             <header className='Header'>
                 <div className="Grid">
                     <div className="Grid__item">
-                        <h3 className="Title">To-Do List</h3>
+                        <NavLink to='/' className="Title">To-Do List</NavLink>
                     </div>
                     <div className="Grid__item">
                         <div className="Grid">
@@ -55,7 +62,7 @@ export class HeaderContainer extends Component {
                     </div>
                 </div>
                 <div className="Header__progressBar" >
-                    <ProgressBar/>
+                    <ProgressBar proc={result} />
                 </div>
                 <div className="Header__creatingItems">
                     <div className="Grid">
@@ -64,6 +71,7 @@ export class HeaderContainer extends Component {
                                 placeholder='add category title'
                                 btnLabel='add'
                                 onClick={this.handleAddCategoryClick}
+                                minLenght={4}
                             />
                         </div>
                         <div className="Grid__item">
@@ -71,6 +79,7 @@ export class HeaderContainer extends Component {
                                 placeholder='add task title'
                                 btnLabel='add'
                                 onClick={this.handleAddTaskClick}
+                                minLenght={4}
                             />
                         </div>
                     </div>
@@ -83,4 +92,4 @@ export class HeaderContainer extends Component {
 export const Header = connect(state => ({
     tasks: state.tasks,
     category: state.category
-}),{addTask,addCategory})(HeaderContainer);
+}),{ addTask, addCategory })(HeaderContainer);

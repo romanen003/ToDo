@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {func, array} from 'prop-types';
 import connect from "react-redux/es/connect/connect";
-import {removeCategory, renameCategory} from "../../actions/actionCategory";
+import {activeCategory, removeCategory, renameCategory} from "../../actions/actionCategory";
 
 import {CategoryList} from "..";
 
@@ -24,7 +24,9 @@ export class CategoryBoxContainer extends Component {
         const {
             category,
             removeCategory,
-            renameCategory
+            renameCategory,
+            activeCategory,
+            active
         } = this.props;
 
         return (
@@ -33,6 +35,8 @@ export class CategoryBoxContainer extends Component {
                     categoryList={category}
                     removeCategory={removeCategory}
                     renameCategory={renameCategory}
+                    activeCategory={activeCategory}
+                    active={active}
                 />
             </aside>
         );
@@ -40,5 +44,7 @@ export class CategoryBoxContainer extends Component {
 
 }
 
-export const CategoryBox = connect(state => (
-    {category: state.category}),{removeCategory, renameCategory})(CategoryBoxContainer);
+export const CategoryBox = connect(state => ({
+    category: state.category,
+    active: state.category.active
+}),{removeCategory, renameCategory, activeCategory})(CategoryBoxContainer);

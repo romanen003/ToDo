@@ -38,7 +38,6 @@ export class TaskEditContainer extends Component {
             description: this.textareaRef.current.state.value,
             name: this.inputNameRef.current.state.value
         };
-        console.log(updateData);
 
         this.props.updateTask({...this.currentTask,...updateData});
     };
@@ -69,7 +68,6 @@ export class TaskEditContainer extends Component {
                 <Input
                     placeholder='Task'
                     value={name}
-                    onChange={this.handleInputChange}
                     ref={this.inputNameRef}
                 />
                 <div className="TaskEdit__wrapper">

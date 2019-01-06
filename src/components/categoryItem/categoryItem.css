@@ -24,7 +24,7 @@
 }
 .CategoryItem__more,
 .CategoryItem__delete,
-.CategoryItem__addTask,
+.CategoryItem__addCategory,
 .CategoryItem__transfer {
     border: none;
     cursor: pointer;
@@ -64,14 +64,17 @@
     background: url("../../img/delete.png") no-repeat center;
     background-size: 100%;
     right: 40px;
-    top: 11px;
+    top: 15px;
 }
-.CategoryItem__addTask {
+.CategoryItem__addCategory {
     background: transparent;
     color: black;
     font-size: 28px;
     right: 13px;
-    top: 4px;
+    line-height: 20px;
+}
+.CategoryItem__addCategory_active {
+    color: red;
 }
 .CategoryItem__transfer {
     background: url("../../img/arrow.png") no-repeat center;

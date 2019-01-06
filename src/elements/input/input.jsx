@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { func, string, bool } from 'prop-types';
+
 import './input.css';
 
 export class Input extends Component {
@@ -9,15 +10,23 @@ export class Input extends Component {
         className: string,
         onChange: func,
         value: string,
-        disabled: bool
+        disabled: bool,
+        handleInputKeyDown: func,
+        showError: bool,
+        messageError: string,
+        handleInputOnFocus: func
     };
     static defaultProps = {
         type: 'text',
         placeholder: '',
-        className: 'input',
+        className: 'Input__input',
         onChange: ()=>{},
+        handleInputKeyDown: ()=>{},
+        handleInputOnFocus: ()=>{},
         value: '',
-        disabled: false
+        disabled: false,
+        showError: false,
+        messageError: 'min symbol - 3'
     };
 
     constructor (props) {
@@ -28,11 +37,17 @@ export class Input extends Component {
         };
     };
 
-    onChangeInput = ({target:{value}}) => {
-        this.props.onChange(this.state.value);
+
+    handleChangeInput = ({target: {value}}) => {
         this.setState(() => ({
-            value
+            value: value
         }));
+    };
+
+    handleInputKeyDown = (event) => {
+        if (event.keyCode === 13){
+            this.props.handleInputKeyDown(this.state.value)
+        }
     };
 
     render () {
@@ -41,19 +56,29 @@ export class Input extends Component {
             placeholder,
             className,
             disabled,
-            handleInputRef
+            inputRef,
+            showError,
+            messageError,
+            handleInputOnFocus
         } = this.props;
 
         return (
-            <input
-                type={type}
-                className={className}
-                placeholder={placeholder}
-                value={this.state.value}
-                onChange={this.onChangeInput}
-                ref={handleInputRef}
-                disabled={disabled}
-            />
+            <div className='Input'>
+                <input
+                    type={type}
+                    className={className}
+                    placeholder={placeholder}
+                    value={this.state.value}
+                    onChange={this.handleChangeInput}
+                    onKeyDown={this.handleInputKeyDown}
+                    onFocus={handleInputOnFocus}
+                    ref={inputRef}
+                    disabled={disabled}
+                />
+                {showError &&
+                    <div className='Input__error'>{messageError}</div>
+                }
+            </div>
         );
     };
 }

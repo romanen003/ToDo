@@ -26,20 +26,27 @@ export const CATEGORY = [
     }
 ];
 CATEGORY.id = 5;
+CATEGORY.active = null;
 
 export const category = (state = CATEGORY, {type, item}) => {
     switch (type) {
         case 'ADD_CATEGORY':
-            return [
-                ...state,{
+            const data1 = [...state,{
                     ...item,
-                    id: `category${CATEGORY.id++}`
-            }];
+                    id: `category${CATEGORY.id++}`,
+                    parentCategory: state.active
+                }];
+            data1.active = state.active;
+            return data1;
         case 'REMOVE_CATEGORY':
             return [...state].filter(category => category !== item);
         case 'RENAME_CATEGORY':
             return [...state].map(category =>
             category.id === item.id ? item : category);
+        case 'ACTIVE_CATEGORY':
+            const data = [...state];
+            data.active = item.id === state.active ? null : item.id;
+            return data;
         default:
             return state;
     }

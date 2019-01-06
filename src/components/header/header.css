@@ -5,8 +5,15 @@ body {
 }
 
 .Title {
+    display: inline-block;
     font-size: 25px;
     font-style: italic;
+    padding: 20px 0;
+    text-decoration: none;
+}
+.active {
+    color: black;
+    text-decoration: none;
 }
 .Header__creatingItems {
     padding: 20px 0;

@@ -36,9 +36,14 @@ export class CategoryItemComponent extends Component {
 
         this.state = {
             isOpen: false,
-            nameEdit: false
+            nameEdit: false,
+            showError: false
         };
     }
+
+    handleInputRef = (ref) => {
+        this.inputNameRef = ref;
+    };
 
     onChildrenShowClick = () => {
         this.setState({
@@ -68,10 +73,6 @@ export class CategoryItemComponent extends Component {
         }
     };
 
-    handleInputRef = (ref) => {
-        this.inputNameRef = ref;
-    };
-
     handleEditNameClick = () => {
         this.setState(()=>({
             nameEdit: true
@@ -82,20 +83,42 @@ export class CategoryItemComponent extends Component {
         const {item, renameCategory} = this.props;
         const inputValue = this.inputNameRef.value;
 
-        if (inputValue.length > 4 && item.name !== inputValue){
+        if (inputValue.length >= 4 ){
             renameCategory({...item,name : inputValue});
+            this.handleCloseClick();
+        }else{
+         this.setState(() => ({
+             showError: true
+         }))
         }
-        this.handleCloseClick();
     };
 
     handleCancelledClick = () => {
+        this.setState(() => ({
+            cancelChange: !this.state.cancelChange
+        }));
         this.handleCloseClick();
     };
 
     handleCloseClick = () => {
         this.setState(()=>({
-            nameEdit: false
+            nameEdit: false,
+            showError: false
         }));
+    };
+
+    handleInputKeyDown = () => {
+        this.handleConfirmNameClick();
+    };
+
+    handleInputOnFocus = () => {
+        this.setState(() => ({
+            showError: false
+        }))
+    };
+
+    handleActiveClick = () => {
+        this.props.activeCategory(this.props.item)
     };
 
 
@@ -106,18 +129,23 @@ export class CategoryItemComponent extends Component {
             onTaskTransferClick,
             category,
             removeCategory,
-            renameCategory
+            renameCategory,
+            activeCategory,
+            active
         } = this.props;
         const {
             isOpen,
-            nameEdit
+            nameEdit,
+            showError
         } = this.state;
         const isSelect = this.props.match.params.category === item.id;
         const showChildren = isOpen ? "CategoryItem__more CategoryItem__more_close" : "CategoryItem__more ";
         const isSelected = isSelect ? "CategoryItem__body CategoryItem_selected" : "CategoryItem__body";
         const inputView = nameEdit ? 'CategoryItem__name CategoryItem__name_active' : 'CategoryItem__name';
+        const isActiveAdd = active === item.id ? 'CategoryItem__addCategory CategoryItem__addCategory_active' : 'CategoryItem__addCategory';
         const hasChildren = category.filter(category =>
             category.parentCategory === item.id ).length > 0;
+
 
         return (
             <li className="CategoryItem" >
@@ -129,8 +157,13 @@ export class CategoryItemComponent extends Component {
                     <Input
                         className={inputView}
                         value={item.name}
-                        handleInputRef={this.handleInputRef}
+                        inputRef={this.handleInputRef}
+                        handleInputKeyDown={this.handleInputKeyDown}
                         disabled={!nameEdit}
+                        showError={showError}
+                        messageError='min symbol - 4'
+                        handleInputOnFocus={this.handleInputOnFocus}
+                        cancelChange={this.cancelChange}
                     />
                     {transfer
                         ? (
@@ -168,8 +201,9 @@ export class CategoryItemComponent extends Component {
                                     ref={this.btnDeleteRef}
                                 />
                                 <Button
-                                    className="CategoryItem__addTask"
+                                    className={isActiveAdd}
                                     label='+'
+                                    onClick={this.handleActiveClick}
                                 />
                             </Fragment>
                         )
@@ -181,6 +215,7 @@ export class CategoryItemComponent extends Component {
                     parentCategoryIndex={item.id}
                     removeCategory={removeCategory}
                     renameCategory={renameCategory}
+                    activeCategory={activeCategory}
                 />}
             </li>
         );

@@ -1,4 +1,8 @@
-.input {
+.Input {
+    display: inline-block;
+    position: relative;
+}
+.Input__input {
     border: 1px solid grey;
     box-sizing: border-box;
     display: inline-block;
@@ -6,4 +10,11 @@
     outline: 0;
     padding: 0px 25px 0 5px;
     vertical-align: middle;
+}
+.Input__error {
+    display: inline-block;
+    position: absolute;
+    font-size: 12px;
+    left: 40px;
+    bottom: 0;
 }

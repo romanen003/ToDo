@@ -20,7 +20,7 @@ export class TasksBoxContainer extends Component {
         
         return (
             <div className='TasksBox'>
-                {filterTask.map(item => <Task item={item} updateTask={updateTask}/>)}
+                {filterTask.map(item => <Task item={item} key={item.id} updateTask={updateTask}/>)}
             </div>
         );
     };

@@ -7,7 +7,7 @@ export class ProgressBar extends Component {
         proc: number
     };
     static defaultProps = {
-        proc: 10
+        proc: 0
     };
 
     render () {

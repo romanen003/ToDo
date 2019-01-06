@@ -1,19 +1,35 @@
 import React, { Component } from 'react';
 import {string} from 'prop-types';
+
 import {Button, Input} from "..";
+
+import './form.css';
 
 export class Form extends Component {
     static propTypes = {
-        btnLabel: string
+        btnLabel: string,
+        placeholder: string
     };
+    static defaultProps = {};
 
     state = {
-        value: ''
+        showError: false
     };
-    handleChangeInput = (value) => {
-      this.setState(() => ({
-          value: value
-      }))
+
+
+    handleInputRef = (ref) => {
+        this.inputRef = ref;
+    };
+    handleCheckValue = () => {
+        const {minLenght} = this.props;
+        const { value } = this.inputRef;
+        if (value.length <= minLenght){
+            this.setState(() => ({
+                showError: true
+            }));
+        }else{
+            this.props.onClick(value);
+        }
     };
 
     onSubmitForm = (event) => {
@@ -21,16 +37,32 @@ export class Form extends Component {
     };
 
     handleButtonClick = () => {
-        this.props.onClick(this.state.value);
+        this.handleCheckValue()
+    };
+
+    handleInputKeyDown = () => {
+        this.handleCheckValue()
+    };
+    handleInputOnFocus = () => {
+        this.setState(() => ({
+            showError: false
+        }));
     };
 
 
     render () {
         const {btnLabel, placeholder} = this.props;
+        const { showError } = this.state;
 
         return (
-            <form onSubmit={this.onSubmitForm}>
-                <Input onChange={this.handleChangeInput} placeholder={placeholder}/>
+            <form onSubmit={this.onSubmitForm} >
+                <Input
+                    placeholder={placeholder}
+                    handleInputKeyDown={this.handleInputKeyDown}
+                    inputRef={this.handleInputRef}
+                    showError={showError}
+                    handleInputOnFocus={this.handleInputOnFocus}
+                />
                 <Button
                     label={btnLabel}
                     onClick={this.handleButtonClick}

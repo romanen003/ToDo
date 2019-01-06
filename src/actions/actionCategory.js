@@ -7,7 +7,13 @@ export const removeCategory = item => ({
     type: 'REMOVE_CATEGORY',
     item
 });
+
 export const renameCategory = item => ({
     type: 'RENAME_CATEGORY',
+    item
+});
+
+export const activeCategory = item => ({
+    type: 'ACTIVE_CATEGORY',
     item
 });
