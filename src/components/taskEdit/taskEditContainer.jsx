@@ -18,10 +18,10 @@ class TaskEditContainer extends Component {
         super(props);
         const {
             tasks,
-            match: {params: {task}}
+            match: {params: {id}}
         } = this.props;
 
-        this.currentTask = tasks.filter(item => item.id === task)[0];
+        this.currentTask = tasks.filter(item => item.id === Number(id))[0];
         this.state = {
             name: this.currentTask.name,
             description: this.currentTask.description,
@@ -50,10 +50,10 @@ class TaskEditContainer extends Component {
     handleCancelledClick = () => {
         const {
             history,
-            match: {params:{task}}
+            match: {params:{id}}
         } = this.props;
 
-        history.push(`/${task}`);
+        history.push(`task/${id}`);
     };
 
     handleChangeSaved = () => {

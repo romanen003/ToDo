@@ -11,17 +11,15 @@ export class TasksBoxContainer extends Component {
 
     filterdata = () => {
         const {
-            match: {params, params: {category, task}, url},
+            match: { params: { id }, url},
             tasks
         } = this.props;
 
         switch (true) {
-            case Boolean(url === "/alldone"):
-                return tasks.filter(item => item.status === true);
-            case Boolean(params.task):
-                return tasks.filter(item => item.id === task);
-            case Boolean(params.category):
-                return tasks.filter(item => item.parentCategory === category );
+            case Boolean(url.includes('category')):
+                return tasks.filter(item => item.parentCategory === Number(id));
+            case Boolean(url.includes('task')):
+                return tasks.filter(item => item.id === Number(id));
             default:
                 return tasks.filter(item => item.parentCategory === null );
         }
@@ -29,7 +27,7 @@ export class TasksBoxContainer extends Component {
 
     render () {
         const { updateTask } = this.props;
-       const filterTask = this.filterdata();
+        const filterTask = this.filterdata();
 
         return (
             <div className='TasksBox'>

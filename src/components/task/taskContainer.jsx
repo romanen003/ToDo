@@ -26,7 +26,7 @@ class TaskContainer extends Component {
         const {item: {id}, history} = this.props;
 
         if (this.containerRef === event.target) {
-            history.push(`/${id}`);
+            history.push(`/task${id}`);
         }
     };
 
@@ -34,7 +34,7 @@ class TaskContainer extends Component {
         const {item: {id}, history} = this.props;
 
         if (this.btnEditRef.btnRef.current === event.target) {
-            history.push(`/${id}/edit`);
+            history.push(`/task${id}/edit`);
         }
     };
 

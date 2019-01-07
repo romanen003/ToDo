@@ -53,14 +53,14 @@ export class CategoryItemComponent extends Component {
 
     handleSelectClick = (event) => {
         const {
-            item: {id},
-            match: {params: {category}}
+            item ,
+            match: {params: {id}}
         } = this.props;
 
         if (this.categoryRef.current === event.target){
-            const url = category === id
+            const url = Number(id) === item.id
                 ? ''
-                : '/' + id ;
+                : '/category' + item.id ;
             this.props.history.push(url);
         }
     };
@@ -138,14 +138,13 @@ export class CategoryItemComponent extends Component {
             nameEdit,
             showError
         } = this.state;
-        const isSelect = this.props.match.params.category === item.id;
+        const isSelect = Number(this.props.match.params.id) === item.id;
         const showChildren = isOpen ? "CategoryItem__more CategoryItem__more_close" : "CategoryItem__more ";
         const isSelected = isSelect ? "CategoryItem__body CategoryItem_selected" : "CategoryItem__body";
         const inputView = nameEdit ? 'CategoryItem__name CategoryItem__name_active' : 'CategoryItem__name';
         const isActiveAdd = active === item.id ? 'CategoryItem__addCategory CategoryItem__addCategory_active' : 'CategoryItem__addCategory';
         const hasChildren = category.filter(category =>
             category.parentCategory === item.id ).length > 0;
-
 
         return (
             <li className="CategoryItem" >
