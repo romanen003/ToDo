@@ -39,9 +39,10 @@ export class Input extends Component {
 
 
     handleChangeInput = ({target: {value}}) => {
-        this.setState(() => ({
+       this.setState(() => ({
             value: value
-        }));
+        }),
+           ()=>{this.props.onChange(this.state.value)});
     };
 
     handleInputKeyDown = (event) => {
@@ -56,7 +57,6 @@ export class Input extends Component {
             placeholder,
             className,
             disabled,
-            inputRef,
             showError,
             minLenght,
             handleInputOnFocus
@@ -72,7 +72,6 @@ export class Input extends Component {
                     onChange={this.handleChangeInput}
                     onKeyDown={this.handleInputKeyDown}
                     onFocus={handleInputOnFocus}
-                    ref={inputRef}
                     disabled={disabled}
                 />
                 {showError &&

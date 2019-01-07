@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { Task } from "../../elements";
 import connect from "react-redux/es/connect/connect";
+import {updateTask} from "../../actions/actionTask";
+
+import TaskContainer from '../task/taskContainer';
 
 import './tasksBox.css';
-import {updateTask} from "../../actions/actionTask";
+
 
 export class TasksBoxContainer extends Component {
 
@@ -28,11 +30,10 @@ export class TasksBoxContainer extends Component {
     render () {
         const { updateTask } = this.props;
        const filterTask = this.filterdata();
-       console.log(filterTask,this.props.match);
 
         return (
             <div className='TasksBox'>
-                {filterTask.map(item => <Task item={item} key={item.id} updateTask={updateTask}/>)}
+                {filterTask.map(item => <TaskContainer item={item} key={item.id} updateTask={updateTask}/>)}
             </div>
         );
     };

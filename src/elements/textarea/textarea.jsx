@@ -25,7 +25,8 @@ export class TextArea extends Component {
         event.persist ()
         this.setState(()=>({
             value: event.target.value
-        }));
+        }),
+        ()=>{this.props.onChange(this.state.value)});
     };
 
     

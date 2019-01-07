@@ -16,7 +16,7 @@ export class FilterCheckboxComponent extends Component {
 
 
         return (
-            <Checkbox handleStatusChange={this.handleStatusChange} text='Show done'/>
+            <Checkbox onChange={this.handleStatusChange} text='Show done'/>
         );
     };
 };
