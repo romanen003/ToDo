@@ -37,7 +37,6 @@ export class Input extends Component {
         };
     };
 
-
     handleChangeInput = ({target: {value}}) => {
        this.setState(() => ({
             value: value

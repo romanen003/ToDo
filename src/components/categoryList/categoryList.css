@@ -1,3 +1,7 @@
 .List {
 
 }
+.List_parent {
+    margin: 0;
+    padding: 0;
+}

@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import {func, bool, string} from 'prop-types';
 import { withRouter } from "react-router";
+import classNames from 'classnames';
 
 import {CategoryList} from "../index";
 import {Button, Input} from "../../elements";
@@ -28,99 +29,70 @@ export class CategoryItemComponent extends Component {
         transfer: bool,
         onTaskTransferClick: func
     };
-    constructor (props) {
-        super(props);
-        this.categoryRef = React.createRef();
-        this.btnDeleteRef = React.createRef();
-        this.inputNameRef = React.createRef();
 
-        this.state = {
-            isOpen: false,
-            nameEdit: false,
-            showError: false
-        };
-    }
-
-    handleInputRef = (ref) => {
-        this.inputNameRef = ref;
+    state = {
+        isOpen: false,
+        nameEdit: false,
+        showError: false,
+        nameValue:''
     };
 
-    onChildrenShowClick = () => {
-        this.setState({
-            isOpen: !this.state.isOpen
-        })
+    componentWillMount = () => this.setState(()=> ({nameValue: this.props.item.name}));
+
+    handleSelectClick = event => {
+        const {currentTarget, target}= event;
+        if (currentTarget.nodeName === "BUTTON" || currentTarget.nodeName === "INPUT"||
+            target.nodeName === "BUTTON" || target.nodeName === "INPUT")return;
+
+        const { item , match } = this.props;
+        const url = Number(match.params.id) === item.id
+            ? ''
+            : '/category' + item.id ;
+
+        this.props.history.push(url);
+
     };
 
-    handleSelectClick = (event) => {
-        const {
-            item ,
-            match: {params: {id}}
-        } = this.props;
+    handleChildrenShowClick = () => this.setState({ isOpen: !this.state.isOpen });
 
-        if (this.categoryRef.current === event.target){
-            const url = Number(id) === item.id
-                ? ''
-                : '/category' + item.id ;
-            this.props.history.push(url);
-        }
-    };
+    handleEditNameClick = () => this.setState(()=>({nameEdit: true}));
 
-    onCategoryDeleteClick = (event) => {
+    handleNameChange = value => this.setState(() => ({nameValue: value, showError: value.length < 4 }));
+
+    onCategoryDeleteClick = () => {
         const {item, removeCategory} = this.props;
 
-        if (this.btnDeleteRef.current.btnRef.current === event.target){
-            removeCategory(item)
-        }
+        removeCategory(item);
     };
 
-    handleEditNameClick = () => {
-        this.setState(()=>({
-            nameEdit: true
-        }));
-    };
+
+
+
 
     handleConfirmNameClick = () => {
         const {item, renameCategory} = this.props;
-        const inputValue = this.inputNameRef.value;
+        const {nameValue} = this.state;
 
-        if (inputValue.length >= 4 ){
-            renameCategory({...item,name : inputValue});
+        if (nameValue.length >= 4 ){
+            renameCategory({...item,name : nameValue});
             this.handleCloseClick();
-        }else{
-         this.setState(() => ({
-             showError: true
-         }))
+            return;
         }
+         this.setState(() => ({ showError: true }));
     };
 
     handleCancelledClick = () => {
         this.setState(() => ({
-            cancelChange: !this.state.cancelChange
+            nameEdit: false
         }));
         this.handleCloseClick();
     };
 
-    handleCloseClick = () => {
-        this.setState(()=>({
-            nameEdit: false,
-            showError: false
-        }));
-    };
+    handleCloseClick = () => this.setState(()=>({ nameEdit: false, showError: false }));
 
-    handleInputKeyDown = () => {
-        this.handleConfirmNameClick();
-    };
+    handleInputOnFocus = () => this.setState(() => ({ showError: false }));
 
-    handleInputOnFocus = () => {
-        this.setState(() => ({
-            showError: false
-        }))
-    };
-
-    handleActiveClick = () => {
-        this.props.activeCategory(this.props.item)
-    };
-
+    handleActiveClick = () => this.props.activeCategory(this.props.item);
 
     render () {
         const {
@@ -133,80 +105,87 @@ export class CategoryItemComponent extends Component {
             activeCategory,
             active
         } = this.props;
-        const {
-            isOpen,
-            nameEdit,
-            showError
-        } = this.state;
-        const isSelect = Number(this.props.match.params.id) === item.id;
-        const showChildren = isOpen ? "CategoryItem__more CategoryItem__more_close" : "CategoryItem__more ";
-        const isSelected = isSelect ? "CategoryItem__body CategoryItem_selected" : "CategoryItem__body";
-        const inputView = nameEdit ? 'CategoryItem__name CategoryItem__name_active' : 'CategoryItem__name';
-        const isActiveAdd = active === item.id ? 'CategoryItem__addCategory CategoryItem__addCategory_active' : 'CategoryItem__addCategory';
+        const { isOpen, nameEdit, showError } = this.state;
         const hasChildren = category.filter(category =>
             category.parentCategory === item.id ).length > 0;
+        const isSelect = Number(this.props.match.params.id) === item.id;
+        const activeAdd = active === item.id;
+        const showChildren = classNames("btn_child", {"btn_close" : isOpen});
+        const isSelected = classNames("CategoryItem__body", {"CategoryItem_selected" : isSelect}) ;
+        const inputView = classNames("CategoryItem__name", {"CategoryItem__name_active" : nameEdit});
+        const isActiveAdd = classNames("btn_addCategory", {"btn_categoryActive" : activeAdd});
+        const paddingLeft = classNames("CategoryItem__left",{"CategoryItem__left_padd" : !hasChildren });
+
 
         return (
             <li className="CategoryItem" >
                 <div
                     onClick={this.handleSelectClick}
-                    ref={this.categoryRef}
                     className={isSelected}
                 >
-                    <Input
-                        className={inputView}
-                        value={item.name}
-                        inputRef={this.handleInputRef}
-                        handleInputKeyDown={this.handleInputKeyDown}
-                        disabled={!nameEdit}
-                        showError={showError}
-                        messageError='min symbol - 4'
-                        handleInputOnFocus={this.handleInputOnFocus}
-                        cancelChange={this.cancelChange}
-                    />
-                    {transfer
-                        ? (
-                            <Button
-                                className='CategoryItem__transfer'
-                                onClick={onTaskTransferClick}
-                            />
-                        ) : (
-                            <Fragment>
-                                {hasChildren &&
-                                    <Button
-                                        className={showChildren}
-                                        onClick={this.onChildrenShowClick}
-                                        label='>'
-                                    />
-                                }
-                                {nameEdit ?
+                    <div className={paddingLeft}>
+                        { hasChildren &&
+                            <div className="CategoryItem__child">
+                                <Button
+                                    className={showChildren}
+                                    onClick={this.handleChildrenShowClick}
+                                    label='>'
+                                />
+                            </div>
+
+                        }
+                        <Input
+                            className={inputView}
+                            value={item.name}
+                            handleInputKeyDown={this.handleConfirmNameClick}
+                            onChange={this.handleNameChange}
+                            disabled={!nameEdit}
+                            showError={showError}
+                            messageError='min symbol - 4'
+                            handleInputOnFocus={this.handleInputOnFocus}
+                        />
+                    </div>
+                    <div className='CategoryItem__right'>
+                        {transfer
+                            ? (
+                                <Button
+                                    className='btn_transfer'
+                                    onClick={onTaskTransferClick}
+                                />
+                            ) : (
                                 <Fragment>
-                                    <div className='CategoryItem__confirm'>
-                                        <Button className="btn btn_confirm" onClick={this.handleConfirmNameClick} />
+
+                                    {nameEdit ?
+                                        <Fragment>
+                                            <div className='CategoryItem__confirm'>
+                                                <Button className="btn btn_confirm" onClick={this.handleConfirmNameClick} />
+                                            </div>
+                                            <div className='CategoryItem__close'>
+                                                <Button className="btn btn_close"  onClick={this.handleCancelledClick}/>
+                                            </div>
+                                        </Fragment>
+                                        :
+                                        <div className="CategoryItem__edit">
+                                            <Button className="btn btn_edit" onClick={this.handleEditNameClick} />
+                                        </div>
+                                    }
+                                    <div className="CategoryItem__delete">
+                                        <Button
+                                            className="btn_delete"
+                                            onClick={this.onCategoryDeleteClick}
+                                        />
                                     </div>
-                                    <div className='CategoryItem__close'>
-                                        <Button className="btn btn_close"  onClick={this.handleCancelledClick}/>
+                                    <div className="CategoryItem__addCategory">
+                                        <Button
+                                            className={isActiveAdd}
+                                            label='+'
+                                            onClick={this.handleActiveClick}
+                                        />
                                     </div>
                                 </Fragment>
-                                    :
-                                <div className="CategoryItem__edit">
-                                    <Button className="btn btn_edit" onClick={this.handleEditNameClick} />
-                                </div>
-                                }
-
-                                <Button
-                                    className="CategoryItem__delete"
-                                    onClick={this.onCategoryDeleteClick}
-                                    ref={this.btnDeleteRef}
-                                />
-                                <Button
-                                    className={isActiveAdd}
-                                    label='+'
-                                    onClick={this.handleActiveClick}
-                                />
-                            </Fragment>
-                        )
-                    }
+                            )
+                        }
+                    </div>
                 </div>
                 {isOpen && hasChildren &&
                 <CategoryList

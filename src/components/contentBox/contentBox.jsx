@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Route, Switch } from 'react-router';
 
 import { TasksBox } from "..";
-import CategoryBoxContainer from '../categoryBox/categoryBoxContainer';
+import {CategoryBoxContainer} from '../categoryBox/categoryBox';
 import TaskEditContainer from '../taskEdit/taskEditContainer';
 
 

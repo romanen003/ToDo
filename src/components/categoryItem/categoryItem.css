@@ -1,85 +1,55 @@
 .CategoryItem {
     box-sizing: border-box;
-    position: relative;
-    text-align: left;
-}
-.CategoryItem__body {
-    border: 1px solid grey;
-    box-sizing: border-box;
-    padding: 10px 0px 10px 30px;
 }
 .CategoryItem_selected {
     background: antiquewhite;
 }
-.CategoryItem__name {
-    border: 1px solid white;
+.CategoryItem__body {
+    border: 1px solid grey;
+    box-sizing: border-box;
+    padding: 10px 0px 10px 0px;
+}
+.CategoryItem__left,
+.CategoryItem__right {
+    box-sizing: border-box;
     display: inline-block;
+    font-size: 0;
+    width: 50%;
+}
+.CategoryItem__left {
+    text-align: left;
+}
+.CategoryItem__left_padd {
+    padding-left: 27px;
+}
+.CategoryItem__right {
+    text-align: right;
+}
+.CategoryItem__name {
+    background: transparent;
+    border: none;
     font-size: 20px;
     margin: 0;
-    vertical-align: middle;
+    width: 140px;
     outline: 0;
 }
 .CategoryItem__name_active {
     border: 1px dashed grey;
 }
-.CategoryItem__more,
-.CategoryItem__delete,
-.CategoryItem__addCategory,
-.CategoryItem__transfer {
-    border: none;
-    cursor: pointer;
-    display: inline-block;
-    position: absolute;
-    height: 20px;
-    outline: 0;
-    width: 20px;
-}
-.CategoryItem__more {
-    background: transparent;
-    color: black;
-    font-size: 20px;
-    left: 13px;
-    top: 12px;
-    -webkit-transform: rotate(90deg);
-    transform: rotate(90deg);
-    border: none;
-}
-.CategoryItem__more_close {
-    left: 5px;
-    top: 17px;
-    -webkit-transform: rotate(90deg);
-    transform: rotate(-90deg);
-}
 .CategoryItem__edit,
 .CategoryItem__confirm,
-.CategoryItem__close {
-    cursor: pointer;
+.CategoryItem__close,
+.CategoryItem__delete,
+.CategoryItem__child,
+.CategoryItem__name,
+.CategoryItem__addCategory{
+    box-sizing: border-box;
     display: inline-block;
-    height: 20px;
-    padding-left: 10px;
-    width: 20px;
+    margin-right: 10px;
     vertical-align: middle;
-    }
-.CategoryItem__delete {
-    background: url("../../img/delete.png") no-repeat center;
-    background-size: 100%;
-    right: 40px;
-    top: 15px;
 }
-.CategoryItem__addCategory {
-    background: transparent;
-    color: black;
-    font-size: 28px;
-    right: 13px;
-    line-height: 20px;
+.CategoryItem__child,
+.CategoryItem__addCategory{
+    margin: 0;
 }
-.CategoryItem__addCategory_active {
-    color: red;
-}
-.CategoryItem__transfer {
-    background: url("../../img/arrow.png") no-repeat center;
-    background-size: 100%;
-    height: 100%;
-    right: 5px;
-    top: 0;
-}
+

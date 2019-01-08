@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { array, func, string} from 'prop-types';
+import { array, func, number} from 'prop-types';
 
 import {CategoryItem} from "../../elements";
 
@@ -9,7 +9,7 @@ import './categoryList.css';
 export class CategoryList extends Component {
     static propTypes = {
         categoryList: array,
-        parentCategoryIndex: string,
+        parentCategoryIndex: number,
         removeCategory: func
     };
     static defaultProps = {
@@ -28,9 +28,10 @@ export class CategoryList extends Component {
             active
         } = this.props;
         const filterData = categoryList.filter((item)=> item.parentCategory === parentCategoryIndex);
+        const className = parentCategoryIndex === null ? "List_parent" : "List" ;
 
         return (
-            <ul className='List' >
+            <ul className={className} >
                 {filterData.map(item =>
                     <CategoryItem
                         key={item.id}

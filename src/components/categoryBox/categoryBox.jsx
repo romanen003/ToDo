@@ -4,9 +4,12 @@ import {func, array} from 'prop-types';
 import {CategoryList} from "..";
 
 import './categoryBox.css';
+import connect from "react-redux/es/connect/connect";
+import {activeCategory, removeCategory, renameCategory} from "../../actions/actionCategory";
+import {withRouter} from "react-router/";
 
 
-export class CategoryBox extends Component {
+class CategoryBox extends Component {
     static propTypes = {
         category: array,
         removeCategory: func,
@@ -27,6 +30,7 @@ export class CategoryBox extends Component {
             active
         } = this.props;
 
+
         return (
             <aside className='CategoryBox'>
                 <CategoryList
@@ -41,3 +45,11 @@ export class CategoryBox extends Component {
     };
 
 }
+
+export const CategoryBoxContainer = withRouter( connect( state => ({
+        category: state.category,
+        active: state.category.active
+    }),
+    {removeCategory, renameCategory, activeCategory})
+(CategoryBox)
+);
