@@ -3,32 +3,38 @@ export const TASKS = [
         name:'task 1',
         description: 'test',
         status: false,
-        parentCategory: 'category0',
-        id: 'task0'
+        parentCategory: 1,
+        id: 1
     },
     {
         name:'task 2',
         description: 'test',
         status: false,
-        parentCategory: 'category0',
-        id: 'task1'
+        parentCategory: 1,
+        id: 2
     },
     {
         name:'task 3',
         description: 'test',
         status: false,
-        parentCategory: 'category0',
-        id: 'task2'
-    },
+        parentCategory: 1,
+        id: 3
+    },{
+        name:'task 4',
+        description: 'test',
+        status: false,
+        parentCategory: null,
+        id: 4
+    }
 ];
-TASKS.id = 3;
+TASKS.id = 4;
 
 export const tasks = (state = TASKS, {type,item}) => {
     switch (type) {
         case 'ADD_TASK':
             return [
                 ...state,{
-                ...item,id: `task${TASKS.id++}`
+                ...item,id: TASKS.id++
                 }];
         case 'UPDATE_TASK' :
             return [

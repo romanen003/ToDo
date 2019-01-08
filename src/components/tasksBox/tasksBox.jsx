@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
-import { Task } from "../../elements";
 import connect from "react-redux/es/connect/connect";
+import {updateTask} from "../../actions/actionTask";
+
+import TaskContainer from '../task/taskContainer';
 
 import './tasksBox.css';
-import {updateTask} from "../../actions/actionTask";
+
 
 export class TasksBoxContainer extends Component {
 
     filterdata = () => {
         const {
-            match: {params, params: {category, task}, url},
+            match: { params: { id }, url},
             tasks
         } = this.props;
 
         switch (true) {
-            case Boolean(url === "/alldone"):
-                return tasks.filter(item => item.status === true);
-            case Boolean(params.task):
-                return tasks.filter(item => item.id === task);
-            case Boolean(params.category):
-                return tasks.filter(item => item.parentCategory === category );
+            case Boolean(url.includes('category')):
+                return tasks.filter(item => item.parentCategory === Number(id));
+            case Boolean(url.includes('task')):
+                return tasks.filter(item => item.id === Number(id));
             default:
                 return tasks.filter(item => item.parentCategory === null );
         }
@@ -27,12 +27,11 @@ export class TasksBoxContainer extends Component {
 
     render () {
         const { updateTask } = this.props;
-       const filterTask = this.filterdata();
-       console.log(filterTask,this.props.match);
+        const filterTask = this.filterdata();
 
         return (
             <div className='TasksBox'>
-                {filterTask.map(item => <Task item={item} key={item.id} updateTask={updateTask}/>)}
+                {filterTask.map(item => <TaskContainer item={item} key={item.id} updateTask={updateTask}/>)}
             </div>
         );
     };

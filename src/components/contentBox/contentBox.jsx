@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import Route from "react-router/es/Route";
+import {Route, Switch } from 'react-router';
 
-import {CategoryBox, TasksBox, TaskEdit} from "..";
+import { TasksBox } from "..";
+import CategoryBoxContainer from '../categoryBox/categoryBoxContainer';
+import TaskEditContainer from '../taskEdit/taskEditContainer';
+
 
 export class ContentBox extends Component {
     render () {
@@ -11,15 +14,20 @@ export class ContentBox extends Component {
                 <div className="Grid">
                     <div className="Grid__item Grid__item_30">
                         <div className="BoxContent">
-                            <Route path='/:category?' component={CategoryBox}/>
+                            <Switch>
+                                <Route path='/category:id?' component={CategoryBoxContainer}/>
+                                <Route path='/*' component={CategoryBoxContainer}/>
+                            </Switch>
                         </div>
                     </div>
                     <div className="Grid__item Grid__item_70">
                         <div className="BoxContent">
-                            <Route exact path='/:category' component={TasksBox}/>
-                            <Route path='/:task/edit' component={TaskEdit}/>
-                            <Route exact path='/:task' component={TasksBox}/>
-                            <Route exact path='/' component={TasksBox}/>
+                            <Switch>
+                                <Route path='/category:id' component={TasksBox}/>
+                                <Route path='/task:id?/edit' component={TaskEditContainer}/>
+                                <Route path='/task:id?' component={TasksBox}/>
+                                <Route path='/' component={TasksBox}/>
+                            </Switch>
                         </div>
                     </div>
                 </div>

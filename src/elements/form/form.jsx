@@ -13,7 +13,8 @@ export class Form extends Component {
     static defaultProps = {};
 
     state = {
-        showError: false
+        showError: false,
+        value: ''
     };
 
 
@@ -22,7 +23,7 @@ export class Form extends Component {
     };
     handleCheckValue = () => {
         const {minLenght} = this.props;
-        const { value } = this.inputRef;
+        const { value } = this.state;
 
         if (value.length <= minLenght){
             this.setState(() => ({
@@ -30,6 +31,9 @@ export class Form extends Component {
             }));
         }else{
             this.props.onClick(value);
+            this.setState(() => ({
+                value: ''
+            }));
         }
     };
 
@@ -50,10 +54,16 @@ export class Form extends Component {
         }));
     };
 
+    handleValueChange = (value) => {
+        this.setState(() => ({
+            value
+        }));
+    };
+
 
     render () {
         const {btnLabel, placeholder, minLenght} = this.props;
-        const { showError } = this.state;
+        const { showError,value } = this.state;
 
         return (
             <form onSubmit={this.onSubmitForm} >
@@ -64,6 +74,8 @@ export class Form extends Component {
                     showError={showError}
                     handleInputOnFocus={this.handleInputOnFocus}
                     minLenght={minLenght}
+                    value={value}
+                    onChange={this.handleValueChange}
                 />
                 <Button
                     label={btnLabel}

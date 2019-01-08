@@ -45,4 +45,4 @@ export class CategoryList extends Component {
             </ul>
         )
     };
-}
+};

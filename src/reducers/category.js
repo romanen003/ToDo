@@ -2,30 +2,30 @@ export const CATEGORY = [
     {
         name:'category 1',
         parentCategory: null,
-        id: "category0"
+        id: 1
     },
     {
         name:'category 2',
         parentCategory: null,
-        id: "category1"
+        id: 2
     },
     {
         name:'category 3',
         parentCategory: null,
-        id: "category2"
+        id: 3
     },
     {
         name:'category 1-1',
-        parentCategory: 'category0',
-        id: "category3"
+        parentCategory: 1,
+        id: 4
     },
     {
         name:'category 1-1-1',
-        parentCategory: 'category3',
-        id: "category4"
+        parentCategory: 4,
+        id: 5
     }
 ];
-CATEGORY.id = 5;
+CATEGORY.id = 6;
 CATEGORY.active = null;
 
 export const category = (state = CATEGORY, {type, item}) => {
@@ -33,7 +33,7 @@ export const category = (state = CATEGORY, {type, item}) => {
         case 'ADD_CATEGORY':
             const data1 = [...state,{
                     ...item,
-                    id: `category${CATEGORY.id++}`,
+                    id: CATEGORY.id++,
                     parentCategory: state.active
                 }];
             data1.active = state.active;
