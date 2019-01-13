@@ -4,60 +4,45 @@ import {connect} from "react-redux";
 import {updateTask} from "../../actions/actionTask";
 
 import {Task} from "./task";
+import {updateTransfer} from "../../actions/actionActiveComponent";
 
 class TaskContainer extends Component {
-    constructor (props) {
+    constructor(props){
         super(props);
-        this.containerRef = React.createRef();
-        this.btnEditRef = React.createRef();
-        this.state = {
-            status:this.props.item.status
-        };
-    } ;
-
-    withcontainerRef = (ref) => {
-        this.containerRef = ref
-    };
-    withBtnEditRef = (ref) => {
-        this.btnEditRef = ref
+        this.taskRef = React.createRef();
     };
 
     handleSelectTaskClick = (event) => {
-        const {item: {id}, history} = this.props;
+        const {item, history} = this.props;
 
-        if (this.containerRef === event.target) {
-            history.push(`/task${id}`);
+        if (this.taskRef.current === event.target){
+            history.push(`/task${item.id}`);
         }
     };
 
     handleEditClick = (event) => {
-        const {item: {id}, history} = this.props;
+        const {item, history, updateTransfer} = this.props;
 
-        if (this.btnEditRef.btnRef.current === event.target) {
-            history.push(`/task${id}/edit`);
-        }
+        history.push(`/task${item.id}/edit`);
+        updateTransfer(item.parentCategory);
+        event.stopPropagation();
     };
 
     handleStatusChange = (status) => {
         const { item, updateTask} = this.props;
+
         updateTask({...item,status})
     };
 
     render() {
-        const {status} = this.state;
-        const {
-            item: {name}
-        } = this.props;
-
         return (
             <Task
-                name={name}
-                status={status}
+                name={this.props.item.name}
+                status={this.props.item.status}
                 handleSelectTaskClick={this.handleSelectTaskClick}
                 handleStatusChange={this.handleStatusChange}
                 handleEditClick={this.handleEditClick}
-                withcontainerRef={this.withcontainerRef}
-                withBtnEditRef={this.withBtnEditRef}
+                withTaskRef={this.taskRef}
             />
         );
     }
@@ -65,6 +50,7 @@ class TaskContainer extends Component {
 
 export default  withRouter(
     connect(
-        (state)=>({
-            tasks: state.tasks
-        }),{updateTask})(TaskContainer));
+        state => ({tasks: state.tasks}),
+        {updateTask, updateTransfer})
+    (TaskContainer)
+);

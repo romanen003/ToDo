@@ -21,7 +21,8 @@ export class TaskEdit extends Component {
             handleNameChange,
             handleStatusChange,
             handleDescriptionChange,
-            task: {name, status, description}
+            task: {name, status, description},
+            showError
         } = this.props;
 
         return (
@@ -44,6 +45,7 @@ export class TaskEdit extends Component {
                     placeholder='Task'
                     value={name}
                     onChange={handleNameChange}
+                    showError={showError}
                 />
                 <div className="TaskEdit__wrapper">
                     <Checkbox

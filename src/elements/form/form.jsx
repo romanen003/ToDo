@@ -17,49 +17,32 @@ export class Form extends Component {
         value: ''
     };
 
-
     handleInputRef = (ref) => {
         this.inputRef = ref;
     };
+
+    handleValueChange = value => this.setState(() => ({ value, showError: value.length < this.props.minLenght }));
+
+    handleInputOnFocus = () => this.setState(() => ({ showError: false }));
+
+    onSubmitForm = event => event.preventDefault();
+
     handleCheckValue = () => {
         const {minLenght} = this.props;
         const { value } = this.state;
 
-        if (value.length <= minLenght){
+        if (value.length < minLenght){
             this.setState(() => ({
                 showError: true
             }));
-        }else{
+        }else {
             this.props.onClick(value);
             this.setState(() => ({
-                value: ''
+                value: '',
+                showError: false
             }));
         }
     };
-
-    onSubmitForm = (event) => {
-        event.preventDefault();
-    };
-
-    handleButtonClick = () => {
-        this.handleCheckValue()
-    };
-
-    handleInputKeyDown = () => {
-        this.handleCheckValue()
-    };
-    handleInputOnFocus = () => {
-        this.setState(() => ({
-            showError: false
-        }));
-    };
-
-    handleValueChange = (value) => {
-        this.setState(() => ({
-            value
-        }));
-    };
-
 
     render () {
         const {btnLabel, placeholder, minLenght} = this.props;
@@ -69,17 +52,17 @@ export class Form extends Component {
             <form onSubmit={this.onSubmitForm} >
                 <Input
                     placeholder={placeholder}
-                    handleInputKeyDown={this.handleInputKeyDown}
+                    handleInputKeyDown={this.handleCheckValue}
                     inputRef={this.handleInputRef}
                     showError={showError}
                     handleInputOnFocus={this.handleInputOnFocus}
-                    minLenght={minLenght}
                     value={value}
                     onChange={this.handleValueChange}
+                    minLenght={minLenght}
                 />
                 <Button
                     label={btnLabel}
-                    onClick={this.handleButtonClick}
+                    onClick={this.handleCheckValue}
                 />
             </form>
         );

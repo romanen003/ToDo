@@ -25,6 +25,19 @@
 .CategoryItem__right {
     text-align: right;
 }
+.CategoryItem__edit,
+.CategoryItem__confirm,
+.CategoryItem__close,
+.CategoryItem__delete,
+.CategoryItem__child,
+.CategoryItem__name,
+.CategoryItem__addCategory,
+.CategoryItem__transfer {
+    box-sizing: border-box;
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: middle;
+}
 .CategoryItem__name {
     background: transparent;
     border: none;
@@ -35,18 +48,6 @@
 }
 .CategoryItem__name_active {
     border: 1px dashed grey;
-}
-.CategoryItem__edit,
-.CategoryItem__confirm,
-.CategoryItem__close,
-.CategoryItem__delete,
-.CategoryItem__child,
-.CategoryItem__name,
-.CategoryItem__addCategory{
-    box-sizing: border-box;
-    display: inline-block;
-    margin-right: 10px;
-    vertical-align: middle;
 }
 .CategoryItem__child,
 .CategoryItem__addCategory{

@@ -1,10 +1,6 @@
-export const addTask = item => ({
-    type: 'ADD_TASK',
-    item
-});
+import {ACTION_TASK} from '../constants/index';
 
 
-export const updateTask = item => ({
-    type: 'UPDATE_TASK',
-    item
-});
+export const addTask = item => ({type: ACTION_TASK.ADD, payload: item });
+
+export const updateTask = item => ({type: ACTION_TASK.UPDATE, payload: item });

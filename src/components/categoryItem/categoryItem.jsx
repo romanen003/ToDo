@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import {func, bool, string} from 'prop-types';
-import { withRouter } from "react-router";
+import {object, array, func, bool} from 'prop-types';
 import classNames from 'classnames';
 
 import {CategoryList} from "../index";
@@ -10,176 +9,142 @@ import './categoryItem.css';
 import '../../elements/style.css';
 
 
-export class CategoryItemComponent extends Component {
+export class CategoryItem extends Component {
     static defaultProps = {
-        categoryName: '',
+        item: {},
         hasChildren: false,
-        onCategoryItemClick: () => {},
-        onEditNameClick: () => {},
-        onCategoryDeleteClick: () => {},
-        transfer: false,
-        onTaskTransferClick: () => {}
+        transferView: false,
+        category: [],
+        onSelectClick: () => {},
+        onChildrenShowClick: () => {},
+        handleConfirmNameClick: () => {},
+        handleNameChange: () => {},
+        handleInputOnFocus: () => {},
+        handleCancelledClick: () => {},
+        handleEditNameClick: () => {},
+        handleCategoryDeleteClick: () => {},
+        handleActiveClick: () => {},
+        handleTaskTransferClick: () => {}
     };
     static propTypes = {
-        categoryName: string,
+        item: object,
         hasChildren: bool,
-        onCategoryItemClick: func,
-        onEditNameClick: func,
-        onCategoryDeleteClick: func,
-        transfer: bool,
-        onTaskTransferClick: func
-    };
-
-    state = {
-        isOpen: false,
-        nameEdit: false,
-        showError: false,
-        nameValue:''
-    };
-
-    componentWillMount = () => this.setState(()=> ({nameValue: this.props.item.name}));
-
-    handleSelectClick = event => {
-        const {currentTarget, target}= event;
-        if (currentTarget.nodeName === "BUTTON" || currentTarget.nodeName === "INPUT"||
-            target.nodeName === "BUTTON" || target.nodeName === "INPUT")return;
-
-        const { item , match } = this.props;
-        const url = Number(match.params.id) === item.id
-            ? ''
-            : '/category' + item.id ;
-
-        this.props.history.push(url);
-
-    };
-
-    handleChildrenShowClick = () => this.setState({ isOpen: !this.state.isOpen });
-
-    handleEditNameClick = () => this.setState(()=>({nameEdit: true}));
-
-    handleNameChange = value => this.setState(() => ({nameValue: value, showError: value.length < 4 }));
-
-    onCategoryDeleteClick = () => {
-        const {item, removeCategory} = this.props;
-
-        removeCategory(item);
+        transferView: bool,
+        category: array,
+        onSelectClick: func,
+        onChildrenShowClick: func,
+        handleConfirmNameClick: func,
+        handleNameChange: func,
+        handleInputOnFocus: func,
+        handleCancelledClick: func,
+        handleEditNameClick: func,
+        handleCategoryDeleteClick: func,
+        handleActiveClick: func,
+        handleTaskTransferClick: func
     };
 
 
 
 
-
-    handleConfirmNameClick = () => {
-        const {item, renameCategory} = this.props;
-        const {nameValue} = this.state;
-
-        if (nameValue.length >= 4 ){
-            renameCategory({...item,name : nameValue});
-            this.handleCloseClick();
-            return;
-        }
-         this.setState(() => ({ showError: true }));
-    };
-
-    handleCancelledClick = () => {
-        this.setState(() => ({
-            nameEdit: false
-        }));
-        this.handleCloseClick();
-    };
-
-    handleCloseClick = () => this.setState(()=>({ nameEdit: false, showError: false }));
-
-    handleInputOnFocus = () => this.setState(() => ({ showError: false }));
-
-    handleActiveClick = () => this.props.activeCategory(this.props.item);
 
     render () {
+
         const {
             item,
-            transfer,
-            onTaskTransferClick,
+            hasChildren,
             category,
-            removeCategory,
-            renameCategory,
-            activeCategory,
-            active
+            isSelect,
+            transferView,
+            isActiveAdd,
+            onSelectClick,
+            onChildrenShowClick,
+            handleConfirmNameClick,
+            handleNameChange,
+            handleInputOnFocus,
+            handleCancelledClick,
+            handleEditNameClick,
+            handleCategoryDeleteClick,
+            handleActiveClick,
+            handleTaskTransferClick,
+            stateView: {isOpen, nameEdit, showError},
+            activeTransfer
         } = this.props;
-        const { isOpen, nameEdit, showError } = this.state;
-        const hasChildren = category.filter(category =>
-            category.parentCategory === item.id ).length > 0;
-        const isSelect = Number(this.props.match.params.id) === item.id;
-        const activeAdd = active === item.id;
-        const showChildren = classNames("btn_child", {"btn_close" : isOpen});
-        const isSelected = classNames("CategoryItem__body", {"CategoryItem_selected" : isSelect}) ;
-        const inputView = classNames("CategoryItem__name", {"CategoryItem__name_active" : nameEdit});
-        const isActiveAdd = classNames("btn_addCategory", {"btn_categoryActive" : activeAdd});
-        const paddingLeft = classNames("CategoryItem__left",{"CategoryItem__left_padd" : !hasChildren });
 
+
+
+
+        const showChildren = classNames("btn_child", {"btn_close" : isOpen});
+        const isSelectStyle = classNames("CategoryItem__body", {"CategoryItem_selected" : isSelect}) ;
+        const inputStyle = classNames("CategoryItem__name", {"CategoryItem__name_active" : nameEdit});
+        const activeStyle = classNames("btn_addCategory", {"btn_active" : isActiveAdd});
+        const paddingLeft = classNames("CategoryItem__left",{"CategoryItem__left_padd" : !hasChildren });
+        const activeTransferStyle = classNames("btn_transfer",{"btn_active": activeTransfer});
 
         return (
             <li className="CategoryItem" >
                 <div
-                    onClick={this.handleSelectClick}
-                    className={isSelected}
+                    onClick={onSelectClick}
+                    className={isSelectStyle}
                 >
                     <div className={paddingLeft}>
                         { hasChildren &&
                             <div className="CategoryItem__child">
                                 <Button
                                     className={showChildren}
-                                    onClick={this.handleChildrenShowClick}
+                                    onClick={onChildrenShowClick}
                                     label='>'
                                 />
                             </div>
 
                         }
                         <Input
-                            className={inputView}
+                            className={inputStyle}
                             value={item.name}
-                            handleInputKeyDown={this.handleConfirmNameClick}
-                            onChange={this.handleNameChange}
+                            handleInputKeyDown={handleConfirmNameClick}
+                            onChange={handleNameChange}
                             disabled={!nameEdit}
                             showError={showError}
                             messageError='min symbol - 4'
-                            handleInputOnFocus={this.handleInputOnFocus}
+                            handleInputOnFocus={handleInputOnFocus}
                         />
                     </div>
                     <div className='CategoryItem__right'>
-                        {transfer
+                        {transferView
                             ? (
-                                <Button
-                                    className='btn_transfer'
-                                    onClick={onTaskTransferClick}
-                                />
+                                <div className="CategoryItem__transfer">
+                                    <Button
+                                        className={activeTransferStyle}
+                                        onClick={handleTaskTransferClick}
+                                    />
+                                </div>
                             ) : (
                                 <Fragment>
 
                                     {nameEdit ?
                                         <Fragment>
                                             <div className='CategoryItem__confirm'>
-                                                <Button className="btn btn_confirm" onClick={this.handleConfirmNameClick} />
+                                                <Button className="btn btn_confirm" onClick={handleConfirmNameClick} />
                                             </div>
                                             <div className='CategoryItem__close'>
-                                                <Button className="btn btn_close"  onClick={this.handleCancelledClick}/>
+                                                <Button className="btn btn_close"  onClick={handleCancelledClick}/>
                                             </div>
                                         </Fragment>
                                         :
                                         <div className="CategoryItem__edit">
-                                            <Button className="btn btn_edit" onClick={this.handleEditNameClick} />
+                                            <Button className="btn btn_edit" onClick={handleEditNameClick} />
                                         </div>
                                     }
                                     <div className="CategoryItem__delete">
                                         <Button
                                             className="btn_delete"
-                                            onClick={this.onCategoryDeleteClick}
+                                            onClick={handleCategoryDeleteClick}
                                         />
                                     </div>
                                     <div className="CategoryItem__addCategory">
                                         <Button
-                                            className={isActiveAdd}
+                                            className={activeStyle}
                                             label='+'
-                                            onClick={this.handleActiveClick}
+                                            onClick={handleActiveClick}
                                         />
                                     </div>
                                 </Fragment>
@@ -188,16 +153,9 @@ export class CategoryItemComponent extends Component {
                     </div>
                 </div>
                 {isOpen && hasChildren &&
-                <CategoryList
-                    categoryList={category}
-                    parentCategoryIndex={item.id}
-                    removeCategory={removeCategory}
-                    renameCategory={renameCategory}
-                    activeCategory={activeCategory}
-                />}
+                    <CategoryList categoryList={category} parentCategoryIndex={item.id}/>
+                }
             </li>
         );
     };
 }
-
-export const CategoryItem = withRouter(CategoryItemComponent);

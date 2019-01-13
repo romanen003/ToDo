@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import {string, func, bool } from 'prop-types';
+
 import {Button, Checkbox} from "../../elements/index";
-import {string, func } from 'prop-types';
 
 import './task.css';
 import '../../elements/style.css';
@@ -8,11 +9,18 @@ import '../../elements/style.css';
 
 export class Task extends Component {
     static propTypes = {
-        onTaskEditClick: func,
-        name: string
+        handleEditClick: func,
+        handleSelectTaskClick: func,
+        handleStatusChange: func,
+        name: string,
+        status: bool
     };
     static defaultProps = {
-        onTaskEditClick: () => {}
+        handleEditClick: () => {},
+        handleSelectTaskClick: () => {},
+        handleStatusChange: () => {},
+        name: '',
+        status: false
     };
 
     render () {
@@ -22,21 +30,17 @@ export class Task extends Component {
             handleSelectTaskClick,
             handleStatusChange,
             handleEditClick,
-            withcontainerRef,
-            withBtnEditRef
+            withTaskRef
         } = this.props;
 
         return (
-            <div className='Task'
-                 onClick={handleSelectTaskClick}
-                 ref={withcontainerRef}
-            >
+            <div className='Task' onClick={handleSelectTaskClick} ref={withTaskRef}>
                 <div className="Task__status">
                     <Checkbox onChange={handleStatusChange} checked={status} />
                 </div>
                 <div className="Task__title">{name}</div>
                 <div className="Task__edit">
-                    <Button className="edit" onClick={handleEditClick} ref={withBtnEditRef}/>
+                    <Button className="edit" onClick={handleEditClick}/>
                 </div>
             </div>
         );

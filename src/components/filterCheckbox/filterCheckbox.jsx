@@ -5,11 +5,8 @@ import {withRouter} from "react-router";
 export class FilterCheckboxComponent extends Component {
 
     handleStatusChange = (value) => {
-        // const {history} = this.props;
-        // value ?
-        //     history.push('/alldone')
-        //     :
-        //     history.push('/')
+        const {history, match} = this.props;
+        console.log(this.props);
     };
 
     render () {

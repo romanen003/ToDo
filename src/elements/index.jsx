@@ -4,7 +4,4 @@ export {Checkbox} from './checkbox/checkbox';
 export {Search} from './search/search';
 export {ProgressBar} from './progressBar/progressBar';
 export {Form} from './form/form';
-export {CategoryItem} from '../components/categoryItem/categoryItem';
-export {Task} from '../components/task/task';
-export {TaskEdit} from '../components/taskEdit/taskEdit';
 export {TextArea} from './textarea/textarea';

@@ -8,6 +8,7 @@ import {FilterCheckbox} from "..";
 import {Form, ProgressBar, Search} from "../../elements";
 
 import './header.css';
+import {updateActive} from "../../actions/actionActiveComponent";
 
 
 
@@ -15,17 +16,18 @@ import './header.css';
 export class HeaderContainer extends Component {
 
     handleAddCategoryClick = (value) => {
-        const { addCategory, active} = this.props;
+        const { addCategory, active, updateActive } = this.props;
         const item = {
             name: value,
             parentCategory: active
         };
 
         addCategory(item);
+        updateActive(null);
     };
 
     handleAddTaskClick = (value) => {
-        const {addTask , active} = this.props;
+        const {addTask, active, updateActive } = this.props;
         const item = {
             name: value,
             description: '',
@@ -34,6 +36,7 @@ export class HeaderContainer extends Component {
         };
 
         addTask (item);
+        updateActive(null);
     };
 
 
@@ -94,5 +97,5 @@ export class HeaderContainer extends Component {
 export const Header = connect(state => ({
     tasks: state.tasks,
     category: state.category,
-    active: state.category.active
-}),{ addTask, addCategory })(HeaderContainer);
+    active: state.activeState.activeCategory
+}),{ addTask, addCategory, updateActive })(HeaderContainer);

@@ -46,6 +46,7 @@ body {
     background-size: 100%;
 }
 .btn_transfer {
+    border: none;
     background: url("../img/arrow.png") no-repeat center;
     background-size: 100%;
 }
@@ -61,11 +62,13 @@ body {
     transform: rotate(-90deg);
 }
 .btn_addCategory {
+    background: transparent;
     border: none;
     font-size: 20px;
     margin-right: 10px;
     line-height: 12px;
 }
-.btn_categoryActive {
+.btn_active {
+    border:1px solid #00aa00;
     color: red;
 }

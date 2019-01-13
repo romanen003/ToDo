@@ -5,15 +5,13 @@ import {updateTask} from "../../actions/actionTask";
 import { withRouter } from "react-router";
 
 import {TaskEdit} from "../index";
+import {updateTransfer} from "../../actions/actionActiveComponent";
 
 
 class TaskEditContainer extends Component {
-    static propTypes = {
+    static propTypes = {};
+    static defaultProps = {};
 
-    };
-    static defaultProps = {
-
-    };
     constructor (props) {
         super(props);
         const {
@@ -25,44 +23,29 @@ class TaskEditContainer extends Component {
         this.state = {
             name: this.currentTask.name,
             description: this.currentTask.description,
-            status: this.currentTask.status
+            status: this.currentTask.status,
+            showError: false
         };
     };
 
-    handleNameChange = (name) => {
-        this.setState(() => ({
-            name
-        }));
-    };
+    componentWillMount = () => this.props.updateTransfer(this.currentTask.parentCategory);
 
-    handleStatusChange = (status) => {
-        this.setState(() => ({
-            status
-        }));
-    };
+    handleNameChange = name => this.setState(() => ({ name, showError: name.length < 4 }));
 
-    handleDescriptionChange = (description) => {
-        this.setState(() => ({
-            description
-        }));
-    };
+    handleStatusChange = status => this.setState(() => ({ status }));
 
-    handleCancelledClick = () => {
-        const {
-            history,
-            match: {params:{id}}
-        } = this.props;
+    handleDescriptionChange = description => this.setState(() => ({ description }));
 
-        history.push(`task/${id}`);
-    };
+    handleCancelledClick = () => this.props.history.go(-1);
 
     handleChangeSaved = () => {
-        const { name,status,description } = this.state;
+        const { name,status, description } = this.state;
+        const {history, updateTask, currentTransfer } = this.props;
 
-        this.props.updateTask({...this.currentTask,name,status,description});
+        if (this.state.showError)return;
+        updateTask({...this.currentTask, name, status, description, parentCategory: currentTransfer});
+        history.push(`/task${this.currentTask.id}`);
     };
-
-
 
     render() {
         return (
@@ -73,6 +56,7 @@ class TaskEditContainer extends Component {
                 handleNameChange={this.handleNameChange}
                 handleStatusChange={this.handleStatusChange}
                 handleDescriptionChange={this.handleDescriptionChange}
+                showError={this.state.showError}
             />
         );
     }
@@ -80,5 +64,6 @@ class TaskEditContainer extends Component {
 
 
 export default withRouter(connect(state => ({
-    tasks: state.tasks
-}),{updateTask})(TaskEditContainer));
+    tasks: state.tasks,
+    currentTransfer: state.activeState.transferCategory
+}),{updateTask, updateTransfer})(TaskEditContainer));

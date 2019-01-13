@@ -27,9 +27,9 @@ export const TASKS = [
         id: 4
     }
 ];
-TASKS.id = 4;
+TASKS.id = 5;
 
-export const tasks = (state = TASKS, {type,item}) => {
+export const tasks = (state = TASKS, {type,payload: item}) => {
     switch (type) {
         case 'ADD_TASK':
             return [

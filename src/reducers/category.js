@@ -1,3 +1,5 @@
+import {ACTION_CATEGORY} from "../constants";
+
 export const CATEGORY = [
     {
         name:'category 1',
@@ -25,28 +27,20 @@ export const CATEGORY = [
         id: 5
     }
 ];
-CATEGORY.id = 6;
-CATEGORY.active = null;
 
-export const category = (state = CATEGORY, {type, item}) => {
+let idCategory = 6;
+
+export const category = (state = CATEGORY, {type, payload: item}) => {
     switch (type) {
-        case 'ADD_CATEGORY':
-            const data1 = [...state,{
-                    ...item,
-                    id: CATEGORY.id++,
-                    parentCategory: state.active
-                }];
-            data1.active = state.active;
-            return data1;
-        case 'REMOVE_CATEGORY':
+        case ACTION_CATEGORY.ADD:
+            return [...state,{
+                ...item,
+                id: idCategory++
+            }];
+        case ACTION_CATEGORY.REMOVE:
             return [...state].filter(category => category !== item);
-        case 'RENAME_CATEGORY':
-            return [...state].map(category =>
-            category.id === item.id ? item : category);
-        case 'ACTIVE_CATEGORY':
-            const data = [...state];
-            data.active = item.id === state.active ? null : item.id;
-            return data;
+        case ACTION_CATEGORY.UPDATE:
+            return [...state].map(category => category.id === item.id ? item : category);
         default:
             return state;
     }

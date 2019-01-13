@@ -1,55 +1,35 @@
 import React, { Component } from 'react';
-import {func, array} from 'prop-types';
+import {array} from 'prop-types';
+import {withRouter} from "react-router/";
+import connect from "react-redux/es/connect/connect";
 
 import {CategoryList} from "..";
 
 import './categoryBox.css';
-import connect from "react-redux/es/connect/connect";
-import {activeCategory, removeCategory, renameCategory} from "../../actions/actionCategory";
-import {withRouter} from "react-router/";
 
 
 class CategoryBox extends Component {
     static propTypes = {
-        category: array,
-        removeCategory: func,
-        renameCategory: func
+        category: array
     };
     static defaultProps = {
-        category: [],
-        removeCategory: () => {},
-        renameCategory: () => {}
+        category: []
     };
 
     render () {
         const {
-            category,
-            removeCategory,
-            renameCategory,
-            activeCategory,
-            active
+            category
         } = this.props;
-
 
         return (
             <aside className='CategoryBox'>
-                <CategoryList
-                    categoryList={category}
-                    removeCategory={removeCategory}
-                    renameCategory={renameCategory}
-                    activeCategory={activeCategory}
-                    active={active}
-                />
+                <CategoryList categoryList={category} />
             </aside>
         );
     };
 
 }
 
-export const CategoryBoxContainer = withRouter( connect( state => ({
-        category: state.category,
-        active: state.category.active
-    }),
-    {removeCategory, renameCategory, activeCategory})
-(CategoryBox)
-);
+export const CategoryBoxContainer = withRouter(connect( state => ({
+        category: state.category
+    }), {})(CategoryBox));

@@ -15,8 +15,9 @@ export class ContentBox extends Component {
                     <div className="Grid__item Grid__item_30">
                         <div className="BoxContent">
                             <Switch>
-                                <Route path='/category:id?' component={CategoryBoxContainer}/>
-                                <Route path='/*' component={CategoryBoxContainer}/>
+                                <Route exact path='/category:category?' component={CategoryBoxContainer}/>
+                                <Route path='/task:id?/edit' component={CategoryBoxContainer}/>
+                                <Route exact component={CategoryBoxContainer}/>
                             </Switch>
                         </div>
                     </div>
@@ -24,8 +25,8 @@ export class ContentBox extends Component {
                         <div className="BoxContent">
                             <Switch>
                                 <Route path='/category:id' component={TasksBox}/>
-                                <Route path='/task:id?/edit' component={TaskEditContainer}/>
-                                <Route path='/task:id?' component={TasksBox}/>
+                                <Route exact path='/task:id?/edit' component={TaskEditContainer}/>
+                                <Route exact path='/task:id?' component={TasksBox}/>
                                 <Route path='/' component={TasksBox}/>
                             </Switch>
                         </div>

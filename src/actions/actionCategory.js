@@ -1,19 +1,9 @@
-export const addCategory = item => ({
-    type: 'ADD_CATEGORY',
-    item
-});
+import {ACTION_CATEGORY} from "../constants";
 
-export const removeCategory = item => ({
-    type: 'REMOVE_CATEGORY',
-    item
-});
+export const addCategory = item => ({ type: ACTION_CATEGORY.ADD, payload: item });
 
-export const renameCategory = item => ({
-    type: 'RENAME_CATEGORY',
-    item
-});
+export const removeCategory = item => ({type: ACTION_CATEGORY.REMOVE,payload: item });
 
-export const activeCategory = item => ({
-    type: 'ACTIVE_CATEGORY',
-    item
-});
+export const renameCategory = item => ({type: ACTION_CATEGORY.UPDATE, payload: item });
+
+export const activeCategory = item => ({type: ACTION_CATEGORY.TRANSFER, payload: item });
