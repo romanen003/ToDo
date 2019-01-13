@@ -6,7 +6,9 @@ export class FilterCheckboxComponent extends Component {
 
     handleStatusChange = (value) => {
         const {history, match} = this.props;
-        console.log(this.props);
+        let newURL = match.url.includes('alldone') ? match.url : `${match.url}?alldone`;
+
+        history.push(newURL);
     };
 
     render () {

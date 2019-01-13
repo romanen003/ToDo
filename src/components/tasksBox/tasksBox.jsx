@@ -9,25 +9,28 @@ import './tasksBox.css';
 
 export class TasksBoxContainer extends Component {
 
-    filterdata = () => {
+    filterData = () => {
         const {
-            match: { params: { id }, url},
+            match: { params: { id, category }, url},
             tasks
         } = this.props;
 
-        switch (true) {
-            case Boolean(url.includes('category')):
-                return tasks.filter(item => item.parentCategory === Number(id));
-            case Boolean(url.includes('task')):
-                return tasks.filter(item => item.id === Number(id));
-            default:
-                return tasks.filter(item => item.parentCategory === null );
+        if(Boolean(url.includes('alldone'))){
+            return tasks.filter(item => item.parentCategory === (category || null) && item.status === true )
         }
+        if(Boolean(url.includes('category'))){
+            return tasks.filter(item => item.parentCategory === Number(category))
+        }
+        if (Boolean(url.includes('task'))){
+            return tasks.filter(item => item.id === Number(id))
+        }
+        return tasks.filter(item => item.parentCategory === null )
     };
 
     render () {
         const { updateTask } = this.props;
-        const filterTask = this.filterdata();
+        const filterTask = this.filterData();
+        console.log(filterTask, this.props);
 
         return (
             <div className='TasksBox'>
