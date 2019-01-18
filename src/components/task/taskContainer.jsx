@@ -51,6 +51,5 @@ class TaskContainer extends Component {
 export default  withRouter(
     connect(
         state => ({tasks: state.tasks}),
-        {updateTask, updateTransfer})
-    (TaskContainer)
+        {updateTask, updateTransfer})(TaskContainer)
 );

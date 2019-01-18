@@ -27,12 +27,11 @@ export class Input extends Component {
         showError: false,
     };
 
-    constructor(props){
-        super(props);
-        this.state ={
-            value: props.value
-        };
+    state = {
+        value: ''
     };
+
+    componentDidMount = () => this.setState(() => ({value: this.props.value}));
 
     handleChangeInput = ({target: {value}}) => {
        this.setState(() => ({

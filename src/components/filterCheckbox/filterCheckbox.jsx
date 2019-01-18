@@ -4,20 +4,21 @@ import {withRouter} from "react-router";
 
 export class FilterCheckboxComponent extends Component {
 
-    handleStatusChange = (value) => {
-        const {history, match} = this.props;
-        let newURL = match.url.includes('alldone') ? match.url : `${match.url}?alldone`;
+    handleStatusChange = value => {
+        const {history} = this.props;
+        let newURL = value ? `${history.location.pathname}/alldone` : history.location.pathname.replace('/alldone','');
 
         history.push(newURL);
     };
 
     render () {
-
+        const {history} = this.props;
+        const checked = history.location.pathname.includes('alldone');
 
         return (
-            <Checkbox onChange={this.handleStatusChange} text='Show done'/>
+            <Checkbox onChange={this.handleStatusChange} checked={checked} text='Show done'/>
         );
     };
-};
+}
 
 export const FilterCheckbox = withRouter(FilterCheckboxComponent);

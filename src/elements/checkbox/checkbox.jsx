@@ -25,6 +25,7 @@ export class Checkbox extends Component {
         }),
         ()=>{this.props.onChange(this.state.isChecked)});
     };
+
     render () {
         const {text} = this.props;
         const {isChecked} = this.state;

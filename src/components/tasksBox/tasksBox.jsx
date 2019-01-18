@@ -16,7 +16,7 @@ export class TasksBoxContainer extends Component {
         } = this.props;
 
         if(Boolean(url.includes('alldone'))){
-            return tasks.filter(item => item.parentCategory === (category || null) && item.status === true )
+            return tasks.filter(item => item.parentCategory === (Number(category) || null) && item.status === true )
         }
         if(Boolean(url.includes('category'))){
             return tasks.filter(item => item.parentCategory === Number(category))
@@ -30,7 +30,6 @@ export class TasksBoxContainer extends Component {
     render () {
         const { updateTask } = this.props;
         const filterTask = this.filterData();
-        console.log(filterTask, this.props);
 
         return (
             <div className='TasksBox'>

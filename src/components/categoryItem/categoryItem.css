@@ -7,7 +7,7 @@
 .CategoryItem__body {
     border: 1px solid grey;
     box-sizing: border-box;
-    padding: 10px 0px 10px 0px;
+    padding: 10px 0 10px 0;
 }
 .CategoryItem__left,
 .CategoryItem__right {
@@ -23,6 +23,7 @@
     padding-left: 27px;
 }
 .CategoryItem__right {
+    position: relative;
     text-align: right;
 }
 .CategoryItem__edit,
@@ -53,4 +54,6 @@
 .CategoryItem__addCategory{
     margin: 0;
 }
-
+.CategoryItem__modal {
+    position: absolute;
+}

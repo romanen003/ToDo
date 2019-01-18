@@ -66,9 +66,8 @@ body {
     border: none;
     font-size: 20px;
     margin-right: 10px;
-    line-height: 12px;
+    line-height: 10px;
 }
 .btn_active {
-    border:1px solid #00aa00;
-    color: red;
+    color: blue;
 }

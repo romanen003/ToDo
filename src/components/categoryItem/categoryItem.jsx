@@ -8,7 +8,6 @@ import {Button, Input} from "../../elements";
 import './categoryItem.css';
 import '../../elements/style.css';
 
-
 export class CategoryItem extends Component {
     static defaultProps = {
         item: {},
@@ -43,10 +42,6 @@ export class CategoryItem extends Component {
         handleTaskTransferClick: func
     };
 
-
-
-
-
     render () {
 
         const {
@@ -66,7 +61,7 @@ export class CategoryItem extends Component {
             handleCategoryDeleteClick,
             handleActiveClick,
             handleTaskTransferClick,
-            stateView: {isOpen, nameEdit, showError},
+            stateView: {isOpen, nameEdit, showError, nameValue},
             activeTransfer
         } = this.props;
 
@@ -99,7 +94,7 @@ export class CategoryItem extends Component {
                         }
                         <Input
                             className={inputStyle}
-                            value={item.name}
+                            value={nameValue}
                             handleInputKeyDown={handleConfirmNameClick}
                             onChange={handleNameChange}
                             disabled={!nameEdit}
@@ -119,7 +114,6 @@ export class CategoryItem extends Component {
                                 </div>
                             ) : (
                                 <Fragment>
-
                                     {nameEdit ?
                                         <Fragment>
                                             <div className='CategoryItem__confirm'>

@@ -9,6 +9,8 @@ import {Form, ProgressBar, Search} from "../../elements";
 
 import './header.css';
 import {updateActive} from "../../actions/actionActiveComponent";
+import Switch from "react-router/es/Switch";
+import Route from "react-router/es/Route";
 
 
 
@@ -54,9 +56,9 @@ export class HeaderContainer extends Component {
                     <div className="Grid__item">
                         <div className="Grid">
                             <div className="Grid__item">
-                                <FilterCheckbox
-
-                                />
+                                <Switch>
+                                    <Route path='/category:category' component={FilterCheckbox} />
+                                </Switch>
                             </div>
                             <div className="Grid__item">
                                 <Search
