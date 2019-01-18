@@ -1,0 +1,8 @@
+.modal {
+    background: blue;
+    box-sizing: border-box;
+    color: darkblue;
+    display: inline-block;
+    font-size: 20px;
+    padding: 20px;
+}
