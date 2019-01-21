@@ -31,7 +31,7 @@ export class CategoryItemComponent extends Component {
     handleSelectClick = event => {
         const {currentTarget, target} = event;
         if (currentTarget.nodeName === "BUTTON" || currentTarget.nodeName === "INPUT"||
-            target.nodeName === "BUTTON" || target.nodeName === "INPUT")return;
+            target.nodeName === "BUTTON" || target.nodeName === "INPUT") return;
 
         const { item , match, updateSelect, history } = this.props;
         const url = Number(match.params.category) === item.id
@@ -62,6 +62,9 @@ export class CategoryItemComponent extends Component {
         if (nameValue.length >= 4 ){
             renameCategory({...item, name : nameValue, parentCategory: currentTransfer});
             this.handleCloseClick();
+            this.setState(() => ({
+                defaultValue: nameValue
+            }));
             return;
         }
         this.setState(() => ({ showError: true }));

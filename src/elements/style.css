@@ -69,5 +69,6 @@ body {
     line-height: 10px;
 }
 .btn_active {
-    color: blue;
+    border-radius: 2px;
+    box-shadow: 0 0 0 6px cornflowerblue;
 }

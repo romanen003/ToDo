@@ -27,22 +27,11 @@ export class Input extends Component {
         showError: false,
     };
 
-    state = {
-        value: ''
-    };
+    handleChangeInput = ({target: {value}}) => this.props.onChange(value);
 
-    componentDidMount = () => this.setState(() => ({value: this.props.value}));
-
-    handleChangeInput = ({target: {value}}) => {
-       this.setState(() => ({
-            value: value
-        }),
-           ()=>{this.props.onChange(this.state.value)});
-    };
-
-    handleInputKeyDown = (event) => {
-        if (event.keyCode === 13){
-            this.props.handleInputKeyDown(this.state.value)
+    handleInputKeyDown = ({keyCode, target: {value}}) => {
+        if (keyCode === 13){
+            this.props.handleInputKeyDown(value)
         }
     };
 
@@ -50,6 +39,7 @@ export class Input extends Component {
         const {
             type,
             placeholder,
+            value,
             className,
             disabled,
             showError,
@@ -63,7 +53,7 @@ export class Input extends Component {
                     type={type}
                     className={className}
                     placeholder={placeholder}
-                    value={this.state.value}
+                    value={value}
                     onChange={this.handleChangeInput}
                     onKeyDown={this.handleInputKeyDown}
                     onFocus={handleInputOnFocus}
