@@ -1,6 +1,8 @@
 .TaskEdit {
+    background: whitesmoke;
     box-sizing: border-box;
     padding: 20px 15px;
+    margin: 10px;
     text-align: left;
 }
 .TaskEdit__wrapper {

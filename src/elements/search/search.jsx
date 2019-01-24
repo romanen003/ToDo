@@ -8,15 +8,31 @@ export class Search extends Component {
         placeholder: string
     };
 
+    state = {
+        value:''
+    };
+
+    handleChangeInput = (value) => this.setState(() => ({value}));
+
+    handleButtonClick = () => this.setState(() => ({value: ''}));
+
     render () {
         const {placeholder} = this.props;
+        const {value} = this.state;
 
         return (
             <div className='Search'>
                 <Input className='Search__input'
                        placeholder={placeholder}
+                       onChange={this.handleChangeInput}
+                       value={value}
                 />
-                <button className='Search__btn'>x</button>
+                <button
+                    className='Search__btn'
+                    onClick={this.handleButtonClick}
+                >
+                    x
+                </button>
             </div>
         );
     };

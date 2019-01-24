@@ -1,9 +1,13 @@
 .Task {
-    border: 1px solid black;
+    background: whitesmoke;
     box-sizing: border-box;
     padding: 20px 20px 20px 40px;
     position: relative;
+    margin: 10px;
     text-align: left;
+}
+.Todo_complete {
+    background: aliceblue;
 }
 .Task__status,
 .Task__edit {

@@ -1,13 +1,15 @@
 .CategoryItem {
     box-sizing: border-box;
 }
-.CategoryItem_selected {
-    background: antiquewhite;
-}
 .CategoryItem__body {
-    border: 1px solid grey;
+    border-left: 2px solid transparent;
+    background: whitesmoke;
     box-sizing: border-box;
     padding: 10px 0 10px 0;
+    margin: 10px;
+}
+.CategoryItem_selected {
+    border-left: 2px solid red;
 }
 .CategoryItem__left,
 .CategoryItem__right {

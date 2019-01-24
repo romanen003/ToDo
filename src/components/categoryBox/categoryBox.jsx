@@ -16,6 +16,8 @@ class CategoryBox extends Component {
         category: []
     };
 
+    
+
     render () {
         const {
             category

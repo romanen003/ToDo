@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {Route, Switch } from 'react-router';
-
 import { TasksBox } from "..";
 import {CategoryBoxContainer} from '../categoryBox/categoryBox';
 import TaskEditContainer from '../taskEdit/taskEditContainer';
+import './content-box.css';
 
 
 export class ContentBox extends Component {
@@ -12,7 +12,7 @@ export class ContentBox extends Component {
         return (
             <div className="Todo__content">
                 <div className="Grid">
-                    <div className="Grid__item Grid__item_30">
+                    <div className="Grid__item Grid__item_30 Grid__item_top">
                         <div className="BoxContent">
                             <Switch>
                                 <Route exact path='/category:category?*' component={CategoryBoxContainer}/>
@@ -21,7 +21,7 @@ export class ContentBox extends Component {
                             </Switch>
                         </div>
                     </div>
-                    <div className="Grid__item Grid__item_70">
+                    <div className="Grid__item Grid__item_70 Grid__item_top">
                         <div className="BoxContent">
                             <Switch>
                                 <Route path='/category:category/alldone' component={TasksBox}/>
