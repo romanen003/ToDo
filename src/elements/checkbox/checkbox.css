@@ -8,7 +8,8 @@
     font-size: 16px;
     padding-left: 25px;
 }
-.checkbox__text::before{
+.checkbox__text::before {
+    background: white;
     content: "";
     display: inline-block;
     height: 16px;

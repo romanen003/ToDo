@@ -42,7 +42,7 @@ class TaskEditContainer extends Component {
         const { name,status, description } = this.state;
         const {history, updateTask, currentTransfer } = this.props;
 
-        if (this.state.showError)return;
+        if (this.state.showError) return;
         updateTask({...this.currentTask, name, status, description, parentCategory: currentTransfer});
         history.push(`/task${this.currentTask.id}`);
     };

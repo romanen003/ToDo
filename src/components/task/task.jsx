@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {string, func, bool } from 'prop-types';
-
+import classNames from 'classnames'
 import {Button, Checkbox} from "../../elements/index";
 
 import './task.css';
@@ -34,7 +34,8 @@ export class Task extends Component {
         } = this.props;
 
         return (
-            <div className='Task' onClick={handleSelectTaskClick} ref={withTaskRef}>
+
+            <div className={classNames('Task',{'Todo_complete': status })} onClick={handleSelectTaskClick} ref={withTaskRef}>
                 <div className="Task__status">
                     <Checkbox onChange={handleStatusChange} checked={status} />
                 </div>

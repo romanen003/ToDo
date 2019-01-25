@@ -8,6 +8,7 @@ import {FilterCheckbox} from "..";
 import {Form, ProgressBar, Search} from "../../elements";
 
 import './header.css';
+import '../../elements/style.css'
 import {updateActive} from "../../actions/actionActiveComponent";
 import Switch from "react-router/es/Switch";
 import Route from "react-router/es/Route";
