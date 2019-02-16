@@ -9,7 +9,7 @@
     padding-left: 25px;
 }
 .checkbox__text::before {
-    background: white;
+    background: whitesmoke;
     content: "";
     display: inline-block;
     height: 16px;

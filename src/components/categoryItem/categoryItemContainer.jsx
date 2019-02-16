@@ -23,7 +23,8 @@ export class CategoryItemComponent extends Component {
         nameEdit: false,
         showError: false,
         defaultValue: '',
-        nameValue:''
+        nameValue:'',
+        showEdit: true
     };
 
     componentWillMount = () => this.setState({nameValue: this.props.item.name, defaultValue: this.props.item.name});
@@ -60,7 +61,11 @@ export class CategoryItemComponent extends Component {
         const {nameValue} = this.state;
 
         if (nameValue.length >= 4 ){
-            renameCategory({...item, name : nameValue, parentCategory: currentTransfer});
+            renameCategory({
+                ...item,
+                name : nameValue,
+                parentCategory: item.parentCategory
+            });
             this.handleCloseClick();
             this.setState(() => ({
                 defaultValue: nameValue
@@ -78,18 +83,30 @@ export class CategoryItemComponent extends Component {
         this.handleCloseClick();
     };
 
-    handleCloseClick = () => this.setState(()=>({ nameEdit: false, showError: false }));
+    handleCloseClick = () => this.setState(() => ({ nameEdit: false, showError: false }));
 
     handleInputOnFocus = () => this.setState(() => ({ showError: false }));
 
-    handleActiveClick = () =>this.props.updateActive(this.props.item.id);
+    handleActiveClick = () => this.props.updateActive(this.props.item.id);
 
     handleTaskTransferClick = () => this.props.updateTransfer(this.props.item.id);
 
 
     render(){
-        const { item, category, match, active, currentTransfer} = this.props;
-        const {isOpen, nameEdit, showError, nameValue} = this.state;
+        const {
+            item,
+            category,
+            match,
+            active,
+            currentTransfer
+        } = this.props;
+        const {
+            isOpen,
+            nameEdit,
+            showError,
+            nameValue,
+            showEdit
+        } = this.state;
         const hasChildren = category.filter(category => category.parentCategory === item.id ).length > 0;
         const isSelect = match.params.category && Number(match.params.category) === item.id;
         const isActiveAdd = active === item.id;
@@ -99,7 +116,7 @@ export class CategoryItemComponent extends Component {
         return (
             <CategoryItem
                 item={item}
-                stateView={{isOpen, nameEdit, showError, nameValue}}
+                stateView={{isOpen, nameEdit, showError, nameValue, showEdit}}
                 hasChildren={hasChildren}
                 isActiveAdd={isActiveAdd}
                 isSelect={isSelect}

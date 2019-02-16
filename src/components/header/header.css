@@ -22,7 +22,7 @@ body {
     padding: 0 15px;
 }
 .BoxContent {
-    background: white;
+    background: whitesmoke;
     box-sizing: border-box;
     height: auto;
     overflow-y: scroll;

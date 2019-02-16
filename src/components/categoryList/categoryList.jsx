@@ -21,7 +21,7 @@ export class CategoryList extends Component {
             categoryList,
             parentCategoryIndex
         } = this.props;
-        const filterData = categoryList.filter((item)=> item.parentCategory === parentCategoryIndex);
+        const filterData = categoryList.filter(item => item.parentCategory === parentCategoryIndex);
         const className = parentCategoryIndex === null ? "List_parent" : "List" ;
 
         return (

@@ -5,6 +5,7 @@
 
 }
 .Search__input {
+    background: whitesmoke;
     border: 1px solid transparent;
     display: inline-block;
     height: 25px;
@@ -12,6 +13,7 @@
     padding: 0px 25px 0 5px;
 }
 .Search__btn {
+    background: whitesmoke;
     border: 0px;
     cursor: pointer;
     display: inline-block;

@@ -3,6 +3,7 @@
     box-sizing: border-box;
     color: darkblue;
     display: inline-block;
+    position: absolute;
     font-size: 20px;
-    padding: 20px;
+    padding: 5px;
 }

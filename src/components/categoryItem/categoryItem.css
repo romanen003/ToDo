@@ -2,8 +2,8 @@
     box-sizing: border-box;
 }
 .CategoryItem__body {
-    border-left: 2px solid transparent;
-    background: whitesmoke;
+    border-left: 2px solid white;
+    background: white;
     box-sizing: border-box;
     padding: 10px 0 10px 0;
     margin: 10px;
@@ -57,5 +57,5 @@
     margin: 0;
 }
 .CategoryItem__modal {
-    position: absolute;
+    position: relative;
 }

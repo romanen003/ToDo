@@ -3,6 +3,7 @@
     position: relative;
 }
 .Input__input {
+    background: whitesmoke;
     border: none;
     box-sizing: border-box;
     display: inline-block;
