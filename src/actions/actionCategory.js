@@ -1,4 +1,4 @@
-import {ACTION_CATEGORY} from '../constants';
+import {ACTION_CATEGORY} from '../reducers/category/constants';
 
 export const addCategory = item => ({
     type: ACTION_CATEGORY.ADD,

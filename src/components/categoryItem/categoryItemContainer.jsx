@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import {object, array } from 'prop-types';
 import {withRouter} from "react-router";
 import connect from "react-redux/es/connect/connect";
-import {ACTION_ACTIVE, ACTION_CATEGORY, ACTION_TASK} from "../../constants";
+import {ACTION_ACTIVE} from "../../reducers/category-state/constants";
+import {ACTION_TASK} from '../../reducers/tasks/constants';
+import {ACTION_CATEGORY} from '../../reducers/category/constants';
 
 
 import {CategoryItem} from "./categoryItem";

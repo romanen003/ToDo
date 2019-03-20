@@ -1,4 +1,4 @@
-import {ACTION_ACTIVE} from '../constants';
+import {ACTION_ACTIVE} from './constants';
 
 export const ACTIVE = {
     selectedCategory: null,

@@ -1,4 +1,4 @@
-import {ACTION_TASK} from '../constants/index';
+import {ACTION_TASK} from '../reducers/tasks/constants';
 
 
 export const addTask = item => ({
