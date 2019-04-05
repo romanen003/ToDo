@@ -1,10 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import {object, array, func, bool} from 'prop-types';
 import classNames from 'classnames';
-
 import {CategoryList} from "../index";
 import {Button, Input} from "../../elements";
-
 import './categoryItem.css';
 import '../../elements/style.css';
 
@@ -73,7 +71,7 @@ export class CategoryItem extends Component {
         const inputStyle = classNames("CategoryItem__name", {"CategoryItem__name_active" : nameEdit});
         const activeStyle = classNames("btn_addCategory", {"btn_active" : isActiveAdd});
         const paddingLeft = classNames("CategoryItem__left",{"CategoryItem__left_padd" : !hasChildren });
-        const activeTransferStyle = classNames("btn_transfer",{"btn_active": activeTransfer});
+        const activeTransferStyle = classNames({"btn_active": activeTransfer});
 
         return (
             <li className="CategoryItem" >
@@ -107,7 +105,7 @@ export class CategoryItem extends Component {
                         {transferView
                             ? (
                                 <div className="CategoryItem__transfer">
-                                    <Button
+                                    <Button.Transfer
                                         className={activeTransferStyle}
                                         onClick={handleTaskTransferClick}
                                     />
@@ -117,27 +115,23 @@ export class CategoryItem extends Component {
                                     {nameEdit ?
                                         <Fragment>
                                             <div className='CategoryItem__confirm'>
-                                                <Button className="btn btn_confirm" onClick={handleConfirmNameClick} />
+                                                <Button.Confirm onClick={handleConfirmNameClick} />
                                             </div>
                                             <div className='CategoryItem__close'>
-                                                <Button className="btn btn_close"  onClick={handleCancelledClick}/>
+                                                <Button.Close onClick={handleCancelledClick}/>
                                             </div>
                                         </Fragment>
                                         :
                                         <div className="CategoryItem__edit">
-                                            <Button edit onClick={handleEditNameClick} />
+                                            <Button.Edit onClick={handleEditNameClick} />
                                         </div>
                                     }
                                     <div className="CategoryItem__delete">
-                                        <Button
-                                            className="btn_delete"
-                                            onClick={handleCategoryDeleteClick}
-                                        />
+                                        <Button.Delete onClick={handleCategoryDeleteClick}/>
                                     </div>
                                     <div className="CategoryItem__addCategory">
-                                        <Button
-                                            className={activeStyle}
-                                            label='+'
+                                        <Button.Add
+                                            active={isActiveAdd}
                                             onClick={handleActiveClick}
                                         />
                                     </div>

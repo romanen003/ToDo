@@ -4,38 +4,31 @@
     cursor: pointer;
     font-size: 16px;
     font-style: italic;
-    padding: 8px;
+    padding: 8px 12px;
     outline: 0;
     vertical-align: middle;
 
     &:hover {
-        color: red;
+        opacity: 0.5;
     }
+
     &:disabled {
         color: #ffffff;
         background: grey;
     }
-    &_edit {
-        background: url('../../img/edit.svg') no-repeat center;
-        background-size: 80%;
+
+    &_active {
+        background: red;
     }
-    &_confirm {
-        background: url('../../img/confirm.svg') no-repeat center;
-        background-size: 100%;
-    }
-    &_close {
-        background: url('../../img/cancel.svg') no-repeat center;
-        background-size: 90%;
-    }
-    &_delete {
-        border: none;
-        background: url("../../img/delete.svg") no-repeat center;
-        background-size: 100%;
-    }
-    &_transfer {
-        border: none;
-        background: url("../../img/undo.svg") no-repeat center;
-        background-size: 100%;
+
+    &_icon {
+        background: transparent;
+
+        &:hover {
+            -webkit-transform: scale(1.2);
+            -ms-transform: scale(1.2);
+            transform: scale(1.2);
+        }
     }
 }
 

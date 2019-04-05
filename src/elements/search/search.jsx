@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {Input} from "..";
-import { string } from 'prop-types';
+import {Button, Input} from "../";
+import {string} from 'prop-types';
 import './search.css';
 
 export class Search extends Component {
@@ -27,12 +27,11 @@ export class Search extends Component {
                        onChange={this.handleChangeInput}
                        value={value}
                 />
-                <button
-                    className='Search__btn'
+                <Button.Close
                     onClick={this.handleButtonClick}
                 >
                     x
-                </button>
+                </Button.Close>
             </div>
         );
     };

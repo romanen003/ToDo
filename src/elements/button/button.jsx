@@ -1,7 +1,19 @@
 import React, {Component} from 'react';
 import {string, func, bool} from 'prop-types';
 import classNames from 'classnames';
+import {BUTTONS_WITH_ICONS} from "./button-icon";
 import './button.scss';
+
+const {
+    EDIT,
+    CONFIRM,
+    CLOSE,
+    DELETE,
+    TRANSFER,
+    ADD,
+    CLEAR
+} = BUTTONS_WITH_ICONS;
+
 
 export class Button extends Component {
     static propTypes = {
@@ -20,9 +32,19 @@ export class Button extends Component {
         disabled: false
     };
 
+    static Edit = EDIT;
+    static Confirm = CONFIRM;
+    static Close = CLOSE;
+    static Delete = DELETE;
+    static Transfer = TRANSFER;
+    static Add = ADD;
+    static Clear = CLEAR;
+
+
     render () {
         const {
             type,
+            active,
             edit,
             confirm,
             close,
@@ -31,7 +53,9 @@ export class Button extends Component {
             label,
             onClick,
             disabled,
-            withRef
+            withRef,
+            children,
+            icon
         } = this.props;
 
         const buttonClassMame = classNames(
@@ -40,7 +64,9 @@ export class Button extends Component {
                 'btn_confirm': confirm,
                 'btn_close': close,
                 'btn_delete': del,
-                'btn_transfer': transfer
+                'btn_transfer': transfer,
+                'btn_active': active,
+                'btn_icon': icon
             }
         );
 
@@ -52,7 +78,7 @@ export class Button extends Component {
                 disabled={disabled}
                 ref={withRef}
             >
-                {label}
+                {label}{children}
             </button>
         );
     };

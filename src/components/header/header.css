@@ -25,7 +25,7 @@ body {
     background: whitesmoke;
     box-sizing: border-box;
     height: auto;
-    overflow-y: scroll;
+    overflow: hidden;
 }
 .Grid__item_70 {
     width: 70%;

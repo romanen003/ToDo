@@ -23,36 +23,6 @@ body {
 .Grid__item_30 {
     width: 30%;
 }
-.btn {
-    cursor: pointer;
-    display: inline-block;
-    border: none;
-    outline: 0;
-    height: 100%;
-    width: 100%;
-}
-.btn_edit {
-    background: url('../img/edit.svg') no-repeat center;
-    background-size: 80%;
-}
-.btn_confirm {
-    background: url('../img/confirm.svg') no-repeat center;
-    background-size: 100%;
-}
-.btn_close {
-    background: url('../img/cancel.svg') no-repeat center;
-    background-size: 90%;
-}
-.btn_delete {
-    border: none;
-    background: url("../img/delete.svg") no-repeat center;
-    background-size: 100%;
-}
-.btn_transfer {
-    border: none;
-    background: url("../img/undo.svg") no-repeat center;
-    background-size: 100%;
-}
 .btn_child {
     background: transparent;
     border: none;
@@ -63,15 +33,4 @@ body {
 .btn_close {
     -webkit-transform: rotate(90deg);
     transform: rotate(0deg);
-}
-.btn_addCategory {
-    background: transparent;
-    border: none;
-    font-size: 20px;
-    margin-right: 10px;
-    line-height: 10px;
-}
-.btn_active {
-    border-radius: 2px;
-    box-shadow: 0 0 0 6px whitesmoke;
 }
