@@ -35,7 +35,7 @@ body {
 }
 .edit {
     display: inline-block;
-    background: url("../../img/edit.jpg") no-repeat center;
+    background: url("../../img/edit.svg") no-repeat center;
     background-size: 80%;
     height: 100%;
     width: 100%;

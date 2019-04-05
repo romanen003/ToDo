@@ -32,25 +32,25 @@ body {
     width: 100%;
 }
 .btn_edit {
-    background: url('../img/edit.jpg') no-repeat center;
+    background: url('../img/edit.svg') no-repeat center;
     background-size: 80%;
 }
 .btn_confirm {
-    background: url('../img/confirm.png') no-repeat center;
+    background: url('../img/confirm.svg') no-repeat center;
     background-size: 100%;
 }
 .btn_close {
-    background: url('../img/cancel.png') no-repeat center;
+    background: url('../img/cancel.svg') no-repeat center;
     background-size: 90%;
 }
 .btn_delete {
     border: none;
-    background: url("../img/delete.png") no-repeat center;
+    background: url("../img/delete.svg") no-repeat center;
     background-size: 100%;
 }
 .btn_transfer {
     border: none;
-    background: url("../img/arrow.png") no-repeat center;
+    background: url("../img/undo.svg") no-repeat center;
     background-size: 100%;
 }
 .btn_child {

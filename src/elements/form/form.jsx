@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import {string} from 'prop-types';
-
 import {Button, Input} from "..";
-
 import './form.css';
 
 export class Form extends Component {

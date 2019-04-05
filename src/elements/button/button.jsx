@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {string, func, bool} from 'prop-types';
-import './button.css';
+import classNames from 'classnames';
+import './button.scss';
 
 export class Button extends Component {
     static propTypes = {
@@ -10,6 +11,7 @@ export class Button extends Component {
         onClick: func,
         disabled: bool
     };
+
     static defaultProps = {
         type: 'button',
         className: 'button',
@@ -18,24 +20,34 @@ export class Button extends Component {
         disabled: false
     };
 
-
-
     render () {
         const {
             type,
-            className,
+            edit,
+            confirm,
+            close,
+            del,
+            transfer,
             label,
             onClick,
             disabled,
             withRef
         } = this.props;
 
-        const ViewStyle = `button ${className}`;
+        const buttonClassMame = classNames(
+            'btn', {
+                'btn_edit': edit,
+                'btn_confirm': confirm,
+                'btn_close': close,
+                'btn_delete': del,
+                'btn_transfer': transfer
+            }
+        );
 
         return (
             <button
                 type={type}
-                className={ViewStyle}
+                className={buttonClassMame}
                 onClick={onClick}
                 disabled={disabled}
                 ref={withRef}

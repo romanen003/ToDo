@@ -125,7 +125,7 @@ export class CategoryItem extends Component {
                                         </Fragment>
                                         :
                                         <div className="CategoryItem__edit">
-                                            <Button className="btn btn_edit" onClick={handleEditNameClick} />
+                                            <Button edit onClick={handleEditNameClick} />
                                         </div>
                                     }
                                     <div className="CategoryItem__delete">

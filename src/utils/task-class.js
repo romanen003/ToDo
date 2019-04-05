@@ -11,10 +11,10 @@ export class Task {
         this.description = description;
         this.status = status;
         this.parentCategory = parentCategory;
-        this.id = Task.getUnicId();
+        this.id = Task.getUniqId();
     }
 
     static ID = FIRST_ID;
 
-    static getUnicId = () => Task.ID++;
+    static getUniqId = () => Task.ID++;
 }
