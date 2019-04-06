@@ -1,6 +1,6 @@
 .btn {
+    background: rgb(245, 245, 245);
     border: none;
-    background: whitesmoke;
     cursor: pointer;
     font-size: 16px;
     font-style: italic;
@@ -8,23 +8,22 @@
     outline: 0;
     vertical-align: middle;
 
-    &:hover {
+    &:hover:enabled {
         opacity: 0.5;
     }
 
     &:disabled {
         color: #ffffff;
-        background: grey;
     }
 
     &_active {
-        background: red;
+        background: rgb(217, 217, 217);
     }
 
     &_icon {
         background: transparent;
 
-        &:hover {
+        &:hover:enabled {
             -webkit-transform: scale(1.2);
             -ms-transform: scale(1.2);
             transform: scale(1.2);

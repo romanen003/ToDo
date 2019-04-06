@@ -50,7 +50,7 @@ export class Form extends Component {
             <form onSubmit={this.onSubmitForm} >
                 <Input
                     placeholder={placeholder}
-                    handleInputKeyDown={this.handleCheckValue}
+                    handleKeyDown={this.handleCheckValue}
                     inputRef={this.handleInputRef}
                     showError={showError}
                     handleInputOnFocus={this.handleInputOnFocus}

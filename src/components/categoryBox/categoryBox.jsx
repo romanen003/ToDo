@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
+import classNames from 'classnames';
 import {array} from 'prop-types';
 import {withRouter} from "react-router/";
 import connect from "react-redux/es/connect/connect";
-
 import {CategoryList} from "..";
-
 import './categoryBox.css';
 
 
@@ -16,7 +15,7 @@ class CategoryBox extends Component {
         category: []
     };
 
-    
+
 
     render () {
         const {
@@ -24,7 +23,7 @@ class CategoryBox extends Component {
         } = this.props;
 
         return (
-            <aside className='CategoryBox'>
+            <aside className={classNames('CategoryBox')}>
                 <CategoryList categoryList={category} />
             </aside>
         );

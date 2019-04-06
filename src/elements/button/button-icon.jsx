@@ -7,6 +7,8 @@ import delet from '../../img/delete.svg';
 import transfer from '../../img/transfer.svg';
 import add from '../../img/add.svg';
 import clear from '../../img/clear.svg';
+import list from '../../img/list.svg';
+import top from '../../img/top.svg';
 
 const  createButtonIcon = (typeIcon) => (props) =>
     <Button {...props} icon>
@@ -21,7 +23,9 @@ const ICON = {
     DELETE: delet,
     TRANSFER: transfer,
     ADD: add,
-    CLEAR: clear
+    CLEAR: clear,
+    LIST: list,
+    TOP: top
 };
 
 export const BUTTONS_WITH_ICONS = {
@@ -31,5 +35,7 @@ export const BUTTONS_WITH_ICONS = {
     DELETE: createButtonIcon(ICON.DELETE),
     ADD: createButtonIcon(ICON.ADD),
     TRANSFER: createButtonIcon(ICON.TRANSFER),
-    CLEAR: createButtonIcon(ICON.CLEAR)
+    CLEAR: createButtonIcon(ICON.CLEAR),
+    LIST: createButtonIcon(ICON.LIST),
+    TOP: createButtonIcon(ICON.TOP)
 };

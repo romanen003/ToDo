@@ -3,17 +3,16 @@ import connect from "react-redux/es/connect/connect";
 import {addTask} from "../../actions/actionTask";
 import {addCategory} from "../../actions/actionCategory";
 import NavLink from "react-router-dom/es/NavLink";
-
 import {FilterCheckbox} from "..";
-import {Form, ProgressBar, Search} from "../../elements";
-
+import {Form, Input, ProgressBar} from "../../elements";
 import './header.css';
 import '../../elements/style.css'
 import {updateActive} from "../../actions/actionActiveComponent";
 import Switch from "react-router/es/Switch";
 import Route from "react-router/es/Route";
+import {Grid} from "../../elements/grid/grid";
 
-
+const {Row, Col, Margin, V_align} = Grid;
 
 
 export class HeaderContainer extends Component {
@@ -42,56 +41,58 @@ export class HeaderContainer extends Component {
         updateActive(null);
     };
 
-
-
     render () {
         const {tasks} = this.props;
         const result = ((tasks.filter(item => item.status === true).length)/tasks.length)*100;
 
         return (
-            <header className='Header'>
-                <div className="Grid">
-                    <div className="Grid__item">
-                        <NavLink to='/' className="Title">To-Do List</NavLink>
-                    </div>
-                    <div className="Grid__item">
-                        <div className="Grid">
-                            <div className="Grid__item">
-                                <Switch>
-                                    <Route path='/category:category' component={FilterCheckbox} />
-                                </Switch>
-                            </div>
-                            <div className="Grid__item">
-                                <Search
-                                    placeholder='Search'
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="Header__progressBar" >
-                    <ProgressBar proc={result} />
-                </div>
-                <div className="Header__creatingItems">
-                    <div className="Grid">
-                        <div className="Grid__item">
+            <header>
+                <Grid>
+                    <Row marginTop={Margin.X8}>
+                        <Col>
+                            <NavLink to='/' className="Title">To-Do List</NavLink>
+                        </Col>
+                        <Col>
+                            <Grid>
+                                <Row>
+                                    <Col>
+                                        <Switch>
+                                            <Route path='/category:category' component={FilterCheckbox} />
+                                        </Switch>
+                                    </Col>
+                                    <Col>
+                                        <Input.Search placeholder='Search' />
+                                    </Col>
+                                </Row>
+                            </Grid>
+                        </Col>
+                    </Row>
+                </Grid>
+                <Grid>
+                    <Row marginTop={Margin.X8}>
+                        <ProgressBar proc={result} />
+                    </Row>
+                </Grid>
+                <Grid>
+                    <Row marginTop={Margin.X16}>
+                        <Col>
                             <Form
                                 placeholder='add category title'
                                 btnLabel='add'
                                 onClick={this.handleAddCategoryClick}
                                 minLenght={4}
                             />
-                        </div>
-                        <div className="Grid__item">
+                        </Col>
+                        <Col>
                             <Form
                                 placeholder='add task title'
                                 btnLabel='add'
                                 onClick={this.handleAddTaskClick}
                                 minLenght={4}
                             />
-                        </div>
-                    </div>
-                </div>
+                        </Col>
+                    </Row>
+                </Grid>
             </header>
         )
     };

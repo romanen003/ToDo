@@ -1,0 +1,28 @@
+.col {
+  flex-grow: 1;
+  padding: 0 12px;
+  text-align: center;
+  vertical-align: middle;
+
+  &_t-align {
+
+    &-left {
+      text-align: left;
+    }
+
+    &-right {
+      text-align: right;
+    }
+  }
+
+  &_v-align {
+
+    &-top {
+      vertical-align: top;
+    }
+
+    &-bottom {
+      vertical-align: bottom;
+    }
+  }
+}

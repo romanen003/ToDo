@@ -1,18 +1,21 @@
-import React, { Component } from 'react';
-import {Route, Switch } from 'react-router';
-import { TasksBox } from "..";
+import React, {Component} from 'react';
+import {Route, Switch} from 'react-router';
+import {TasksBox} from "..";
 import {CategoryBoxContainer} from '../categoryBox/categoryBox';
 import TaskEditContainer from '../taskEdit/taskEditContainer';
 import './content-box.css';
+import {Grid} from "../../elements/grid/grid";
+
+const {Row, Col, Margin, V_align} = Grid;
 
 
 export class ContentBox extends Component {
     render () {
 
         return (
-            <div className="Todo__content">
-                <div className="Grid">
-                    <div className="Grid__item Grid__item_30 Grid__item_top">
+            <Grid>
+                <Row marginTop={Margin.X16} >
+                    <Col vertAlign={V_align.TOP}>
                         <div className="BoxContent">
                             <Switch>
                                 <Route exact path='/category:category?*' component={CategoryBoxContainer}/>
@@ -20,8 +23,8 @@ export class ContentBox extends Component {
                                 <Route exact component={CategoryBoxContainer}/>
                             </Switch>
                         </div>
-                    </div>
-                    <div className="Grid__item Grid__item_70 Grid__item_top">
+                    </Col>
+                    <Col vertAlign={V_align.TOP}>
                         <div className="BoxContent">
                             <Switch>
                                 <Route path='/category:category/alldone' component={TasksBox}/>
@@ -31,9 +34,9 @@ export class ContentBox extends Component {
                                 <Route path='/' component={TasksBox}/>
                             </Switch>
                         </div>
-                    </div>
-                </div>
-            </div>
+                    </Col>
+                </Row>
+            </Grid>
         )
     };
 }

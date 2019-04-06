@@ -63,10 +63,7 @@ export class CategoryItem extends Component {
             activeTransfer
         } = this.props;
 
-
-
-
-        const showChildren = classNames("btn_child", {"btn_close" : isOpen});
+        const ButtonList = isOpen ? Button.Top : Button.List;
         const isSelectStyle = classNames("CategoryItem__body", {"CategoryItem_selected" : isSelect}) ;
         const inputStyle = classNames("CategoryItem__name", {"CategoryItem__name_active" : nameEdit});
         const activeStyle = classNames("btn_addCategory", {"btn_active" : isActiveAdd});
@@ -82,23 +79,19 @@ export class CategoryItem extends Component {
                     <div className={paddingLeft}>
                         { hasChildren &&
                             <div className="CategoryItem__child">
-                                <Button
-                                    className={showChildren}
-                                    onClick={onChildrenShowClick}
-                                    label='>'
-                                />
+                                <ButtonList onClick={onChildrenShowClick} />
                             </div>
 
                         }
                         <Input
                             className={inputStyle}
                             value={nameValue}
-                            handleInputKeyDown={handleConfirmNameClick}
+                            handleKeyDown={handleConfirmNameClick}
                             onChange={handleNameChange}
                             disabled={!nameEdit}
                             showError={showError}
                             messageError='min symbol - 4'
-                            handleInputOnFocus={handleInputOnFocus}
+                            handleFocus={handleInputOnFocus}
                         />
                     </div>
                     <div className='CategoryItem__right'>

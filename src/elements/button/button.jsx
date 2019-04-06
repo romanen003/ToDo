@@ -11,7 +11,9 @@ const {
     DELETE,
     TRANSFER,
     ADD,
-    CLEAR
+    CLEAR,
+    LIST,
+    TOP
 } = BUTTONS_WITH_ICONS;
 
 
@@ -39,6 +41,16 @@ export class Button extends Component {
     static Transfer = TRANSFER;
     static Add = ADD;
     static Clear = CLEAR;
+    static List = LIST;
+    static Top = TOP;
+
+    handleOnClick = (event) => {
+        event.stopPropagation();
+
+        if (this.props.onClick){
+            this.props.onClick(event)
+        }
+    };
 
 
     render () {
@@ -65,8 +77,8 @@ export class Button extends Component {
                 'btn_close': close,
                 'btn_delete': del,
                 'btn_transfer': transfer,
-                'btn_active': active,
-                'btn_icon': icon
+                'btn_icon': icon,
+                'btn_active': active
             }
         );
 
@@ -74,7 +86,7 @@ export class Button extends Component {
             <button
                 type={type}
                 className={buttonClassMame}
-                onClick={onClick}
+                onClick={this.handleOnClick}
                 disabled={disabled}
                 ref={withRef}
             >

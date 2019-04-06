@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import {string, func, bool } from 'prop-types';
 import classNames from 'classnames'
 import {Button, Checkbox} from "../../elements/index";
-
 import './task.css';
 import '../../elements/style.css';
+import {Grid} from "../../elements/grid/grid";
+import {T_ALIGN} from "../../elements/grid/col/col";
 
+const {Row, Col, Margin, V_align} = Grid;
 
 export class Task extends Component {
     static propTypes = {
@@ -41,7 +43,7 @@ export class Task extends Component {
                 </div>
                 <div className="Task__title">{name}</div>
                 <div className="Task__edit">
-                    <Button className="edit" onClick={handleEditClick}/>
+                    <Button.Edit onClick={handleEditClick}/>
                 </div>
             </div>
         );

@@ -1,14 +1,10 @@
-import React, { Component } from 'react';
+import React, {Component, Fragment} from 'react';
 import connect from "react-redux/es/connect/connect";
 import {updateTask} from "../../actions/actionTask";
-
 import TaskContainer from '../task/taskContainer';
-
-import './tasksBox.css';
 
 
 export class TasksBoxContainer extends Component {
-
     filterData = () => {
         const {
             match: { params: { id, category }, url},
@@ -32,11 +28,17 @@ export class TasksBoxContainer extends Component {
         const filterTask = this.filterData();
 
         return (
-            <div className='TasksBox'>
+            <Fragment>
                 {filterTask.map(item => <TaskContainer item={item} key={item.id} updateTask={updateTask}/>)}
-            </div>
+            </Fragment>
         );
     };
 }
 
-export const TasksBox = connect(state => ({tasks: state.tasks}),{updateTask})(TasksBoxContainer);
+export const TasksBox = connect(
+    state => ({
+        tasks: state.tasks
+    }),{
+        updateTask
+    }
+)(TasksBoxContainer);

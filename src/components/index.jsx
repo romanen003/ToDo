@@ -7,4 +7,3 @@ export {CategoryItemContainer} from './categoryItem/categoryItemContainer';
 export {TaskEdit} from './taskEdit/taskEdit';
 export {Task} from './task/task';
 export {FilterCheckbox} from './filterCheckbox/filterCheckbox';
-export {Modal} from './modal/modal';
