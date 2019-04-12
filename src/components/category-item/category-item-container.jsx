@@ -5,7 +5,7 @@ import connect from "react-redux/es/connect/connect";
 import {ACTION_ACTIVE} from "../../reducers/category-state/constants";
 import {ACTION_TASK} from '../../reducers/tasks/constants';
 import {ACTION_CATEGORY} from '../../reducers/category/constants';
-import {CategoryItem} from "./categoryItem";
+import {CategoryItem} from "./category-item";
 
 
 export class CategoryItemComponent extends Component {
@@ -27,7 +27,14 @@ export class CategoryItemComponent extends Component {
         showEdit: true
     };
 
-    componentWillMount = () => this.setState({nameValue: this.props.item.name, defaultValue: this.props.item.name});
+    componentDidMount = () => {
+        const {item: {name}} = this.props;
+
+        this.setState(() =>({
+            nameValue: name,
+            defaultValue: name
+        }))
+    };
 
     handleSelectClick = event => {
         const {currentTarget, target} = event;

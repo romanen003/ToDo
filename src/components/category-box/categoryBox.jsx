@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import classNames from 'classnames';
 import {array} from 'prop-types';
 import {withRouter} from "react-router/";
-import connect from "react-redux/es/connect/connect";
+import {connect} from "react-redux";
 import {CategoryList} from "..";
-import './categoryBox.css';
 
 
 class CategoryBox extends Component {
@@ -15,22 +13,15 @@ class CategoryBox extends Component {
         category: []
     };
 
-
-
     render () {
-        const {
-            category
-        } = this.props;
+        const {category} = this.props;
 
         return (
-            <aside className={classNames('CategoryBox')}>
-                <CategoryList categoryList={category} />
-            </aside>
+            <CategoryList categoryList={category} />
         );
     };
-
 }
 
 export const CategoryBoxContainer = withRouter(connect( state => ({
         category: state.category
-    }), {})(CategoryBox));
+    }))(CategoryBox));

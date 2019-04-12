@@ -5,3 +5,4 @@ export {ProgressBar} from './progressBar/progressBar';
 export {Form} from './form/form';
 export {TextArea} from './textarea/textarea';
 export {MyLayout} from './layout/layout';
+export {Grid} from './grid/grid';

@@ -1,5 +1,9 @@
-.Grid {
+.grid {
     box-sizing: border-box;
     padding: 0 36px;
     width: 100%;
+
+    &-no-padding {
+        padding: 0;
+    }
 }

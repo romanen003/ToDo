@@ -102,4 +102,8 @@ export const Header = connect(state => ({
     tasks: state.tasks,
     category: state.category,
     active: state.activeState.activeCategory
-}),{ addTask, addCategory, updateActive })(HeaderContainer);
+}),{
+    addTask,
+    addCategory,
+    updateActive
+})(HeaderContainer);

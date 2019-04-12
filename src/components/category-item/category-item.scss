@@ -1,0 +1,12 @@
+.category-item {
+    border-left: 2px solid white;
+    background: white;
+    box-sizing: border-box;
+    padding: 10px 0;
+    margin: 10px;
+
+    &-selected {
+        border-left: 2px solid red;
+    }
+}
+

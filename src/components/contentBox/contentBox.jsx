@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import {Route, Switch} from 'react-router';
 import {TasksBox} from "..";
-import {CategoryBoxContainer} from '../categoryBox/categoryBox';
+import {CategoryBoxContainer} from '../category-box/categoryBox';
 import TaskEditContainer from '../taskEdit/taskEditContainer';
 import './content-box.css';
 import {Grid} from "../../elements/grid/grid";
 
-const {Row, Col, Margin, V_align} = Grid;
+const {Row, Col, Margin_Top, V_align} = Grid;
 
 
 export class ContentBox extends Component {
@@ -14,7 +14,7 @@ export class ContentBox extends Component {
 
         return (
             <Grid>
-                <Row marginTop={Margin.X16} >
+                <Row marginTop={Margin_Top.X16} vertAlign={V_align.TOP}>
                     <Col vertAlign={V_align.TOP}>
                         <div className="BoxContent">
                             <Switch>

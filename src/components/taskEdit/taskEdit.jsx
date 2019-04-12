@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {array} from 'prop-types';
-
-import {Button, Checkbox, Input, TextArea} from "../../elements";
-
+import {Button, Checkbox, Grid, Input, TextArea} from "../../elements";
 import './taskEdit.css';
+
+const {Row, Col, Margin_Top, T_align} = Grid;
 
 
 export class TaskEdit extends Component {
@@ -26,41 +26,45 @@ export class TaskEdit extends Component {
         } = this.props;
 
         return (
-            <div className='TaskEdit'>
-                <div className="TaskEdit__wrapper TaskEdit__wrapper_btns">
-                    <div className="TaskEdit__buttons">
+            <Grid>
+                <Row marginTop={Margin_Top.X16}>
+                    <Col textAlign={T_align.LEFT}>
+                        <Input
+                            placeholder='Task'
+                            value={name}
+                            onChange={handleNameChange}
+                            showError={showError}
+                        />
+                    </Col>
+                    <Col textAlign={T_align.RIGHT}>
                         <Button
                             label='Save changes'
                             onClick={handleChangeSaved}
                         />
-                    </div>
-                    <div className="TaskEdit__buttons">
                         <Button
                             label='Cancel'
                             onClick={handleCancelledClick}
                         />
-                    </div>
-                </div>
-                <Input
-                    placeholder='Task'
-                    value={name}
-                    onChange={handleNameChange}
-                    showError={showError}
-                />
-                <div className="TaskEdit__wrapper">
-                    <Checkbox
-                        text='Done'
-                        checked={status}
-                        onChange={handleStatusChange}
-                    />
-                </div>
-                <div className="TaskEdit__wrapper">
-                    <TextArea
-                        value={description}
-                        onChange={handleDescriptionChange}
-                    />
-                </div>
-            </div>
+                    </Col>
+                </Row>
+                <Row marginTop={Margin_Top.X16}>
+                    <Col textAlign={T_align.LEFT}>
+                        <Checkbox
+                            text='Done'
+                            checked={status}
+                            onChange={handleStatusChange}
+                        />
+                    </Col>
+                </Row>
+                <Row marginTop={Margin_Top.X16}>
+                    <Col>
+                        <TextArea
+                            value={description}
+                            onChange={handleDescriptionChange}
+                        />
+                    </Col>
+                </Row>
+            </Grid>
         );
     };
 }

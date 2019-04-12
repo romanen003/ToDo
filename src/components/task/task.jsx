@@ -1,51 +1,46 @@
-import React, { Component } from 'react';
-import {string, func, bool } from 'prop-types';
+import React from 'react';
+import {string, func, bool} from 'prop-types';
 import classNames from 'classnames'
-import {Button, Checkbox} from "../../elements/index";
+import {Button, Checkbox, Grid} from "../../elements/index";
 import './task.css';
 import '../../elements/style.css';
-import {Grid} from "../../elements/grid/grid";
-import {T_ALIGN} from "../../elements/grid/col/col";
 
-const {Row, Col, Margin, V_align} = Grid;
+const {Row, Col, T_align} = Grid;
 
-export class Task extends Component {
-    static propTypes = {
-        handleEditClick: func,
-        handleSelectTaskClick: func,
-        handleStatusChange: func,
-        name: string,
-        status: bool
-    };
-    static defaultProps = {
-        handleEditClick: () => {},
-        handleSelectTaskClick: () => {},
-        handleStatusChange: () => {},
-        name: '',
-        status: false
-    };
-
-    render () {
-        const {
-            name,
-            status,
-            handleSelectTaskClick,
-            handleStatusChange,
-            handleEditClick,
-            withTaskRef
-        } = this.props;
+export const Task = ({
+     name = '',
+     status = false,
+     handleSelectTaskClick = () => {},
+     handleStatusChange = () => {},
+     handleEditClick = () => {},
+     withTaskRef
+    }) => {
+        const StyleTask = classNames(
+            'Task', {
+                'Todo_complete': status
+        });
 
         return (
-
-            <div className={classNames('Task',{'Todo_complete': status })} onClick={handleSelectTaskClick} ref={withTaskRef}>
-                <div className="Task__status">
-                    <Checkbox onChange={handleStatusChange} checked={status} />
-                </div>
-                <div className="Task__title">{name}</div>
-                <div className="Task__edit">
-                    <Button.Edit onClick={handleEditClick}/>
-                </div>
+            <div className={StyleTask} onClick={handleSelectTaskClick} ref={withTaskRef}>
+                <Grid>
+                    <Row>
+                        <Col textAlign={T_align.LEFT}>
+                            <Checkbox onChange={handleStatusChange} checked={status} />
+                            <div className="Task__title">{name}</div>
+                        </Col>
+                        <Col textAlign={T_align.RIGHT}>
+                            <Button.Edit onClick={handleEditClick}/>
+                        </Col>
+                    </Row>
+                </Grid>
             </div>
         );
-    };
-}
+};
+
+Task.propTypes = {
+    handleEditClick: func,
+    handleSelectTaskClick: func,
+    handleStatusChange: func,
+    name: string,
+    status: bool
+};

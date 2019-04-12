@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
-import { array, number} from 'prop-types';
-
-import {CategoryItemContainer} from "../categoryItem/categoryItemContainer";
-
-import './categoryList.css';
+import React, {Component} from 'react';
+import classNames from 'classnames';
+import {array, number} from 'prop-types';
+import {CategoryItemContainer} from "../category-item/category-item-container";
+import './category-list.scss';
 
 
 export class CategoryList extends Component {
@@ -22,10 +21,12 @@ export class CategoryList extends Component {
             parentCategoryIndex
         } = this.props;
         const filterData = categoryList.filter(item => item.parentCategory === parentCategoryIndex);
-        const className = parentCategoryIndex === null ? "List_parent" : "List" ;
+        const styleList = classNames("List", {
+            "List_parent": parentCategoryIndex === null
+        });
 
         return (
-            <ul className={className} >
+            <ul className={styleList} >
                 {filterData.map(item =>
                     <CategoryItemContainer
                         key={item.id}
