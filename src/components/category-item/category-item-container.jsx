@@ -1,12 +1,18 @@
-import React, { Component } from 'react';
-import {object, array } from 'prop-types';
-import {withRouter} from "react-router";
-import connect from "react-redux/es/connect/connect";
-import {ACTION_ACTIVE} from "../../reducers/category-state/constants";
-import {ACTION_TASK} from '../../reducers/tasks/constants';
-import {ACTION_CATEGORY} from '../../reducers/category/constants';
+import React, {Component} from 'react';
+import {object, array} from 'prop-types';
+import {withRouter} from "react-router-dom";
+import {connect} from "react-redux";
 import {CategoryItem} from "./category-item";
+import {
+    removeCategory,
+    setActiveCategory,
+    setSelectCategory,
+    setTransferCategory,
+    renameCategory,
+    deleteTask
+} from "../../actions";
 
+const EDIT = 'edit';
 
 export class CategoryItemComponent extends Component {
     static defaultProps = {
@@ -36,21 +42,22 @@ export class CategoryItemComponent extends Component {
         }))
     };
 
-    handleSelectClick = event => {
-        const {currentTarget, target} = event;
-        if (currentTarget.nodeName === "BUTTON" || currentTarget.nodeName === "INPUT"||
-            target.nodeName === "BUTTON" || target.nodeName === "INPUT") return;
-
-        const { item , match, updateSelect, history } = this.props;
+    handleSelectClick = () => {
+        const {
+            item,
+            match,
+            setSelectCategory,
+            history
+        } = this.props;
         const url = Number(match.params.category) === item.id
             ? ''
             : `/category${item.id}`;
 
         history.push(url);
-        updateSelect(item.id);
+        setSelectCategory(item.id);
     };
 
-    handleChildrenShowClick = () => this.setState(() => ({ isOpen: !this.state.isOpen }));
+    handleChildrenShowClick = () => this.setState((state) => ({ isOpen: !state.isOpen }));
 
     handleEditNameClick = () => this.setState(() => ({nameEdit: true}));
 
@@ -59,19 +66,18 @@ export class CategoryItemComponent extends Component {
     handleCategoryDeleteClick = () => {
         const {item, removeCategory, deleteTask} = this.props;
 
-        removeCategory(item);
+        removeCategory(item.id);
         deleteTask(item);
     };
 
     handleConfirmNameClick = () => {
-        const {item, renameCategory, currentTransfer} = this.props;
+        const {item, renameCategory} = this.props;
         const {nameValue} = this.state;
 
         if (nameValue.length >= 4 ){
             renameCategory({
                 ...item,
-                name : nameValue,
-                parentCategory: item.parentCategory
+                name: nameValue
             });
             this.handleCloseClick();
             this.setState(() => ({
@@ -79,24 +85,32 @@ export class CategoryItemComponent extends Component {
             }));
             return;
         }
-        this.setState(() => ({ showError: true }));
+        this.setState(() => ({showError: true}));
     };
 
     handleCancelledClick = () => {
-        this.setState(() => ({
+        this.setState((state) => ({
             nameEdit: false,
-            nameValue: this.state.defaultValue
+            nameValue: state.defaultValue
         }));
         this.handleCloseClick();
     };
 
     handleCloseClick = () => this.setState(() => ({ nameEdit: false, showError: false }));
 
-    handleInputOnFocus = () => this.setState(() => ({ showError: false }));
+    handleInputFocus = () => this.setState(() => ({ showError: false }));
 
-    handleActiveClick = () => this.props.updateActive(this.props.item.id);
+    handleActiveClick = () => {
+        const {setActiveCategory, item} = this.props;
 
-    handleTaskTransferClick = () => this.props.updateTransfer(this.props.item.id);
+        setActiveCategory(item.id);
+    };
+
+    handleTaskTransferClick = () => {
+        const {setTransferCategory, item} = this.props;
+
+        setTransferCategory(item.id);
+    };
 
 
     render(){
@@ -104,7 +118,7 @@ export class CategoryItemComponent extends Component {
             item,
             category,
             match,
-            active,
+            activeCategory,
             currentTransfer
         } = this.props;
         const {
@@ -115,9 +129,9 @@ export class CategoryItemComponent extends Component {
             showEdit
         } = this.state;
         const hasChildren = category.filter(category => category.parentCategory === item.id ).length > 0;
-        const isSelect = match.params.category && Number(match.params.category) === item.id;
-        const isActiveAdd = active === item.id;
-        const transferView = Boolean(match.url.includes('edit'));
+        const isSelectCategory = match.params.category && Number(match.params.category) === item.id;
+        const isActiveAdd = activeCategory === item.id;
+        const transferView = Boolean(match.url.includes(EDIT));
         const activeTransfer = currentTransfer === item.id;
 
         return (
@@ -126,7 +140,7 @@ export class CategoryItemComponent extends Component {
                 stateView={{isOpen, nameEdit, showError, nameValue, showEdit}}
                 hasChildren={hasChildren}
                 isActiveAdd={isActiveAdd}
-                isSelect={isSelect}
+                isSelect={isSelectCategory}
                 activeTransfer={activeTransfer}
                 transferView={transferView}
                 category={category}
@@ -135,7 +149,7 @@ export class CategoryItemComponent extends Component {
                 handleConfirmNameClick={this.handleConfirmNameClick}
                 handleCancelledClick={this.handleCancelledClick}
                 handleNameChange={this.handleNameChange}
-                handleInputOnFocus={this.handleInputOnFocus}
+                handleInputFocus={this.handleInputFocus}
                 handleActiveClick={this.handleActiveClick}
                 handleCategoryDeleteClick={this.handleCategoryDeleteClick}
                 handleTaskTransferClick={this.handleTaskTransferClick}
@@ -147,30 +161,15 @@ export class CategoryItemComponent extends Component {
 
 export const CategoryItemContainer =  withRouter(connect(
     state => ({
-        tasks: state.tasks,
-        activeState: state.activeState,
-        currentItem: state.tasks,
-        active: state.activeState.activeCategory,
+        activeCategory: state.activeState.activeCategory,
         currentTransfer: state.activeState.transferCategory
     }),
-    dispatch => ({
-        updateActive: id => {
-            dispatch({type: ACTION_ACTIVE.UPDATE__ACTIVE, payload: id})
-        },
-        updateSelect: id => {
-            dispatch({type: ACTION_ACTIVE.UPDATE_SELECT, payload: id})
-        },
-        removeCategory: item => {
-            dispatch({type: ACTION_CATEGORY.REMOVE, payload: item})
-        },
-        renameCategory: item => {
-            dispatch({type: ACTION_CATEGORY.UPDATE, payload: item})
-        },
-        updateTransfer: id => {
-            dispatch({type: ACTION_ACTIVE.UPDATE_TRANSFER, payload: id})
-        },
-        deleteTask: item => {
-            dispatch({type: ACTION_TASK.DELETE_TASK, payload: item})
-        }
-    })
+    {
+        setActiveCategory,
+        setSelectCategory,
+        removeCategory,
+        renameCategory,
+        setTransferCategory,
+        deleteTask
+    }
 )(CategoryItemComponent));

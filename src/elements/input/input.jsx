@@ -21,11 +21,22 @@ export class Input extends Component {
     static Search = SearchInput;
 
 
-    handleChangeInput = ({target: {value}}) => this.props.onChange(value);
+    handleChange = ({target: {value}}) =>{
+        const {onChange} = this.props;
+
+        if (onChange) {
+            onChange(value);
+        }
+
+    };
 
     handleKeyDown = ({keyCode, target: {value}}) => {
         if (keyCode === 13){
-            this.props.handleKeyDown(value)
+            const {handleKeyDown} = this.props;
+
+            if (handleKeyDown) {
+                handleKeyDown(value)
+            }
         }
     };
 
@@ -45,6 +56,16 @@ export class Input extends Component {
         }
     };
 
+    handleClick = (event) => {
+        const {handleClick} = this.props;
+
+        event.stopPropagation();
+
+        if (handleClick){
+            handleClick()
+        }
+    };
+
 
     render () {
         const {
@@ -61,7 +82,8 @@ export class Input extends Component {
                     className={InputClassName}
                     placeholder={placeholder}
                     value={value}
-                    onChange={this.handleChangeInput}
+                    onClick={this.handleClick}
+                    onChange={this.handleChange}
                     onKeyDown={this.handleKeyDown}
                     onFocus={this.handleFocus}
                     onBlur={this.handleBlur}

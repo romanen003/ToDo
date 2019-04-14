@@ -1,6 +1,9 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {string} from 'prop-types';
-import './checkbox.css';
+import classNames from 'classnames';
+import './checkbox.scss';
+
+const CHECKBOX = "checkbox";
 
 export class Checkbox extends Component {
     static propTypes = {
@@ -15,15 +18,19 @@ export class Checkbox extends Component {
         super(props);
 
         this.state = {
-            isChecked: this.props.checked
+            isChecked: props.checked
         }
     };
 
     handleCheckChange  = () => {
-        this.setState(()=>({
-            isChecked: !this.state.isChecked
+        this.setState((state)=>({
+            isChecked: !state.isChecked
         }),
         ()=>{this.props.onChange(this.state.isChecked)});
+    };
+
+    handleClick = (event) => {
+        event.stopPropagation()
     };
 
     render () {
@@ -31,14 +38,14 @@ export class Checkbox extends Component {
         const {isChecked} = this.state;
 
         return (
-            <label className="checkbox">
+            <label className={classNames("checkbox")} onClick={this.handleClick}>
                 <input
-                    className='checkbox__input'
-                    type="checkbox"
+                    className={classNames('checkbox__input')}
+                    type={CHECKBOX}
                     checked={isChecked}
                     onChange={this.handleCheckChange}
                 />
-                <div className="checkbox__text">{text}</div>
+                <div className={classNames("checkbox__text")}>{text}</div>
             </label>
         );
     };

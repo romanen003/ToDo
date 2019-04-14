@@ -1,54 +1,64 @@
-import React, { Component } from 'react';
-import connect from "react-redux/es/connect/connect";
-import NavLink from "react-router-dom/es/NavLink";
+import React, {Component} from 'react';
+import {withRouter} from "react-router-dom";
+import classNames from 'classnames';
+import {Switch, Route, NavLink} from "react-router-dom";
+import {connect} from "react-redux";
 import {FilterCheckbox} from "..";
-import {Form, Input, ProgressBar} from "../../elements";
-import './header.css';
-import '../../elements/style.css'
-import Switch from "react-router/es/Switch";
-import Route from "react-router/es/Route";
-import {Grid} from "../../elements/grid/grid";
-import {addTask, addCategory, updateActive} from "../../actions";
-
+import {Form, Input, ProgressBar, Grid} from "../../elements";
+import {addTask, addCategory, setActiveCategory} from "../../actions";
+import './header.scss';
 
 const {Row, Col, Margin} = Grid;
+const PLACEHOLDERS = {
+    SEARCH: 'Search tasks',
+    CATEGORY: 'add category title',
+    TASK: 'add task title'
+};
+const BUTTON_LABEL = 'add';
 
-export class HeaderContainer extends Component {
-
+class HeaderContainer extends Component {
     handleAddCategoryClick = (value) => {
-        const { addCategory, active, updateActive } = this.props;
+        const {addCategory, active, setActiveCategory} = this.props;
         const item = {
             name: value,
             parentCategory: active
         };
 
         addCategory(item);
-        updateActive(null);
+        setActiveCategory(null);
     };
 
     handleAddTaskClick = (value) => {
-        const {addTask, active, updateActive } = this.props;
+        const {addTask, active, setActiveCategory} = this.props;
         const item = {
             name: value,
-            description: '',
-            status: false,
             parentCategory: active
         };
 
-        addTask (item);
-        updateActive(null);
+        addTask(item);
+        setActiveCategory(null);
+    };
+
+    handleChangeInput = (value) => {
+        const {history} = this.props;
+
+        history.push(`${history.location.pathname}?${value}`);
     };
 
     render () {
         const {tasks} = this.props;
-        const result = ((tasks.filter(item => item.status === true).length)/tasks.length)*100;
+        const result = ((
+            tasks.filter(
+                item => item.status === true
+            ).length)/tasks.length
+        )*100;
 
         return (
             <header>
                 <Grid>
                     <Row marginTop={Margin.X8}>
                         <Col>
-                            <NavLink to='/' className="Title">To-Do List</NavLink>
+                            <NavLink to='/' className={classNames("Title")}>To-Do List</NavLink>
                         </Col>
                         <Col>
                             <Grid>
@@ -59,7 +69,10 @@ export class HeaderContainer extends Component {
                                         </Switch>
                                     </Col>
                                     <Col>
-                                        <Input.Search placeholder='Search' />
+                                        <Input.Search
+                                            placeholder={PLACEHOLDERS.SEARCH}
+                                            handleChange={this.handleChangeInput}
+                                        />
                                     </Col>
                                 </Row>
                             </Grid>
@@ -75,16 +88,16 @@ export class HeaderContainer extends Component {
                     <Row marginTop={Margin.X16}>
                         <Col>
                             <Form
-                                placeholder='add category title'
-                                btnLabel='add'
+                                placeholder={PLACEHOLDERS.CATEGORY}
+                                btnLabel={BUTTON_LABEL}
                                 onClick={this.handleAddCategoryClick}
                                 minLenght={4}
                             />
                         </Col>
                         <Col>
                             <Form
-                                placeholder='add task title'
-                                btnLabel='add'
+                                placeholder={PLACEHOLDERS.TASK}
+                                btnLabel={BUTTON_LABEL}
                                 onClick={this.handleAddTaskClick}
                                 minLenght={4}
                             />
@@ -96,12 +109,12 @@ export class HeaderContainer extends Component {
     };
 }
 
-export const Header = connect(state => ({
+export const Header = withRouter( connect(state => ({
     tasks: state.tasks,
     category: state.category,
     active: state.activeState.activeCategory
 }),{
     addTask,
     addCategory,
-    updateActive
-})(HeaderContainer);
+    setActiveCategory
+})(HeaderContainer));

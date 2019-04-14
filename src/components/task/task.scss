@@ -1,0 +1,18 @@
+.Task {
+    background: white;
+    box-sizing: border-box;
+    padding: 20px 20px 20px 40px;
+    position: relative;
+    margin: 10px;
+    text-align: left;
+
+    &_complete {
+        background: aliceblue;
+    }
+
+    &__title {
+        display: inline-block;
+        margin: 0;
+    }
+}
+

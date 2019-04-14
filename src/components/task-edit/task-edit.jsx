@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {array} from 'prop-types';
 import {Button, Checkbox, Grid, Input, TextArea} from "../../elements";
-import './taskEdit.css';
+import './task-edit.scss';
 
 const {Row, Col, Margin_Top, T_align} = Grid;
 

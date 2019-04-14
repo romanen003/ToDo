@@ -1,7 +1,7 @@
 export {
-    updateActive,
-    updateSelect,
-    updateTransfer
+    setActiveCategory,
+    setSelectCategory,
+    setTransferCategory
 } from './active-elements/actions';
 export {
     addCategory,

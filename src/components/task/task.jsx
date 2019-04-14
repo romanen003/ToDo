@@ -2,8 +2,7 @@ import React from 'react';
 import {string, func, bool} from 'prop-types';
 import classNames from 'classnames'
 import {Button, Checkbox, Grid} from "../../elements/index";
-import './task.css';
-import '../../elements/style.css';
+import './task.scss';
 
 const {Row, Col, T_align} = Grid;
 
@@ -12,21 +11,20 @@ export const Task = ({
      status = false,
      handleSelectTaskClick = () => {},
      handleStatusChange = () => {},
-     handleEditClick = () => {},
-     withTaskRef
+     handleEditClick = () => {}
     }) => {
         const StyleTask = classNames(
             'Task', {
-                'Todo_complete': status
+                'Task_complete': status
         });
 
         return (
-            <div className={StyleTask} onClick={handleSelectTaskClick} ref={withTaskRef}>
+            <div className={StyleTask} onClick={handleSelectTaskClick}>
                 <Grid>
                     <Row>
                         <Col textAlign={T_align.LEFT}>
                             <Checkbox onChange={handleStatusChange} checked={status} />
-                            <div className="Task__title">{name}</div>
+                            <p className={classNames("Task__title")}>{name}</p>
                         </Col>
                         <Col textAlign={T_align.RIGHT}>
                             <Button.Edit onClick={handleEditClick}/>

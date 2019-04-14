@@ -17,7 +17,7 @@ export class CategoryItem extends Component {
         onChildrenShowClick: () => {},
         handleConfirmNameClick: () => {},
         handleNameChange: () => {},
-        handleInputOnFocus: () => {},
+        handleInputFocus: () => {},
         handleCancelledClick: () => {},
         handleEditNameClick: () => {},
         handleCategoryDeleteClick: () => {},
@@ -33,7 +33,7 @@ export class CategoryItem extends Component {
         onChildrenShowClick: func,
         handleConfirmNameClick: func,
         handleNameChange: func,
-        handleInputOnFocus: func,
+        handleInputFocus: func,
         handleCancelledClick: func,
         handleEditNameClick: func,
         handleCategoryDeleteClick: func,
@@ -54,7 +54,7 @@ export class CategoryItem extends Component {
             onChildrenShowClick,
             handleConfirmNameClick,
             handleNameChange,
-            handleInputOnFocus,
+            handleInputFocus,
             handleCancelledClick,
             handleEditNameClick,
             handleCategoryDeleteClick,
@@ -89,7 +89,7 @@ export class CategoryItem extends Component {
                                     disabled={!nameEdit}
                                     showError={showError}
                                     messageError='min symbol - 4'
-                                    handleFocus={handleInputOnFocus}
+                                    handleFocus={handleInputFocus}
                                 />
                             </Col>
                             <Col textAlign={T_align.RIGHT}>

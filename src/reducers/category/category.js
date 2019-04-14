@@ -12,7 +12,7 @@ export const category = (state = CATEGORY, {type, payload: item}) => {
                 new Category(item)
             ];
         case ACTION_CATEGORY.REMOVE:
-            return [...state].filter(category => category !== item);
+            return [...state].filter(category => category.id !== item);
         case ACTION_CATEGORY.UPDATE:
             return [...state].map(category => category.id === item.id ? item : category);
         default:

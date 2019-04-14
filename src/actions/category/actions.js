@@ -5,9 +5,9 @@ export const addCategory = item => ({
     payload: item
 });
 
-export const removeCategory = item => ({
+export const removeCategory = id => ({
     type: ACTION_CATEGORY.REMOVE,
-    payload: item
+    payload: id
 });
 
 export const renameCategory = item => ({

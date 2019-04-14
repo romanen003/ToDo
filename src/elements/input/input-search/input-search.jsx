@@ -17,15 +17,14 @@ export class SearchInput extends Component{
 
     handleChange = (val) => {
         const {handleChange} = this.props;
-        const {value} = this.state;
 
         this.setState(() => ({
             value: val
-        }));
-
-        if (handleChange){
-            handleChange(value);
-        }
+        }),() => {
+            if (handleChange){
+                handleChange(this.state.value);
+            }
+        });
     };
 
     handleClick = () => {

@@ -63,7 +63,6 @@ export class Button extends Component {
             del,
             transfer,
             label,
-            onClick,
             disabled,
             withRef,
             children,

@@ -1,22 +1,19 @@
 import React, {Component} from 'react';
-import connect from "react-redux/es/connect/connect";
-import {updateTask, updateTransfer} from "../../actions";
-import {withRouter} from "react-router";
+import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
+import {updateTask, setTransferCategory} from "../../actions";
 import {TaskEdit} from "../index";
 
 
-class TaskEditContainer extends Component {
-    static propTypes = {};
-    static defaultProps = {};
-
+class TaskEditComponent extends Component {
     constructor (props) {
         super(props);
         const {
             tasks,
-            match: {params: {id}}
+            match: {params: {task}}
         } = this.props;
 
-        this.currentTask = tasks.filter(item => item.id === Number(id))[0];
+        this.currentTask = tasks.filter(item => item.id === Number(task))[0];
         this.state = {
             name: this.currentTask.name,
             description: this.currentTask.description,
@@ -25,22 +22,28 @@ class TaskEditContainer extends Component {
         };
     };
 
-    componentWillMount = () => this.props.updateTransfer(this.currentTask.parentCategory);
+    componentDidMount = () => this.props.setTransferCategory(this.currentTask.parentCategory);
 
-    handleNameChange = name => this.setState(() => ({ name, showError: name.length < 4 }));
+    handleNameChange = name => this.setState(() => ({name, showError: name.length < 4}));
 
-    handleStatusChange = status => this.setState(() => ({ status }));
+    handleStatusChange = status => this.setState(() => ({status}));
 
-    handleDescriptionChange = description => this.setState(() => ({ description }));
+    handleDescriptionChange = description => this.setState(() => ({description}));
 
     handleCancelledClick = () => this.props.history.go(-1);
 
     handleChangeSaved = () => {
-        const { name,status, description } = this.state;
-        const {history, updateTask, currentTransfer } = this.props;
+        const {name,status, description} = this.state;
+        const {history, updateTask, currentTransfer} = this.props;
 
         if (this.state.showError) return;
-        updateTask({...this.currentTask, name, status, description, parentCategory: currentTransfer});
+        updateTask({
+            ...this.currentTask,
+            name,
+            status,
+            description,
+            parentCategory: currentTransfer
+        });
         history.push(`/task${this.currentTask.id}`);
     };
 
@@ -60,7 +63,10 @@ class TaskEditContainer extends Component {
 }
 
 
-export default withRouter(connect(state => ({
+export const TaskEditContainer =  withRouter(connect(state => ({
     tasks: state.tasks,
     currentTransfer: state.activeState.transferCategory
-}),{updateTask, updateTransfer})(TaskEditContainer));
+}),{
+    updateTask,
+    setTransferCategory
+})(TaskEditComponent));
