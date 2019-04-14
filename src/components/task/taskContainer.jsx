@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import {withRouter} from "react-router";
 import {connect} from "react-redux";
-import {updateTask} from "../../actions/actionTask";
-
+import {updateTask, updateTransfer} from "../../actions";
 import {Task} from "./task";
-import {updateTransfer} from "../../actions/actionActiveComponent";
+
 
 class TaskContainer extends Component {
     constructor(props){

@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
 import connect from "react-redux/es/connect/connect";
-import {addTask} from "../../actions/actionTask";
-import {addCategory} from "../../actions/actionCategory";
 import NavLink from "react-router-dom/es/NavLink";
 import {FilterCheckbox} from "..";
 import {Form, Input, ProgressBar} from "../../elements";
 import './header.css';
 import '../../elements/style.css'
-import {updateActive} from "../../actions/actionActiveComponent";
 import Switch from "react-router/es/Switch";
 import Route from "react-router/es/Route";
 import {Grid} from "../../elements/grid/grid";
+import {addTask, addCategory, updateActive} from "../../actions";
 
-const {Row, Col, Margin, V_align} = Grid;
 
+const {Row, Col, Margin} = Grid;
 
 export class HeaderContainer extends Component {
 

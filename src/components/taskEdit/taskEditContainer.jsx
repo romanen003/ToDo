@@ -1,11 +1,8 @@
-import React, { Component } from 'react';
-import { } from 'prop-types';
+import React, {Component} from 'react';
 import connect from "react-redux/es/connect/connect";
-import {updateTask} from "../../actions/actionTask";
-import { withRouter } from "react-router";
-
+import {updateTask, updateTransfer} from "../../actions";
+import {withRouter} from "react-router";
 import {TaskEdit} from "../index";
-import {updateTransfer} from "../../actions/actionActiveComponent";
 
 
 class TaskEditContainer extends Component {

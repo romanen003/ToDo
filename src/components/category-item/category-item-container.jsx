@@ -57,10 +57,10 @@ export class CategoryItemComponent extends Component {
     handleNameChange = value => this.setState(() => ({nameValue: value, showError: value.length < 4 }));
 
     handleCategoryDeleteClick = () => {
-        const {item, removeCategory, deletedCategorysTasks} = this.props;
+        const {item, removeCategory, deleteTask} = this.props;
 
         removeCategory(item);
-        deletedCategorysTasks(item);
+        deleteTask(item);
     };
 
     handleConfirmNameClick = () => {
@@ -169,8 +169,8 @@ export const CategoryItemContainer =  withRouter(connect(
         updateTransfer: id => {
             dispatch({type: ACTION_ACTIVE.UPDATE_TRANSFER, payload: id})
         },
-        deletedCategorysTasks: item => {
-            dispatch({type: ACTION_TASK.DELETE_CATEGORYS_TASKS, payload: item})
+        deleteTask: item => {
+            dispatch({type: ACTION_TASK.DELETE_TASK, payload: item})
         }
     })
 )(CategoryItemComponent));

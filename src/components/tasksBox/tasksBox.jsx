@@ -1,10 +1,10 @@
 import React, {Component, Fragment} from 'react';
 import connect from "react-redux/es/connect/connect";
-import {updateTask} from "../../actions/actionTask";
+import {updateTask} from "../../actions";
 import TaskContainer from '../task/taskContainer';
 
 
-export class TasksBoxContainer extends Component {
+class TasksBoxContainer extends Component {
     filterData = () => {
         const {
             match: { params: { id, category }, url},
